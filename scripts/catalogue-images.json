@@ -1,0 +1,347 @@
+{
+  "note": "Curated public-domain / CC0 textile photography from Wikimedia Commons. Regenerate the images with `node scripts/fetch-catalogue-images.mjs`.",
+  "pools": {
+    "banarasi": [
+      {
+        "file": "banarasi-01.jpg",
+        "source": "Sari from India, Uttar Pradesh, Banaras, Honolulu Museum of Art 5375.1.JPG",
+        "page": "https://commons.wikimedia.org/wiki/File:Sari_from_India,_Uttar_Pradesh,_Banaras,_Honolulu_Museum_of_Art_5375.1.JPG",
+        "license": "CC0"
+      },
+      {
+        "file": "banarasi-02.jpg",
+        "source": "Sari from India (probably Benares), late 19th or early 20th century, silk with metallic thread, HAA.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Sari_from_India_(probably_Benares),_late_19th_or_early_20th_century,_silk_with_metallic_thread,_HAA.jpg",
+        "license": "CC0"
+      },
+      {
+        "file": "banarasi-03.jpg",
+        "source": "Sari from India, Varanasi, 18th century, Honolulu Museum of Art 10911.1.JPG",
+        "page": "https://commons.wikimedia.org/wiki/File:Sari_from_India,_Varanasi,_18th_century,_Honolulu_Museum_of_Art_10911.1.JPG",
+        "license": "CC0"
+      },
+      {
+        "file": "banarasi-04.jpg",
+        "source": "India, Benares, 19th century - Sari - 1981.218 - Cleveland Museum of Art.tif",
+        "page": "https://commons.wikimedia.org/wiki/File:India,_Benares,_19th_century_-_Sari_-_1981.218_-_Cleveland_Museum_of_Art.tif",
+        "license": "CC0"
+      }
+    ],
+    "kanjivaram": [
+      {
+        "file": "kanjivaram-01.jpg",
+        "source": "Sari from Kanchipuram, India, Honolulu Museum of Art, accession 8736.1.JPG",
+        "page": "https://commons.wikimedia.org/wiki/File:Sari_from_Kanchipuram,_India,_Honolulu_Museum_of_Art,_accession_8736.1.JPG",
+        "license": "CC0"
+      },
+      {
+        "file": "kanjivaram-02.jpg",
+        "source": "Sari MET CI45.28 d.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Sari_MET_CI45.28_d.jpg",
+        "license": "CC0"
+      },
+      {
+        "file": "kanjivaram-03.jpg",
+        "source": "Sari MET 1978.50.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Sari_MET_1978.50.jpg",
+        "license": "CC0"
+      }
+    ],
+    "silk": [
+      {
+        "file": "silk-01.jpg",
+        "source": "Sari MET DP165253.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Sari_MET_DP165253.jpg",
+        "license": "CC0"
+      },
+      {
+        "file": "silk-02.jpg",
+        "source": "Sari from India, silk, Honolulu Museum of Art, accession 14362.1.JPG",
+        "page": "https://commons.wikimedia.org/wiki/File:Sari_from_India,_silk,_Honolulu_Museum_of_Art,_accession_14362.1.JPG",
+        "license": "CC0"
+      },
+      {
+        "file": "silk-03.jpg",
+        "source": "Sari from Murshidabad, India, Honolulu Museum of Art, accession 8730.1.JPG",
+        "page": "https://commons.wikimedia.org/wiki/File:Sari_from_Murshidabad,_India,_Honolulu_Museum_of_Art,_accession_8730.1.JPG",
+        "license": "CC0"
+      }
+    ],
+    "cotton": [
+      {
+        "file": "cotton-01.jpg",
+        "source": "Sari from Bengal India, 20th century, Honolulu Museum of Art, 7403.1.JPG",
+        "page": "https://commons.wikimedia.org/wiki/File:Sari_from_Bengal_India,_20th_century,_Honolulu_Museum_of_Art,_7403.1.JPG",
+        "license": "CC0"
+      },
+      {
+        "file": "cotton-02.jpg",
+        "source": "Sari from Orissa, India, Honolulu Museum of Art 3962.1.JPG",
+        "page": "https://commons.wikimedia.org/wiki/File:Sari_from_Orissa,_India,_Honolulu_Museum_of_Art_3962.1.JPG",
+        "license": "CC0"
+      },
+      {
+        "file": "cotton-03.jpg",
+        "source": "Sari from India, Rajasthan, Bagru, Honolulu Museum of Art 3967.1.JPG",
+        "page": "https://commons.wikimedia.org/wiki/File:Sari_from_India,_Rajasthan,_Bagru,_Honolulu_Museum_of_Art_3967.1.JPG",
+        "license": "CC0"
+      }
+    ],
+    "chanderi": [
+      {
+        "file": "chanderi-01.jpg",
+        "source": "Sari from Madhya Pradesh, India, Honolulu Museum of Art 3965.1.JPG",
+        "page": "https://commons.wikimedia.org/wiki/File:Sari_from_Madhya_Pradesh,_India,_Honolulu_Museum_of_Art_3965.1.JPG",
+        "license": "CC0"
+      },
+      {
+        "file": "chanderi-02.jpg",
+        "source": "Sari from India, Honolulu Museum of Art 3964.1.JPG",
+        "page": "https://commons.wikimedia.org/wiki/File:Sari_from_India,_Honolulu_Museum_of_Art_3964.1.JPG",
+        "license": "CC0"
+      },
+      {
+        "file": "chanderi-03.jpg",
+        "source": "Sari from Rajasthan, Honolulu Museum of Art, 3942.1.JPG",
+        "page": "https://commons.wikimedia.org/wiki/File:Sari_from_Rajasthan,_Honolulu_Museum_of_Art,_3942.1.JPG",
+        "license": "CC0"
+      }
+    ],
+    "ikat": [
+      {
+        "file": "ikat-01.jpg",
+        "source": "Patola (India), 19th century (CH 18437535).jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Patola_(India),_19th_century_(CH_18437535).jpg",
+        "license": "Public domain"
+      },
+      {
+        "file": "ikat-02.jpg",
+        "source": "India, Gujarat, 19th century - Silk Patolu Sari - 1940.607 - Cleveland Museum of Art.tif",
+        "page": "https://commons.wikimedia.org/wiki/File:India,_Gujarat,_19th_century_-_Silk_Patolu_Sari_-_1940.607_-_Cleveland_Museum_of_Art.tif",
+        "license": "CC0"
+      },
+      {
+        "file": "ikat-03.jpg",
+        "source": "Omslagdoek Patola, patan, AK-MAK-1742-1.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Omslagdoek_Patola,_patan,_AK-MAK-1742-1.jpg",
+        "license": "CC0"
+      }
+    ],
+    "brocade": [
+      {
+        "file": "brocade-01.jpg",
+        "source": "India, Benares ?, 19th century - Brocade - 1925.716 - Cleveland Museum of Art.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:India,_Benares_%3F,_19th_century_-_Brocade_-_1925.716_-_Cleveland_Museum_of_Art.jpg",
+        "license": "CC0"
+      },
+      {
+        "file": "brocade-02.jpg",
+        "source": "India, 19th century - Gold Brocade - 1916.1209 - Cleveland Museum of Art.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:India,_19th_century_-_Gold_Brocade_-_1916.1209_-_Cleveland_Museum_of_Art.jpg",
+        "license": "CC0"
+      },
+      {
+        "file": "brocade-03.jpg",
+        "source": "India, Surat, 19th century - Brocade - 1925.522 - Cleveland Museum of Art.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:India,_Surat,_19th_century_-_Brocade_-_1925.522_-_Cleveland_Museum_of_Art.jpg",
+        "license": "CC0"
+      },
+      {
+        "file": "brocade-04.jpg",
+        "source": "India, Warangal, 19th century - Brocade - 1925.517 - Cleveland Museum of Art.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:India,_Warangal,_19th_century_-_Brocade_-_1925.517_-_Cleveland_Museum_of_Art.jpg",
+        "license": "CC0"
+      },
+      {
+        "file": "brocade-05.jpg",
+        "source": "India, Benares ?, 18th-19th century - Brocade - 1925.503 - Cleveland Museum of Art.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:India,_Benares_%3F,_18th-19th_century_-_Brocade_-_1925.503_-_Cleveland_Museum_of_Art.jpg",
+        "license": "CC0"
+      }
+    ],
+    "blockprint": [
+      {
+        "file": "blockprint-01.jpg",
+        "source": "Chintz (India), 18th century (CH 18481715).jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Chintz_(India),_18th_century_(CH_18481715).jpg",
+        "license": "Public domain"
+      },
+      {
+        "file": "blockprint-02.jpg",
+        "source": "Chintz (India), 1770s (CH 18481799).jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Chintz_(India),_1770s_(CH_18481799).jpg",
+        "license": "Public domain"
+      },
+      {
+        "file": "blockprint-03.jpg",
+        "source": "Chintz Panel (India), 18th century (CH 18481755).jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Chintz_Panel_(India),_18th_century_(CH_18481755).jpg",
+        "license": "Public domain"
+      },
+      {
+        "file": "blockprint-04.jpg",
+        "source": "Chintz Border (India), ca. 1800 (CH 18481785).jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Chintz_Border_(India),_ca._1800_(CH_18481785).jpg",
+        "license": "Public domain"
+      }
+    ],
+    "kalamkari": [
+      {
+        "file": "kalamkari-01.jpg",
+        "source": "Kalamkari Rumal MET TP310.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Kalamkari_Rumal_MET_TP310.jpg",
+        "license": "CC0"
+      },
+      {
+        "file": "kalamkari-02.jpg",
+        "source": "Kalamkari Rumal MET DT11759.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Kalamkari_Rumal_MET_DT11759.jpg",
+        "license": "CC0"
+      },
+      {
+        "file": "kalamkari-03.jpg",
+        "source": "Kalamkari Rumal MET DP335160.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Kalamkari_Rumal_MET_DP335160.jpg",
+        "license": "CC0"
+      }
+    ],
+    "phulkari": [
+      {
+        "file": "phulkari-01.jpg",
+        "source": "Phulkari from Punjab, India, 20th century, khadi, silk, plain weave, embroidery, Honolulu Museum of Art.JPG",
+        "page": "https://commons.wikimedia.org/wiki/File:Phulkari_from_Punjab,_India,_20th_century,_khadi,_silk,_plain_weave,_embroidery,_Honolulu_Museum_of_Art.JPG",
+        "license": "CC0"
+      },
+      {
+        "file": "phulkari-02.jpg",
+        "source": "'Phulkari' (bridal shawl), Punjab, early 20th century, cotton, silk and embroidery, Honolulu Academy of Arts.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:%27Phulkari%27_(bridal_shawl),_Punjab,_early_20th_century,_cotton,_silk_and_embroidery,_Honolulu_Academy_of_Arts.jpg",
+        "license": "Public domain"
+      },
+      {
+        "file": "phulkari-03.jpg",
+        "source": "India, Punjab, 19th century - Head Shawl (\"Phulkari\") - 1940.595 - Cleveland Museum of Art.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:India,_Punjab,_19th_century_-_Head_Shawl_(%22Phulkari%22)_-_1940.595_-_Cleveland_Museum_of_Art.jpg",
+        "license": "CC0"
+      },
+      {
+        "file": "phulkari-04.jpg",
+        "source": "Phulkari (shawl) from India, Honolulu Museum of Art 3585.JPG",
+        "page": "https://commons.wikimedia.org/wiki/File:Phulkari_(shawl)_from_India,_Honolulu_Museum_of_Art_3585.JPG",
+        "license": "CC0"
+      }
+    ],
+    "jamdani": [
+      {
+        "file": "jamdani-01.jpg",
+        "source": "Blue jamdani.JPG",
+        "page": "https://commons.wikimedia.org/wiki/File:Blue_jamdani.JPG",
+        "license": "Public domain"
+      },
+      {
+        "file": "jamdani-02.jpg",
+        "source": "Jamdani ( জামদানী) .jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Jamdani_(_%E0%A6%9C%E0%A6%BE%E0%A6%AE%E0%A6%A6%E0%A6%BE%E0%A6%A8%E0%A7%80)_.jpg",
+        "license": "CC0"
+      }
+    ],
+    "shawl": [
+      {
+        "file": "shawl-01.jpg",
+        "source": "Shawl, India, Kashmir, mid 19th century, Honolulu Museum of Art, 2999.JPG",
+        "page": "https://commons.wikimedia.org/wiki/File:Shawl,_India,_Kashmir,_mid_19th_century,_Honolulu_Museum_of_Art,_2999.JPG",
+        "license": "CC0"
+      },
+      {
+        "file": "shawl-02.jpg",
+        "source": "Shawl from Kashmir, mid-19th century, Honolulu Museum of Art, 3976.1.JPG",
+        "page": "https://commons.wikimedia.org/wiki/File:Shawl_from_Kashmir,_mid-19th_century,_Honolulu_Museum_of_Art,_3976.1.JPG",
+        "license": "CC0"
+      },
+      {
+        "file": "shawl-03.jpg",
+        "source": "Shawl, Varanasi, Uttar Pradesh, India, view 1, late 19th to early 20th century, silk, gold thread - Textile Museum of Canada - DSC00965.JPG",
+        "page": "https://commons.wikimedia.org/wiki/File:Shawl,_Varanasi,_Uttar_Pradesh,_India,_view_1,_late_19th_to_early_20th_century,_silk,_gold_thread_-_Textile_Museum_of_Canada_-_DSC00965.JPG",
+        "license": "CC0"
+      }
+    ],
+    "suits": [
+      {
+        "file": "suits-01.jpg",
+        "source": "Choli (blouse) for wedding from India, Honolulu Museum of Art 3988.1.JPG",
+        "page": "https://commons.wikimedia.org/wiki/File:Choli_(blouse)_for_wedding_from_India,_Honolulu_Museum_of_Art_3988.1.JPG",
+        "license": "CC0"
+      },
+      {
+        "file": "suits-02.jpg",
+        "source": "Angarkha MET CI64.78.2 F.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Angarkha_MET_CI64.78.2_F.jpg",
+        "license": "CC0"
+      },
+      {
+        "file": "suits-03.jpg",
+        "source": "India, Cutch, 19th - early 20th century - \"Salwar\"- Woman's Trousers - 1925.514 - Cleveland Museum of Art.tif",
+        "page": "https://commons.wikimedia.org/wiki/File:India,_Cutch,_19th_-_early_20th_century_-_%22Salwar%22-_Woman%27s_Trousers_-_1925.514_-_Cleveland_Museum_of_Art.tif",
+        "license": "CC0"
+      },
+      {
+        "file": "suits-04.jpg",
+        "source": "India, Cutch, 19th century - Woman's Blouse (Pairan) - 1916.1463 - Cleveland Museum of Art.tif",
+        "page": "https://commons.wikimedia.org/wiki/File:India,_Cutch,_19th_century_-_Woman%27s_Blouse_(Pairan)_-_1916.1463_-_Cleveland_Museum_of_Art.tif",
+        "license": "CC0"
+      }
+    ],
+    "lehenga": [
+      {
+        "file": "lehenga-01.jpg",
+        "source": "Blouse (kanchali) and skirt (ghaghara), Banjara community, Saurashtra, Gujarat, India, view 1, mid 20th century, cotton, glass mirrors - Textile Museum of Canada - DSC00975.JPG",
+        "page": "https://commons.wikimedia.org/wiki/File:Blouse_(kanchali)_and_skirt_(ghaghara),_Banjara_community,_Saurashtra,_Gujarat,_India,_view_1,_mid_20th_century,_cotton,_glass_mirrors_-_Textile_Museum_of_Canada_-_DSC00975.JPG",
+        "license": "CC0"
+      },
+      {
+        "file": "lehenga-02.jpg",
+        "source": "Ghagra ensemble from India, 20th century, Honolulu Museum of Art.JPG",
+        "page": "https://commons.wikimedia.org/wiki/File:Ghagra_ensemble_from_India,_20th_century,_Honolulu_Museum_of_Art.JPG",
+        "license": "CC0"
+      },
+      {
+        "file": "lehenga-03.jpg",
+        "source": "India, Cutch, late 19th or early 20th century - Panel for a Skirt (Ghagra) - 1925.682 - Cleveland Museum of Art.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:India,_Cutch,_late_19th_or_early_20th_century_-_Panel_for_a_Skirt_(Ghagra)_-_1925.682_-_Cleveland_Museum_of_Art.jpg",
+        "license": "CC0"
+      },
+      {
+        "file": "lehenga-04.jpg",
+        "source": "India, Cutch, 19th - early 20th century - Part of a Skirt (Ghagra) - 1925.516 - Cleveland Museum of Art.tif",
+        "page": "https://commons.wikimedia.org/wiki/File:India,_Cutch,_19th_-_early_20th_century_-_Part_of_a_Skirt_(Ghagra)_-_1925.516_-_Cleveland_Museum_of_Art.tif",
+        "license": "CC0"
+      }
+    ],
+    "mens": [
+      {
+        "file": "mens-01.jpg",
+        "source": "Kurta MET CI43.84.10 F.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Kurta_MET_CI43.84.10_F.jpg",
+        "license": "CC0"
+      },
+      {
+        "file": "mens-02.jpg",
+        "source": "Kurta MET CI50.16.6 F.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Kurta_MET_CI50.16.6_F.jpg",
+        "license": "CC0"
+      },
+      {
+        "file": "mens-03.jpg",
+        "source": "Coat (India), 19th century (CH 18437587).jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Coat_(India),_19th_century_(CH_18437587).jpg",
+        "license": "Public domain"
+      },
+      {
+        "file": "mens-04.jpg",
+        "source": "Angarkha MET 1976.149.4 F.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Angarkha_MET_1976.149.4_F.jpg",
+        "license": "CC0"
+      }
+    ]
+  }
+}
