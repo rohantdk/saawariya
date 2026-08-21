@@ -167,7 +167,7 @@ export function SellerVerificationActions({
               minLength={10}
               maxLength={500}
               placeholder="The seller sees this word for word on their application page."
-              className="w-full border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400/60 focus:border-brand-600 focus:outline-none"
+              className="rounded-md w-full border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400/60 focus:border-brand-600 focus:outline-none"
             />
             <FieldError messages={rejectState.errors?.note} />
           </div>
@@ -195,7 +195,7 @@ export function SellerVerificationActions({
               minLength={10}
               maxLength={500}
               placeholder="This withdraws every live product from the storefront. The seller sees this reason."
-              className="w-full border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400/60 focus:border-brand-600 focus:outline-none"
+              className="rounded-md w-full border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400/60 focus:border-brand-600 focus:outline-none"
             />
             <FieldError messages={suspendState.errors?.note} />
           </div>

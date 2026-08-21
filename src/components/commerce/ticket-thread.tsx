@@ -103,7 +103,7 @@ export function TicketThread({
                   required
                   maxLength={4000}
                   placeholder="Add a message…"
-                  className="w-full border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-900 focus:border-brand-600 focus:outline-none"
+                  className="rounded-md w-full border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-900 focus:border-brand-600 focus:outline-none"
                 />
 
                 <div className="flex flex-wrap items-center gap-4">

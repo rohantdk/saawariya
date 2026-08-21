@@ -181,7 +181,7 @@ export default async function CheckoutPage(props: PageProps<"/checkout">) {
                     name="billingAddressId"
                     form={FORM_ID}
                     defaultValue={defaultBilling?.id ?? ""}
-                    className="w-full border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-900 focus:border-brand-600 focus:outline-none"
+                    className="rounded-md w-full border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-900 focus:border-brand-600 focus:outline-none"
                   >
                     {/* An empty value means "same as delivery" — one control,
                         no JavaScript, and nothing to hide or reveal. */}

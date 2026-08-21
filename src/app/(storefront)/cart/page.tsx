@@ -152,7 +152,7 @@ export default async function CartPage(props: PageProps<"/cart">) {
                 <button
                   type="button"
                   disabled
-                  className="w-full cursor-not-allowed bg-brand-600/50 px-8 py-4 text-sm font-medium uppercase tracking-[0.16em] text-cream"
+                  className="rounded-md w-full cursor-not-allowed bg-brand-600/50 px-8 py-4 text-sm font-medium uppercase tracking-[0.16em] text-cream"
                 >
                   Proceed to checkout
                 </button>

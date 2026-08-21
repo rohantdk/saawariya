@@ -364,7 +364,7 @@ function CategoryEditor({
             rows={2}
             maxLength={300}
             defaultValue={node?.description ?? ""}
-            className="w-full border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400/60 focus:border-brand-600 focus:outline-none"
+            className="rounded-md w-full border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400/60 focus:border-brand-600 focus:outline-none"
           />
           <FieldError messages={errors?.description} />
         </div>

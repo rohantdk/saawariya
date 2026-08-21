@@ -50,7 +50,7 @@ export function PlaceOrderForm({
       <button
         type="submit"
         disabled={disabled || pending}
-        className="w-full bg-brand-600 px-8 py-4 text-sm font-medium uppercase tracking-[0.16em] text-cream transition-colors hover:bg-brand-700 active:bg-brand-800 disabled:cursor-not-allowed disabled:bg-brand-600/50"
+        className="rounded-md w-full bg-brand-600 px-8 py-4 text-sm font-medium uppercase tracking-[0.16em] text-cream transition-colors hover:bg-brand-700 active:bg-brand-800 disabled:cursor-not-allowed disabled:bg-brand-600/50"
       >
         {pending ? "Placing order…" : `Place order · ${formatPaise(totalAmount)}`}
       </button>

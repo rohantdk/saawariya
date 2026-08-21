@@ -92,7 +92,7 @@ export function DecisionPanel({
             name="reference"
             maxLength={60}
             placeholder={reference.hint}
-            className="w-full max-w-sm border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400/60 focus:border-brand-600 focus:outline-none"
+            className="rounded-md w-full max-w-sm border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400/60 focus:border-brand-600 focus:outline-none"
           />
           <FieldError messages={state.errors?.reference} />
         </div>
@@ -106,7 +106,7 @@ export function DecisionPanel({
           rows={2}
           maxLength={600}
           placeholder={notePlaceholder}
-          className="w-full border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400/60 focus:border-brand-600 focus:outline-none"
+          className="rounded-md w-full border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400/60 focus:border-brand-600 focus:outline-none"
         />
         {noteRequiredFor.length > 0 && (
           <p className="text-xs text-ink-400">

@@ -249,7 +249,7 @@ function CarouselButton({
     <button
       type="button"
       onClick={onClick}
-      className="flex h-10 w-10 items-center justify-center border border-cream/25 text-cream transition-colors duration-300 hover:border-gold-400 hover:bg-cream/10 hover:text-gold-300"
+      className="rounded-md flex h-10 w-10 items-center justify-center border border-cream/25 text-cream transition-colors duration-300 hover:border-gold-400 hover:bg-cream/10 hover:text-gold-300"
     >
       {children}
       <span className="sr-only">{label}</span>

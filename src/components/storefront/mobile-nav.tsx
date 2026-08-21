@@ -68,7 +68,7 @@ export function MobileNav({
           <button
             type="button"
             onClick={() => setIsOpen(false)}
-            className="absolute inset-0 bg-scrim/40"
+            className="rounded-md absolute inset-0 bg-scrim/40"
             tabIndex={-1}
           >
             <span className="sr-only">Close menu</span>

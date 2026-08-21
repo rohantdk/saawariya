@@ -106,13 +106,13 @@ export default async function SettlementsPage({
           defaultValue={q}
           placeholder="Order, sub-order, seller or reference"
           aria-label="Search payouts"
-          className="w-full max-w-xs border border-ivory-400 bg-ivory-50 px-4 py-2.5 text-sm text-ink-900 placeholder:text-ink-400/60 focus:border-brand-600 focus:outline-none"
+          className="rounded-md w-full max-w-xs border border-ivory-400 bg-ivory-50 px-4 py-2.5 text-sm text-ink-900 placeholder:text-ink-400/60 focus:border-brand-600 focus:outline-none"
         />
         <select
           name="sellerId"
           defaultValue={sellerId}
           aria-label="Filter by seller"
-          className="border border-ivory-400 bg-ivory-50 px-4 py-2.5 text-sm text-ink-900 focus:border-brand-600 focus:outline-none"
+          className="rounded-md border border-ivory-400 bg-ivory-50 px-4 py-2.5 text-sm text-ink-900 focus:border-brand-600 focus:outline-none"
         >
           <option value="">All sellers</option>
           {sellers.map((seller) => (
@@ -123,7 +123,7 @@ export default async function SettlementsPage({
         </select>
         <button
           type="submit"
-          className="border border-ink-900/15 px-5 text-xs font-medium uppercase tracking-[0.12em] text-ink-900 transition-colors hover:bg-ivory-200"
+          className="rounded-md border border-ink-900/15 px-5 text-xs font-medium uppercase tracking-[0.12em] text-ink-900 transition-colors hover:bg-ivory-200"
         >
           Apply
         </button>

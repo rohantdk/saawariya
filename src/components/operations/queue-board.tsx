@@ -99,11 +99,11 @@ export function QueueBoard({
           defaultValue={q}
           placeholder="Sub-order, order number, SKU or tracking number"
           aria-label="Search this queue"
-          className="w-full max-w-md border border-ivory-400 bg-ivory-50 px-4 py-2.5 text-sm text-ink-900 placeholder:text-ink-400/60 focus:border-brand-600 focus:outline-none"
+          className="rounded-md w-full max-w-md border border-ivory-400 bg-ivory-50 px-4 py-2.5 text-sm text-ink-900 placeholder:text-ink-400/60 focus:border-brand-600 focus:outline-none"
         />
         <button
           type="submit"
-          className="border border-ink-900/15 px-5 text-xs font-medium uppercase tracking-[0.12em] text-ink-900 transition-colors hover:bg-ivory-200"
+          className="rounded-md border border-ink-900/15 px-5 text-xs font-medium uppercase tracking-[0.12em] text-ink-900 transition-colors hover:bg-ivory-200"
         >
           Search
         </button>

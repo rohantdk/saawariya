@@ -177,7 +177,7 @@ export function ProductBuyPanel({
                   onClick={() => setSelectedId(variant.id)}
                   aria-pressed={isSelected}
                   className={cn(
-                    "border px-4 py-2.5 text-sm transition-colors",
+                    "rounded-md border px-4 py-2.5 text-sm transition-colors",
                     isSelected
                       ? "border-brand-600 bg-brand-600 text-cream"
                       : "border-ivory-400 text-ink-900 hover:border-ink-400",
@@ -345,7 +345,7 @@ export function ProductBuyPanel({
             disabled={wishPending}
             aria-pressed={saved}
             className={cn(
-              "flex w-full items-center justify-center gap-2 border px-6 py-3 text-xs font-medium uppercase tracking-[0.14em] transition-colors disabled:opacity-60",
+              "flex w-full items-center justify-center gap-2 rounded-md border px-6 py-3 text-xs font-medium uppercase tracking-[0.14em] transition-colors disabled:opacity-60",
               saved
                 ? "border-brand-600 text-brand-600"
                 : "border-ink-900/15 text-ink-900 hover:border-ink-900/40",
@@ -388,7 +388,7 @@ function StepperButton({
       aria-label={label}
       disabled={disabled}
       onClick={onClick}
-      className="flex h-13 w-11 items-center justify-center text-ink-900 transition-colors hover:bg-ivory-200 disabled:cursor-not-allowed disabled:text-ink-400/50 disabled:hover:bg-transparent"
+      className="rounded-md flex h-13 w-11 items-center justify-center text-ink-900 transition-colors hover:bg-ivory-200 disabled:cursor-not-allowed disabled:text-ink-400/50 disabled:hover:bg-transparent"
     >
       {children}
     </button>

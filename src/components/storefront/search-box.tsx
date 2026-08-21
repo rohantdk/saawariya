@@ -50,7 +50,7 @@ export function SearchBox({
         maxLength={120}
         placeholder="Search sarees, fabric, weavers…"
         className={cn(
-          "h-10 w-full border py-2 pl-4 pr-11 text-sm transition-colors duration-300 focus:outline-none",
+          "h-10 w-full rounded-md border py-2 pl-4 pr-11 text-sm transition-colors duration-300 focus:outline-none",
           isDark
             ? // Sits on wine: a translucent well rather than a white box, which
               // would punch a hole in the header.

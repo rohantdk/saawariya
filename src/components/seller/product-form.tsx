@@ -143,7 +143,7 @@ export function ProductForm({
             rows={5}
             defaultValue={product?.description ?? ""}
             required
-            className="w-full border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-900 transition-colors duration-200 focus:border-brand-600 focus:outline-none"
+            className="rounded-md w-full border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-900 transition-colors duration-200 focus:border-brand-600 focus:outline-none"
           />
         </Field>
 

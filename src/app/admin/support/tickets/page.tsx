@@ -100,13 +100,13 @@ export default async function TicketsPage({
           defaultValue={q}
           placeholder="Ticket number, subject or person"
           aria-label="Search tickets"
-          className="w-full max-w-xs border border-ivory-400 bg-ivory-50 px-4 py-2.5 text-sm text-ink-900 placeholder:text-ink-400/60 focus:border-brand-600 focus:outline-none"
+          className="rounded-md w-full max-w-xs border border-ivory-400 bg-ivory-50 px-4 py-2.5 text-sm text-ink-900 placeholder:text-ink-400/60 focus:border-brand-600 focus:outline-none"
         />
         <select
           name="priority"
           defaultValue={priority}
           aria-label="Filter by priority"
-          className="border border-ivory-400 bg-ivory-50 px-4 py-2.5 text-sm text-ink-900 focus:border-brand-600 focus:outline-none"
+          className="rounded-md border border-ivory-400 bg-ivory-50 px-4 py-2.5 text-sm text-ink-900 focus:border-brand-600 focus:outline-none"
         >
           <option value="all">Any priority</option>
           {Object.values(TICKET_PRIORITY).map((value) => (
@@ -119,7 +119,7 @@ export default async function TicketsPage({
           name="assignee"
           defaultValue={assignee}
           aria-label="Filter by assignee"
-          className="border border-ivory-400 bg-ivory-50 px-4 py-2.5 text-sm text-ink-900 focus:border-brand-600 focus:outline-none"
+          className="rounded-md border border-ivory-400 bg-ivory-50 px-4 py-2.5 text-sm text-ink-900 focus:border-brand-600 focus:outline-none"
         >
           <option value="all">Anyone</option>
           <option value="unassigned">Nobody yet</option>
@@ -131,7 +131,7 @@ export default async function TicketsPage({
         </select>
         <button
           type="submit"
-          className="border border-ink-900/15 px-5 text-xs font-medium uppercase tracking-[0.12em] text-ink-900 transition-colors hover:bg-ivory-200"
+          className="rounded-md border border-ink-900/15 px-5 text-xs font-medium uppercase tracking-[0.12em] text-ink-900 transition-colors hover:bg-ivory-200"
         >
           Apply
         </button>

@@ -105,7 +105,7 @@ export function TicketForm({
           minLength={20}
           maxLength={4000}
           className={cn(
-            "w-full border bg-ivory-50 px-4 py-3 text-sm text-ink-900 focus:border-brand-600 focus:outline-none",
+            "w-full rounded-md border bg-ivory-50 px-4 py-3 text-sm text-ink-900 focus:border-brand-600 focus:outline-none",
             errors.description ? "border-danger" : "border-ivory-400",
           )}
         />

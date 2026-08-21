@@ -73,7 +73,7 @@ export function CmsPageForm({
           rows={18}
           required
           defaultValue={page.bodyHtml}
-          className="w-full border border-ivory-400 bg-ivory-50 px-4 py-3 font-mono text-xs leading-relaxed text-ink-900 focus:border-brand-600 focus:outline-none"
+          className="rounded-md w-full border border-ivory-400 bg-ivory-50 px-4 py-3 font-mono text-xs leading-relaxed text-ink-900 focus:border-brand-600 focus:outline-none"
         />
       </Field>
 

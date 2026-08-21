@@ -59,7 +59,7 @@ export function FilterDrawer({
         type="button"
         onClick={() => setIsOpen(true)}
         aria-expanded={isOpen}
-        className="flex h-10 items-center gap-2 border border-ivory-400 bg-ivory-50 px-4 text-xs text-ink-900 transition-colors hover:border-ink-400 lg:hidden"
+        className="rounded-md flex h-10 items-center gap-2 border border-ivory-400 bg-ivory-50 px-4 text-xs text-ink-900 transition-colors hover:border-ink-400 lg:hidden"
       >
         <SlidersHorizontal aria-hidden="true" className="h-3.5 w-3.5" />
         Filter
@@ -75,7 +75,7 @@ export function FilterDrawer({
           <button
             type="button"
             onClick={() => setIsOpen(false)}
-            className="absolute inset-0 bg-scrim/40"
+            className="rounded-md absolute inset-0 bg-scrim/40"
             tabIndex={-1}
           >
             <span className="sr-only">Close filters</span>

@@ -50,7 +50,7 @@ export function AssignControl({
            */
           key={assigneeId ?? "unassigned"}
           defaultValue={assigneeId ?? ""}
-          className="min-w-0 flex-1 border border-ivory-400 bg-ivory-50 px-4 py-2.5 text-sm text-ink-900 focus:border-brand-600 focus:outline-none"
+          className="rounded-md min-w-0 flex-1 border border-ivory-400 bg-ivory-50 px-4 py-2.5 text-sm text-ink-900 focus:border-brand-600 focus:outline-none"
         >
           <option value="">Nobody — in the shared queue</option>
           {agents.map((agent) => (
@@ -100,7 +100,7 @@ export function PriorityControl({
           // Same form-reset problem as the assignee above.
           key={priority}
           defaultValue={priority}
-          className="min-w-0 flex-1 border border-ivory-400 bg-ivory-50 px-4 py-2.5 text-sm text-ink-900 focus:border-brand-600 focus:outline-none"
+          className="rounded-md min-w-0 flex-1 border border-ivory-400 bg-ivory-50 px-4 py-2.5 text-sm text-ink-900 focus:border-brand-600 focus:outline-none"
         >
           {Object.values(TICKET_PRIORITY).map((value) => (
             <option key={value} value={value}>
@@ -178,7 +178,7 @@ export function ReplyBox({
           required
           maxLength={4000}
           placeholder="Written to the customer unless you tick the box below."
-          className="w-full border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400/60 focus:border-brand-600 focus:outline-none"
+          className="rounded-md w-full border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400/60 focus:border-brand-600 focus:outline-none"
         />
         <FieldError messages={state.errors?.body} />
       </div>

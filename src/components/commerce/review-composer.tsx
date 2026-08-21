@@ -136,7 +136,7 @@ export function ReviewComposer({
           maxLength={2000}
           aria-label={`Your review of ${productName}`}
           className={cn(
-            "w-full border bg-ivory-50 px-4 py-3 text-sm text-ink-900 focus:border-brand-600 focus:outline-none",
+            "w-full rounded-md border bg-ivory-50 px-4 py-3 text-sm text-ink-900 focus:border-brand-600 focus:outline-none",
             state.errors?.body ? "border-danger" : "border-ivory-400",
           )}
         />

@@ -8,8 +8,7 @@ type Size = "sm" | "md" | "lg";
 const VARIANTS: Record<Variant, string> = {
   primary:
     "bg-brand-600 text-cream hover:bg-brand-700 active:bg-brand-800 disabled:bg-brand-600/50",
-  // No radius here: BASE sets `rounded-none` for every variant and buttons stay
-  // square by design. Only panels and cards were softened.
+  // No radius on any variant — BASE carries the one radius for every button.
   secondary:
     "border border-ink-900/15 bg-transparent text-ink-900 hover:border-ink-900/40 hover:bg-ivory-200 disabled:opacity-50",
   ghost:
@@ -25,7 +24,7 @@ const SIZES: Record<Size, string> = {
 };
 
 const BASE =
-  "inline-flex items-center justify-center gap-2 rounded-none font-medium uppercase " +
+  "inline-flex items-center justify-center gap-2 rounded-md font-medium uppercase " +
   "transition-colors duration-200 disabled:cursor-not-allowed select-none";
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {

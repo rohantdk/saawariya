@@ -110,7 +110,7 @@ export default async function AudiencePage({
                 id="audience-picker"
                 name="audience"
                 defaultValue={audience}
-                className="w-full border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-900 focus:border-brand-600 focus:outline-none"
+                className="rounded-md w-full border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-900 focus:border-brand-600 focus:outline-none"
               >
                 {[
                   CAMPAIGN_AUDIENCE.ALL,
@@ -130,7 +130,7 @@ export default async function AudiencePage({
             </div>
             <button
               type="submit"
-              className="h-12 shrink-0 border border-ink-900/15 px-5 text-xs font-medium uppercase tracking-[0.12em] text-ink-900 transition-colors hover:bg-ivory-200"
+              className="rounded-md h-12 shrink-0 border border-ink-900/15 px-5 text-xs font-medium uppercase tracking-[0.12em] text-ink-900 transition-colors hover:bg-ivory-200"
             >
               Choose
             </button>
@@ -187,7 +187,7 @@ export default async function AudiencePage({
             defaultValue={q}
             placeholder="Search an address"
             aria-label="Search subscribers"
-            className="w-full max-w-xs border border-ivory-400 bg-ivory-50 px-4 py-2.5 text-sm text-ink-900 placeholder:text-ink-400/60 focus:border-brand-600 focus:outline-none"
+            className="rounded-md w-full max-w-xs border border-ivory-400 bg-ivory-50 px-4 py-2.5 text-sm text-ink-900 placeholder:text-ink-400/60 focus:border-brand-600 focus:outline-none"
           />
           <label className="flex items-center gap-2 text-sm text-ink-500">
             <input
@@ -201,7 +201,7 @@ export default async function AudiencePage({
           </label>
           <button
             type="submit"
-            className="border border-ink-900/15 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.12em] text-ink-900 transition-colors hover:bg-ivory-200"
+            className="rounded-md border border-ink-900/15 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.12em] text-ink-900 transition-colors hover:bg-ivory-200"
           >
             Apply
           </button>

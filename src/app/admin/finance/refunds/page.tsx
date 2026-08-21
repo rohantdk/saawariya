@@ -103,13 +103,13 @@ export default async function RefundsPage({
           defaultValue={q}
           placeholder="Order number or customer"
           aria-label="Search refunds"
-          className="w-full max-w-xs border border-ivory-400 bg-ivory-50 px-4 py-2.5 text-sm text-ink-900 placeholder:text-ink-400/60 focus:border-brand-600 focus:outline-none"
+          className="rounded-md w-full max-w-xs border border-ivory-400 bg-ivory-50 px-4 py-2.5 text-sm text-ink-900 placeholder:text-ink-400/60 focus:border-brand-600 focus:outline-none"
         />
         <select
           name="reason"
           defaultValue={reason}
           aria-label="Filter by reason"
-          className="border border-ivory-400 bg-ivory-50 px-4 py-2.5 text-sm text-ink-900 focus:border-brand-600 focus:outline-none"
+          className="rounded-md border border-ivory-400 bg-ivory-50 px-4 py-2.5 text-sm text-ink-900 focus:border-brand-600 focus:outline-none"
         >
           <option value="all">All reasons</option>
           {reasons.map((option) => (
@@ -120,7 +120,7 @@ export default async function RefundsPage({
         </select>
         <button
           type="submit"
-          className="border border-ink-900/15 px-5 text-xs font-medium uppercase tracking-[0.12em] text-ink-900 transition-colors hover:bg-ivory-200"
+          className="rounded-md border border-ink-900/15 px-5 text-xs font-medium uppercase tracking-[0.12em] text-ink-900 transition-colors hover:bg-ivory-200"
         >
           Apply
         </button>

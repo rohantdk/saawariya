@@ -49,7 +49,7 @@ export function MarkAllRead() {
       <button
         type="submit"
         disabled={pending}
-        className="border border-ink-900/15 px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] text-ink-900 transition-colors hover:border-ink-900/40 hover:bg-ivory-200 disabled:opacity-50"
+        className="rounded-md border border-ink-900/15 px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] text-ink-900 transition-colors hover:border-ink-900/40 hover:bg-ivory-200 disabled:opacity-50"
       >
         {pending ? "Marking…" : "Mark all as read"}
       </button>

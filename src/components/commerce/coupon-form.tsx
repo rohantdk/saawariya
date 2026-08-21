@@ -81,7 +81,7 @@ export function CouponForm({
         />
         <button
           type="submit"
-          className="shrink-0 border border-ink-900/15 px-5 text-xs font-medium uppercase tracking-[0.14em] text-ink-900 transition-colors hover:border-ink-900/40 hover:bg-ivory-200"
+          className="rounded-md shrink-0 border border-ink-900/15 px-5 text-xs font-medium uppercase tracking-[0.14em] text-ink-900 transition-colors hover:border-ink-900/40 hover:bg-ivory-200"
         >
           Apply
         </button>

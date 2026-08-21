@@ -50,7 +50,7 @@ export function Pagination({
             href={hrefFor(entry)}
             aria-current={entry === page ? "page" : undefined}
             className={cn(
-              "flex h-9 min-w-9 items-center justify-center border px-3 text-xs tabular-nums transition-colors",
+              "flex h-9 min-w-9 items-center justify-center rounded-md border px-3 text-xs tabular-nums transition-colors",
               entry === page
                 ? "border-brand-600 bg-brand-600 text-cream"
                 : "border-ivory-400 text-ink-900 hover:border-ink-400",

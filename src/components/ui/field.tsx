@@ -25,7 +25,7 @@ export function Label({
 }
 
 export const CONTROL_BASE =
-  "w-full border bg-ivory-50 px-4 py-3 text-sm text-ink-900 " +
+  "w-full rounded-md border bg-ivory-50 px-4 py-3 text-sm text-ink-900 " +
   "placeholder:text-ink-400/60 transition-colors duration-200 " +
   "focus:border-brand-600 focus:outline-none disabled:opacity-60";
 
