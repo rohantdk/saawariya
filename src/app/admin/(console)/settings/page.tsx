@@ -22,7 +22,7 @@ export default async function AdminSettingsPage() {
   return (
     <div className="mx-auto max-w-3xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §87 — Platform configuration</p>
+        <p className="eyebrow mb-2">Platform configuration</p>
         <h1 className="font-display text-3xl">Settings</h1>
         <p className="mt-2 text-sm leading-relaxed text-ink-400">
           Values marked <em>read at checkout</em> take effect on the next order
@@ -36,7 +36,7 @@ export default async function AdminSettingsPage() {
             <li key={group.key}>
               <a
                 href={`#settings-${group.key.toLowerCase()}`}
-                className="inline-block border border-ivory-400 px-3 py-1.5 text-xs font-medium uppercase tracking-[0.12em] text-ink-500 transition-colors hover:border-ink-400 hover:text-brand-600"
+                className="inline-block rounded-md border border-ivory-400 px-3 py-1.5 text-xs font-medium uppercase tracking-[0.12em] text-ink-500 transition-colors hover:border-ink-400 hover:text-brand-600"
               >
                 {group.label}
               </a>

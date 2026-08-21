@@ -110,7 +110,7 @@ export function QueueBoard({
       </form>
 
       {rows.length === 0 ? (
-        <div className="border border-ivory-400 bg-ivory-50 p-10 text-center">
+        <div className="rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center">
           <p className="text-sm text-ink-400">
             {q
               ? `Nothing in ${active.label.toLowerCase()} matches “${q}”.`
@@ -122,7 +122,7 @@ export function QueueBoard({
           {rows.map((row) => (
             <li
               key={row.id}
-              className="border border-ivory-400 bg-ivory-50 p-4"
+              className="rounded-md border border-ivory-400 bg-ivory-50 p-4"
             >
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div className="min-w-0 flex-1">

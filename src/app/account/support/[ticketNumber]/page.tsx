@@ -123,7 +123,7 @@ export default async function TicketPage(
       )}
 
       {ticket.resolutionNote && (
-        <div className="mt-5 border border-success/30 bg-success-soft p-4 text-sm leading-relaxed text-success">
+        <div className="mt-5 rounded-md border border-success/30 bg-success-soft p-4 text-sm leading-relaxed text-success">
           <p className="mb-1 font-medium">Resolution</p>
           {ticket.resolutionNote}
           {ticket.resolvedAt && (

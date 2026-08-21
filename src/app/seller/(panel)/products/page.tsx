@@ -65,7 +65,7 @@ export default async function SellerProductsPage({
     <div className="mx-auto max-w-5xl">
       <header className="mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="eyebrow mb-2">SRS §58 — Catalogue</p>
+          <p className="eyebrow mb-2">Catalogue</p>
           <h1 className="font-display text-3xl">Products</h1>
         </div>
         <ButtonLink href="/seller/products/new">Add a product</ButtonLink>
@@ -121,7 +121,7 @@ export default async function SellerProductsPage({
 
       {/* ---- List ---- */}
       {products.length === 0 ? (
-        <div className="border border-ivory-400 bg-ivory-50 p-10 text-center">
+        <div className="rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center">
           <p className="text-sm text-ink-400">
             {q
               ? `No products match “${q}”.`
@@ -145,7 +145,7 @@ export default async function SellerProductsPage({
               <li key={product.id}>
                 <Link
                   href={`/seller/products/${product.id}`}
-                  className="flex flex-wrap items-center gap-4 border border-ivory-400 bg-ivory-50 p-4 transition-colors hover:border-ink-400"
+                  className="flex flex-wrap items-center gap-4 rounded-md border border-ivory-400 bg-ivory-50 p-4 transition-colors hover:border-ink-400"
                 >
                   <span className="relative aspect-square w-16 shrink-0 overflow-hidden bg-ivory-200">
                     {image && (

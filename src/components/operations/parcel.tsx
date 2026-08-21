@@ -337,7 +337,7 @@ export function ShipmentPanel({ parcel }: { parcel: OperationsSubOrder }) {
       </div>
 
       {shipment.failureReason && (
-        <p className="border border-danger/30 bg-danger-soft px-3 py-2 text-xs text-danger">
+        <p className="rounded-md border border-danger/30 bg-danger-soft px-3 py-2 text-xs text-danger">
           Last attempt failed — {shipment.failureReason}. The order stays out
           for delivery; the courier will re-attempt.
         </p>

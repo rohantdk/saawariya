@@ -24,7 +24,7 @@ export default async function ContentPage() {
   return (
     <div className="mx-auto max-w-4xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §84 — Content pages</p>
+        <p className="eyebrow mb-2">Content pages</p>
         <h1 className="font-display text-3xl">Content pages</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
           The pages behind the footer links. Addresses cannot be changed and
@@ -35,7 +35,7 @@ export default async function ContentPage() {
 
       <ul className="space-y-3">
         {pages.map((page) => (
-          <li key={page.id} className="border border-ivory-400 bg-ivory-50 p-5">
+          <li key={page.id} className="rounded-md border border-ivory-400 bg-ivory-50 p-5">
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div className="min-w-0">
                 <Link

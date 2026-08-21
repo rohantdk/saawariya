@@ -146,7 +146,7 @@ export function ReplyBox({
 
   if (closed) {
     return (
-      <p className="border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
+      <p className="rounded-md border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
         This ticket is closed. The customer can no longer write to it, so a reply
         would be a message they cannot answer — reopen it from a resolved state,
         or ask them to raise a new request.

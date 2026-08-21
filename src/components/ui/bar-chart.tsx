@@ -31,14 +31,14 @@ export function BarChart({
 
   if (total === 0) {
     return (
-      <p className="border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
+      <p className="rounded-md border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
         {emptyMessage}
       </p>
     );
   }
 
   return (
-    <div className="border border-ivory-400 bg-ivory-50 p-5">
+    <div className="rounded-md border border-ivory-400 bg-ivory-50 p-5">
       {/*
         `gap-px` until there is room for `gap-1`.
 

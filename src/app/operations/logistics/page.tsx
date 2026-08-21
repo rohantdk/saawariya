@@ -44,7 +44,7 @@ export default async function LogisticsDashboardPage() {
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §107-110 — Logistics</p>
+        <p className="eyebrow mb-2">Logistics</p>
         <h1 className="font-display text-3xl">Logistics</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
           Assign a courier to each packed parcel, then move it along as the
@@ -94,7 +94,7 @@ export default async function LogisticsDashboardPage() {
         </div>
 
         {ready.rows.length === 0 ? (
-          <p className="border border-ivory-400 bg-ivory-50 p-6 text-sm text-ink-400">
+          <p className="rounded-md border border-ivory-400 bg-ivory-50 p-6 text-sm text-ink-400">
             Nothing packed and waiting. The warehouse will send parcels here as
             they finish.
           </p>
@@ -103,7 +103,7 @@ export default async function LogisticsDashboardPage() {
             {ready.rows.slice(0, 5).map((row) => (
               <li
                 key={row.id}
-                className="border border-ivory-400 bg-ivory-50 p-4"
+                className="rounded-md border border-ivory-400 bg-ivory-50 p-4"
               >
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div className="min-w-0">
@@ -136,11 +136,11 @@ export default async function LogisticsDashboardPage() {
         <section>
           <h2 className="mb-3 font-display text-xl">Failed attempts</h2>
           {failures.length === 0 ? (
-            <p className="border border-ivory-400 bg-ivory-50 p-6 text-sm text-ink-400">
+            <p className="rounded-md border border-ivory-400 bg-ivory-50 p-6 text-sm text-ink-400">
               No failed attempts outstanding.
             </p>
           ) : (
-            <ul className="divide-y divide-ivory-300 border border-ivory-400 bg-ivory-50">
+            <ul className="divide-y divide-ivory-300 rounded-md border border-ivory-400 bg-ivory-50">
               {failures.slice(0, 6).map((shipment) => (
                 <li key={shipment.id} className="p-3">
                   <Link
@@ -174,11 +174,11 @@ export default async function LogisticsDashboardPage() {
           </div>
 
           {report.couriers.length === 0 ? (
-            <p className="border border-ivory-400 bg-ivory-50 p-6 text-sm text-ink-400">
+            <p className="rounded-md border border-ivory-400 bg-ivory-50 p-6 text-sm text-ink-400">
               No shipments in the last {report.days} days.
             </p>
           ) : (
-            <ul className="divide-y divide-ivory-300 border border-ivory-400 bg-ivory-50">
+            <ul className="divide-y divide-ivory-300 rounded-md border border-ivory-400 bg-ivory-50">
               {report.couriers.map((courier) => (
                 <li
                   key={courier.courier}

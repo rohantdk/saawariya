@@ -38,7 +38,7 @@ export function SettingsGroupForm({
   return (
     <form
       action={action}
-      className="border border-ivory-400 bg-ivory-50 p-5"
+      className="rounded-md border border-ivory-400 bg-ivory-50 p-5"
       id={`settings-${category.toLowerCase()}`}
     >
       <input type="hidden" name="category" value={category} />

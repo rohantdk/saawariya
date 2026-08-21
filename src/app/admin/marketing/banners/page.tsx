@@ -38,7 +38,7 @@ export default async function BannersPage() {
   return (
     <div className="mx-auto max-w-4xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §125 — Banners</p>
+        <p className="eyebrow mb-2">Banners</p>
         <h1 className="font-display text-3xl">Banners</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
           Grouped by slot and shown in the order the storefront renders them.{" "}
@@ -46,7 +46,7 @@ export default async function BannersPage() {
         </p>
       </header>
 
-      <details className="mb-8 border border-ivory-400 bg-ivory-50">
+      <details className="mb-8 rounded-md border border-ivory-400 bg-ivory-50">
         <summary className="cursor-pointer px-5 py-4 text-sm font-medium text-ink-900 hover:bg-ivory-200">
           Add a banner
         </summary>
@@ -74,7 +74,7 @@ export default async function BannersPage() {
                 {group.banners.map((banner) => (
                   <li
                     key={banner.id}
-                    className="flex flex-wrap items-start gap-4 border border-ivory-400 bg-ivory-50 p-4"
+                    className="flex flex-wrap items-start gap-4 rounded-md border border-ivory-400 bg-ivory-50 p-4"
                   >
                     <span className="relative aspect-[3/1] w-32 shrink-0 overflow-hidden bg-ivory-200">
                       <Image

@@ -82,7 +82,7 @@ export default async function SellerProductPage({
       {/* ---- Rejection feedback ---- */}
       {product.status === PRODUCT_STATUS.REJECTED &&
         product.rejectionReason && (
-          <div className="mb-8 border border-danger/30 bg-danger-soft p-5">
+          <div className="mb-8 rounded-md border border-danger/30 bg-danger-soft p-5">
             <p className="mb-1.5 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-500">
               Why this was rejected
             </p>
@@ -96,7 +96,7 @@ export default async function SellerProductPage({
         )}
 
       {/* ---- Status actions ---- */}
-      <section className="mb-10 border border-ivory-400 bg-ivory-50 p-5">
+      <section className="mb-10 rounded-md border border-ivory-400 bg-ivory-50 p-5">
         <ProductStatusActions productId={product.id} status={product.status} />
       </section>
 
@@ -130,7 +130,7 @@ export default async function SellerProductPage({
         </h2>
 
         {product.images.length === 0 ? (
-          <p className="border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
+          <p className="rounded-md border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
             No images yet. A product needs at least one before it can be
             submitted for approval.
           </p>
@@ -138,7 +138,7 @@ export default async function SellerProductPage({
           <ul className="flex flex-wrap gap-3">
             {product.images.map((image) => (
               <li key={image.id} className="relative">
-                <span className="relative block aspect-square w-24 overflow-hidden border border-ivory-400 bg-ivory-200">
+                <span className="relative block aspect-square w-24 overflow-hidden rounded-md border border-ivory-400 bg-ivory-200">
                   <Image
                     src={image.url}
                     alt={image.alt}
@@ -164,7 +164,7 @@ export default async function SellerProductPage({
           <h2 className="mb-4 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
             Variants
           </h2>
-          <ul className="border border-ivory-400 bg-ivory-50">
+          <ul className="rounded-md border border-ivory-400 bg-ivory-50">
             {product.variants.map((variant) => (
               <li
                 key={variant.id}
@@ -214,7 +214,7 @@ function Figure({
   hint?: string;
 }) {
   return (
-    <div className="border border-ivory-400 bg-ivory-50 p-4">
+    <div className="rounded-md border border-ivory-400 bg-ivory-50 p-4">
       <p className="text-xs text-ink-400">{label}</p>
       <p className="mt-1 font-display text-xl text-ink-900">{value}</p>
       {hint && <p className="mt-0.5 text-xs text-ink-400">{hint}</p>}

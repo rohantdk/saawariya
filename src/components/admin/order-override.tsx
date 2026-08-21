@@ -95,7 +95,7 @@ export function OrderOverride({
       {cancelling && cancelMove && (
         <form
           action={action}
-          className="space-y-3 border border-danger/30 bg-danger-soft p-4"
+          className="space-y-3 rounded-md border border-danger/30 bg-danger-soft p-4"
         >
           <input type="hidden" name="subOrderId" value={subOrderId} />
           <input type="hidden" name="to" value={cancelMove.to} />

@@ -80,7 +80,7 @@ export function EmptyState({
   action?: { href: string; label: string };
 }) {
   return (
-    <div className="border border-dashed border-ivory-500 bg-ivory-50 px-6 py-16 text-center">
+    <div className="rounded-md border border-dashed border-ivory-500 bg-ivory-50 px-6 py-16 text-center">
       <h2 className="font-display text-xl text-ink-900">{title}</h2>
       <p className="mx-auto mt-2 max-w-sm text-sm leading-relaxed text-ink-400">
         {description}

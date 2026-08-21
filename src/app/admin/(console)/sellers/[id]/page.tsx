@@ -100,7 +100,7 @@ export default async function AdminSellerDetailPage({
       </header>
 
       {/* ---- Decision ---- */}
-      <section className="mb-8 border border-ivory-400 bg-ivory-50 p-5">
+      <section className="mb-8 rounded-md border border-ivory-400 bg-ivory-50 p-5">
         <p className="mb-4 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
           Verification decision
         </p>
@@ -132,7 +132,7 @@ export default async function AdminSellerDetailPage({
               </p>
             </div>
 
-            <ul className="border border-ivory-400 bg-ivory-50">
+            <ul className="rounded-md border border-ivory-400 bg-ivory-50">
               {rows.map(({ docType, document }) => (
                 <li
                   key={docType}
@@ -207,7 +207,7 @@ export default async function AdminSellerDetailPage({
           {/* ---- Application detail ---- */}
           <section>
             <h2 className="mb-3 font-display text-xl">Business details</h2>
-            <dl className="border border-ivory-400 bg-ivory-50">
+            <dl className="rounded-md border border-ivory-400 bg-ivory-50">
               {detail.map(([label, value]) => (
                 <div
                   key={label}
@@ -239,11 +239,11 @@ export default async function AdminSellerDetailPage({
             </div>
 
             {recentProducts.length === 0 ? (
-              <div className="border border-ivory-400 bg-ivory-50 p-6 text-center text-sm text-ink-400">
+              <div className="rounded-md border border-ivory-400 bg-ivory-50 p-6 text-center text-sm text-ink-400">
                 This seller has not listed anything yet.
               </div>
             ) : (
-              <ul className="border border-ivory-400 bg-ivory-50">
+              <ul className="rounded-md border border-ivory-400 bg-ivory-50">
                 {recentProducts.map((product) => (
                   <li
                     key={product.id}
@@ -278,7 +278,7 @@ export default async function AdminSellerDetailPage({
 
         {/* ---- Trading record ---- */}
         <aside className="space-y-6">
-          <section className="border border-ivory-400 bg-ivory-50 p-5">
+          <section className="rounded-md border border-ivory-400 bg-ivory-50 p-5">
             <p className="mb-4 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
               Trading record
             </p>
@@ -300,7 +300,7 @@ export default async function AdminSellerDetailPage({
             </dl>
           </section>
 
-          <section className="border border-ivory-400 bg-ivory-50 p-5">
+          <section className="rounded-md border border-ivory-400 bg-ivory-50 p-5">
             <p className="mb-4 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
               Commission
             </p>

@@ -43,7 +43,7 @@ export default async function FinanceReportsPage({
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §122 — Financial reports</p>
+        <p className="eyebrow mb-2">Financial reports</p>
         <h1 className="font-display text-3xl">Reports</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
           Revenue counts parcels that reached the customer, before commission —
@@ -136,11 +136,11 @@ export default async function FinanceReportsPage({
           <h2 className="mb-4 font-display text-xl">Commission by seller</h2>
 
           {report.bySeller.length === 0 ? (
-            <p className="border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
+            <p className="rounded-md border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
               No settlements were raised in this period.
             </p>
           ) : (
-            <div className="overflow-x-auto border border-ivory-400 bg-ivory-50">
+            <div className="overflow-x-auto rounded-md border border-ivory-400 bg-ivory-50">
               <table className="w-full min-w-[28rem] border-collapse text-sm">
                 <thead>
                   <tr className="border-b border-ivory-400 text-left text-xs uppercase tracking-[0.1em] text-ink-400">
@@ -192,11 +192,11 @@ export default async function FinanceReportsPage({
             <h2 className="mb-4 font-display text-xl">How customers paid</h2>
 
             {report.byMethod.length === 0 ? (
-              <p className="border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
+              <p className="rounded-md border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
                 No successful payments in this period.
               </p>
             ) : (
-              <ul className="border border-ivory-400 bg-ivory-50">
+              <ul className="rounded-md border border-ivory-400 bg-ivory-50">
                 {report.byMethod.map((row) => (
                   <li
                     key={row.method}
@@ -222,11 +222,11 @@ export default async function FinanceReportsPage({
             <h2 className="mb-4 font-display text-xl">Why money went back</h2>
 
             {report.refundsByReason.length === 0 ? (
-              <p className="border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
+              <p className="rounded-md border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
                 Nothing was refunded in this period.
               </p>
             ) : (
-              <ul className="border border-ivory-400 bg-ivory-50">
+              <ul className="rounded-md border border-ivory-400 bg-ivory-50">
                 {report.refundsByReason.map((row) => (
                   <li
                     key={row.reason}

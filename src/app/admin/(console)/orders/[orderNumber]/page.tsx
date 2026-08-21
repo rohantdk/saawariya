@@ -106,7 +106,7 @@ export default async function AdminOrderDetailPage({
             return (
               <section
                 key={subOrder.id}
-                className="border border-ivory-400 bg-ivory-50"
+                className="rounded-md border border-ivory-400 bg-ivory-50"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3 border-b border-ivory-300 px-5 py-4">
                   <div className="min-w-0">
@@ -219,11 +219,11 @@ export default async function AdminOrderDetailPage({
           <section>
             <h2 className="mb-3 font-display text-xl">Timeline</h2>
             {order.events.length === 0 ? (
-              <div className="border border-ivory-400 bg-ivory-50 p-6 text-center text-sm text-ink-400">
+              <div className="rounded-md border border-ivory-400 bg-ivory-50 p-6 text-center text-sm text-ink-400">
                 No pipeline events recorded yet.
               </div>
             ) : (
-              <ol className="border border-ivory-400 bg-ivory-50">
+              <ol className="rounded-md border border-ivory-400 bg-ivory-50">
                 {order.events.map((event) => {
                   const subOrder = order.subOrders.find(
                     (s) => s.id === event.subOrderId,
@@ -262,7 +262,7 @@ export default async function AdminOrderDetailPage({
 
         {/* ---- Sidebar ---- */}
         <aside className="space-y-6">
-          <section className="border border-ivory-400 bg-ivory-50 p-5">
+          <section className="rounded-md border border-ivory-400 bg-ivory-50 p-5">
             <p className="mb-4 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
               Money
             </p>
@@ -316,7 +316,7 @@ export default async function AdminOrderDetailPage({
             </dl>
           </section>
 
-          <section className="border border-ivory-400 bg-ivory-50 p-5">
+          <section className="rounded-md border border-ivory-400 bg-ivory-50 p-5">
             <p className="mb-4 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
               Payment
             </p>
@@ -360,7 +360,7 @@ export default async function AdminOrderDetailPage({
             )}
           </section>
 
-          <section className="border border-ivory-400 bg-ivory-50 p-5">
+          <section className="rounded-md border border-ivory-400 bg-ivory-50 p-5">
             <p className="mb-4 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
               Delivery address
             </p>

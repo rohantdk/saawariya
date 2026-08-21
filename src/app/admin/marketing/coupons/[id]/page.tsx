@@ -40,13 +40,13 @@ export default async function CouponDetailPage({
 
       <header className="mb-6 flex flex-wrap items-start justify-between gap-4">
         <div className="min-w-0">
-          <p className="eyebrow mb-2">SRS §126 — Coupon</p>
+          <p className="eyebrow mb-2">Coupon</p>
           <h1 className="font-mono text-3xl text-ink-900">{coupon.code}</h1>
         </div>
         <StatusBadge label={coupon.state.label} />
       </header>
 
-      <div className="mb-8 grid grid-cols-3 gap-3 border border-ivory-400 bg-ivory-50 p-5">
+      <div className="mb-8 grid grid-cols-3 gap-3 rounded-md border border-ivory-400 bg-ivory-50 p-5">
         <div className="min-w-0">
           <p className="text-xs text-ink-400">Surviving orders</p>
           <p className="font-display text-2xl text-ink-900">{coupon.orders}</p>
@@ -78,11 +78,11 @@ export default async function CouponDetailPage({
         </p>
 
         {coupon.recent.length === 0 ? (
-          <p className="border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
+          <p className="rounded-md border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
             Nobody has used this code yet.
           </p>
         ) : (
-          <div className="overflow-x-auto border border-ivory-400 bg-ivory-50">
+          <div className="overflow-x-auto rounded-md border border-ivory-400 bg-ivory-50">
             <table className="w-full min-w-[32rem] border-collapse text-sm">
               <thead>
                 <tr className="border-b border-ivory-400 text-left text-xs uppercase tracking-[0.1em] text-ink-400">

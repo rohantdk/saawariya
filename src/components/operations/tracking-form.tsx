@@ -120,7 +120,7 @@ export function TrackingForm({
       {failing && (
         <form
           action={failAction}
-          className="space-y-4 border border-warning/40 bg-warning-soft p-4"
+          className="space-y-4 rounded-md border border-warning/40 bg-warning-soft p-4"
         >
           <input type="hidden" name="subOrderId" value={subOrderId} />
 

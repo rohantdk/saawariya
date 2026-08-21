@@ -89,7 +89,7 @@ export function WhySaawariya({ settings }: { settings: CommerceSettings }) {
             <li key={title} className="flex min-w-0 gap-4">
               <span
                 aria-hidden="true"
-                className="flex h-10 w-10 shrink-0 items-center justify-center border border-gold-400 text-brand-700"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-gold-400 text-brand-700"
               >
                 <Icon className="h-[1.125rem] w-[1.125rem]" strokeWidth={1.5} />
               </span>

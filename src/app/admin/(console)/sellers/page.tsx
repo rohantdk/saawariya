@@ -61,7 +61,7 @@ export default async function AdminSellersPage({
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §74 — Seller management</p>
+        <p className="eyebrow mb-2">Seller management</p>
         <h1 className="font-display text-3xl">Sellers</h1>
         <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink-400">
           Verification decides whether a seller can trade at all: an approved
@@ -117,7 +117,7 @@ export default async function AdminSellersPage({
       </form>
 
       {sellers.length === 0 ? (
-        <div className="border border-ivory-400 bg-ivory-50 p-10 text-center">
+        <div className="rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center">
           <p className="text-sm text-ink-400">
             {q
               ? `No sellers match “${q}”.`
@@ -137,7 +137,7 @@ export default async function AdminSellersPage({
               <li key={seller.id}>
                 <Link
                   href={`/admin/sellers/${seller.id}`}
-                  className="flex flex-wrap items-start gap-4 border border-ivory-400 bg-ivory-50 p-4 transition-colors hover:border-ink-400"
+                  className="flex flex-wrap items-start gap-4 rounded-md border border-ivory-400 bg-ivory-50 p-4 transition-colors hover:border-ink-400"
                 >
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm text-ink-900">

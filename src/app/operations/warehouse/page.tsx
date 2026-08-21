@@ -48,7 +48,7 @@ export default async function WarehouseDashboardPage() {
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §93-98 — Warehouse</p>
+        <p className="eyebrow mb-2">Warehouse</p>
         <h1 className="font-display text-3xl">Warehouse</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
           Saawariya holds and ships every seller&rsquo;s goods. A parcel arrives
@@ -110,7 +110,7 @@ export default async function WarehouseDashboardPage() {
           </div>
 
           {oldest.rows.length === 0 ? (
-            <p className="border border-ivory-400 bg-ivory-50 p-6 text-sm text-ink-400">
+            <p className="rounded-md border border-ivory-400 bg-ivory-50 p-6 text-sm text-ink-400">
               Nothing inbound. Every confirmed parcel has been pulled in.
             </p>
           ) : (
@@ -119,7 +119,7 @@ export default async function WarehouseDashboardPage() {
                 <li key={row.id}>
                   <Link
                     href={`/operations/warehouse/queue/${row.subOrderNumber}`}
-                    className="flex flex-wrap items-center justify-between gap-3 border border-ivory-400 bg-ivory-50 p-3 transition-colors hover:border-ink-400"
+                    className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-ivory-400 bg-ivory-50 p-3 transition-colors hover:border-ink-400"
                   >
                     <span className="min-w-0">
                       <span className="block text-sm text-ink-900">
@@ -158,7 +158,7 @@ export default async function WarehouseDashboardPage() {
           </div>
 
           {alerts.items.length === 0 ? (
-            <p className="border border-ivory-400 bg-ivory-50 p-6 text-sm text-ink-400">
+            <p className="rounded-md border border-ivory-400 bg-ivory-50 p-6 text-sm text-ink-400">
               Nothing low or out of stock.
             </p>
           ) : (
@@ -166,7 +166,7 @@ export default async function WarehouseDashboardPage() {
               {alerts.items.slice(0, 5).map((item) => (
                 <li
                   key={item.id}
-                  className="flex flex-wrap items-center justify-between gap-3 border border-ivory-400 bg-ivory-50 p-3"
+                  className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-ivory-400 bg-ivory-50 p-3"
                 >
                   <span className="min-w-0">
                     <span className="block text-sm text-ink-900">
@@ -203,11 +203,11 @@ export default async function WarehouseDashboardPage() {
         </div>
 
         {ledger.movements.length === 0 ? (
-          <p className="border border-ivory-400 bg-ivory-50 p-6 text-sm text-ink-400">
+          <p className="rounded-md border border-ivory-400 bg-ivory-50 p-6 text-sm text-ink-400">
             The ledger is empty.
           </p>
         ) : (
-          <ul className="divide-y divide-ivory-300 border border-ivory-400 bg-ivory-50">
+          <ul className="divide-y divide-ivory-300 rounded-md border border-ivory-400 bg-ivory-50">
             {ledger.movements.slice(0, 6).map((movement) => (
               <li
                 key={movement.id}

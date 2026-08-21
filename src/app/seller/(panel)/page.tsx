@@ -57,7 +57,7 @@ export default async function SellerDashboardPage() {
         <h2 className="mb-3 font-display text-xl">Waiting on you</h2>
 
         {nothingWaiting ? (
-          <p className="border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
+          <p className="rounded-md border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
             Nothing needs your attention right now.
           </p>
         ) : (
@@ -132,7 +132,7 @@ export default async function SellerDashboardPage() {
         </div>
 
         {data.recentOrders.length === 0 ? (
-          <div className="border border-ivory-400 bg-ivory-50 p-8 text-center">
+          <div className="rounded-md border border-ivory-400 bg-ivory-50 p-8 text-center">
             <p className="text-sm text-ink-400">
               No orders yet. They will appear here as customers buy your
               products.
@@ -147,7 +147,7 @@ export default async function SellerDashboardPage() {
               <li key={sub.id}>
                 <Link
                   href={`/seller/orders/${sub.subOrderNumber}`}
-                  className="flex flex-wrap items-center gap-4 border border-ivory-400 bg-ivory-50 p-4 transition-colors hover:border-ink-400"
+                  className="flex flex-wrap items-center gap-4 rounded-md border border-ivory-400 bg-ivory-50 p-4 transition-colors hover:border-ink-400"
                 >
                   <div className="min-w-0 flex-1">
                     <p className="text-sm text-ink-900">{sub.subOrderNumber}</p>
@@ -173,7 +173,7 @@ export default async function SellerDashboardPage() {
       <div className="mt-10 grid gap-6 lg:grid-cols-2">
         <section>
           <h2 className="mb-4 font-display text-xl">Catalogue</h2>
-          <div className="border border-ivory-400 bg-ivory-50">
+          <div className="rounded-md border border-ivory-400 bg-ivory-50">
             {(
               [
                 [PRODUCT_STATUS.APPROVED, "Live on the marketplace"],
@@ -204,11 +204,11 @@ export default async function SellerDashboardPage() {
         <section>
           <h2 className="mb-4 font-display text-xl">Stock alerts</h2>
           {data.lowStockItems.length === 0 ? (
-            <p className="border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
+            <p className="rounded-md border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
               Every product is comfortably in stock.
             </p>
           ) : (
-            <ul className="border border-ivory-400 bg-ivory-50">
+            <ul className="rounded-md border border-ivory-400 bg-ivory-50">
               {data.lowStockItems.map((item) => (
                 <li
                   key={item.id}

@@ -123,7 +123,7 @@ export default async function OrderSuccessPage(
             return (
             <div
               key={subOrder.id}
-              className="border border-ivory-400 bg-ivory-50 px-5"
+              className="rounded-md border border-ivory-400 bg-ivory-50 px-5"
             >
               <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-ivory-400 py-3.5">
                 <p className="text-sm text-ink-900">
@@ -184,7 +184,7 @@ export default async function OrderSuccessPage(
 
       {/* ---- Money and address ---- */}
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
-        <section className="border border-ivory-400 bg-ivory-50 p-5">
+        <section className="rounded-md border border-ivory-400 bg-ivory-50 p-5">
           <h2 className="mb-3 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
             Payment
           </h2>
@@ -225,7 +225,7 @@ export default async function OrderSuccessPage(
           )}
         </section>
 
-        <section className="border border-ivory-400 bg-ivory-50 p-5">
+        <section className="rounded-md border border-ivory-400 bg-ivory-50 p-5">
           <h2 className="mb-3 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
             Delivering to
           </h2>
@@ -285,7 +285,7 @@ function NextStep({
   done?: boolean;
 }) {
   return (
-    <li className="border border-ivory-400 bg-ivory-50 p-4">
+    <li className="rounded-md border border-ivory-400 bg-ivory-50 p-4">
       <p
         className={
           done

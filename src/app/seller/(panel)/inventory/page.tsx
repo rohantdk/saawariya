@@ -80,7 +80,7 @@ export default async function SellerInventoryPage({
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §60 — Inventory</p>
+        <p className="eyebrow mb-2">Inventory</p>
         <h1 className="font-display text-3xl">Inventory</h1>
         <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink-400">
           Every change is written to a stock ledger, so a balance can always be
@@ -133,7 +133,7 @@ export default async function SellerInventoryPage({
       </form>
 
       {items.length === 0 ? (
-        <div className="border border-ivory-400 bg-ivory-50 p-10 text-center">
+        <div className="rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center">
           <p className="text-sm text-ink-400">
             {q
               ? `Nothing matches “${q}”.`
@@ -151,7 +151,7 @@ export default async function SellerInventoryPage({
             return (
               <li
                 key={item.id}
-                className="border border-ivory-400 bg-ivory-50 p-4"
+                className="rounded-md border border-ivory-400 bg-ivory-50 p-4"
               >
                 <div className="flex flex-wrap items-start gap-4">
                   <span className="relative aspect-square w-14 shrink-0 overflow-hidden bg-ivory-200">

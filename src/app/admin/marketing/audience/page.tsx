@@ -76,7 +76,7 @@ export default async function AudiencePage({
   return (
     <div className="mx-auto max-w-4xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §128 — Audience</p>
+        <p className="eyebrow mb-2">Audience</p>
         <h1 className="font-display text-3xl">Audience</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
           Notifications reach people who have an account and are signed in
@@ -88,7 +88,7 @@ export default async function AudiencePage({
 
       <section className="mb-10">
         <h2 className="mb-4 font-display text-xl">Send a notification</h2>
-        <div className="space-y-5 border border-ivory-400 bg-ivory-50 p-5">
+        <div className="space-y-5 rounded-md border border-ivory-400 bg-ivory-50 p-5">
           {/*
             A separate GET form, not a control inside the one that sends. Forms
             cannot nest, and this is the same "two forms, one panel" arrangement
@@ -147,7 +147,7 @@ export default async function AudiencePage({
       {broadcasts.length > 0 && (
         <section className="mb-10">
           <h2 className="mb-4 font-display text-xl">Already sent</h2>
-          <ul className="border border-ivory-400 bg-ivory-50">
+          <ul className="rounded-md border border-ivory-400 bg-ivory-50">
             {broadcasts.map((broadcast) => (
               <li
                 key={broadcast.title}
@@ -208,11 +208,11 @@ export default async function AudiencePage({
         </form>
 
         {list.subscribers.length === 0 ? (
-          <p className="border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
+          <p className="rounded-md border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
             Nobody matches this view.
           </p>
         ) : (
-          <ul className="border border-ivory-400 bg-ivory-50">
+          <ul className="rounded-md border border-ivory-400 bg-ivory-50">
             {list.subscribers.map((subscriber) => (
               <li
                 key={subscriber.id}

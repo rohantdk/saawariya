@@ -137,7 +137,7 @@ export function TicketThread({
         </div>
       ) : (
         isClosed && (
-          <p className="mt-6 border border-ivory-400 bg-ivory-100 p-4 text-sm text-ink-400">
+          <p className="mt-6 rounded-md border border-ivory-400 bg-ivory-100 p-4 text-sm text-ink-400">
             This request is closed. If you need anything else,{" "}
             <Link
               href="/account/support/new"

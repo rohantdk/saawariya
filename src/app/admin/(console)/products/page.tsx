@@ -73,7 +73,7 @@ export default async function AdminProductsPage({
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §75 — Product approval</p>
+        <p className="eyebrow mb-2">Product approval</p>
         <h1 className="font-display text-3xl">Products</h1>
         <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink-400">
           Approving a listing publishes it, provided its seller is verified.
@@ -155,7 +155,7 @@ export default async function AdminProductsPage({
       </form>
 
       {products.length === 0 ? (
-        <div className="border border-ivory-400 bg-ivory-50 p-10 text-center">
+        <div className="rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center">
           <p className="text-sm text-ink-400">
             {status === PRODUCT_STATUS.PENDING && !q && !sellerId && !categoryId
               ? "The approval queue is empty. Nothing is waiting on you."
@@ -173,7 +173,7 @@ export default async function AdminProductsPage({
               <li key={product.id}>
                 <Link
                   href={`/admin/products/${product.id}`}
-                  className="flex flex-wrap items-center gap-4 border border-ivory-400 bg-ivory-50 p-4 transition-colors hover:border-ink-400"
+                  className="flex flex-wrap items-center gap-4 rounded-md border border-ivory-400 bg-ivory-50 p-4 transition-colors hover:border-ink-400"
                 >
                   <span className="relative aspect-square w-16 shrink-0 overflow-hidden bg-ivory-200">
                     {image && (

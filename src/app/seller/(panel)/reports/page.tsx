@@ -33,7 +33,7 @@ export default async function SellerReportsPage({
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §63 — Sales reports</p>
+        <p className="eyebrow mb-2">Sales reports</p>
         <h1 className="font-display text-3xl">Reports</h1>
         <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink-400">
           Revenue counts parcels that reached the customer, before commission.
@@ -101,11 +101,11 @@ export default async function SellerReportsPage({
         <h2 className="mb-4 font-display text-xl">Best sellers</h2>
 
         {report.topProducts.length === 0 ? (
-          <p className="border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
+          <p className="rounded-md border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
             Nothing delivered in this period yet.
           </p>
         ) : (
-          <ul className="border border-ivory-400 bg-ivory-50">
+          <ul className="rounded-md border border-ivory-400 bg-ivory-50">
             {report.topProducts.map((row) => (
               <li
                 key={row.productId}

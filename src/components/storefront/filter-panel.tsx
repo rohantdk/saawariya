@@ -348,7 +348,7 @@ export function ActiveFilterChips({
         <li key={`${key}:${value}`}>
           <Link
             href={filterHref(pathname, toggleFilter(filters, key, value))}
-            className="inline-flex items-center gap-1.5 border border-ivory-400 bg-ivory-50 py-1 pl-3 pr-2 text-xs text-ink-900 transition-colors hover:border-ink-400"
+            className="inline-flex items-center gap-1.5 rounded-md border border-ivory-400 bg-ivory-50 py-1 pl-3 pr-2 text-xs text-ink-900 transition-colors hover:border-ink-400"
           >
             {filterValueLabel(key, value)}
             <X aria-hidden="true" className="h-3 w-3 text-ink-400" />

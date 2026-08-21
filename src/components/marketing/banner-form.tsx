@@ -188,7 +188,7 @@ export function BannerForm({
           <p className="mb-2 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
             Preview
           </p>
-          <div className="relative aspect-[3/1] w-full max-w-lg overflow-hidden border border-ivory-400 bg-ivory-200">
+          <div className="relative aspect-[3/1] w-full max-w-lg overflow-hidden rounded-md border border-ivory-400 bg-ivory-200">
             <Image
               src={imageUrl}
               alt=""

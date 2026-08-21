@@ -111,10 +111,10 @@ export default async function TicketDetailPage({
                     key={message.id}
                     className={
                       message.isInternalNote
-                        ? "border border-warning/40 bg-warning-soft p-4"
+                        ? "rounded-md border border-warning/40 bg-warning-soft p-4"
                         : fromRequester
-                          ? "border border-ivory-400 bg-ivory-50 p-4"
-                          : "border border-brand-600/25 bg-brand-50 p-4"
+                          ? "rounded-md border border-ivory-400 bg-ivory-50 p-4"
+                          : "rounded-md border border-brand-600/25 bg-brand-50 p-4"
                     }
                   >
                     <p className="mb-1.5 flex flex-wrap items-center gap-2 text-xs text-ink-400">
@@ -149,7 +149,7 @@ export default async function TicketDetailPage({
           {/* ---- Status ---- */}
           <section>
             <h2 className="mb-4 font-display text-xl">Where this goes next</h2>
-            <div className="border border-ivory-400 bg-ivory-50 p-5">
+            <div className="rounded-md border border-ivory-400 bg-ivory-50 p-5">
               <DecisionPanel
                 action={moveTicket}
                 idField="ticketId"
@@ -175,7 +175,7 @@ export default async function TicketDetailPage({
 
         {/* ---- Context sidebar ---- */}
         <aside className="space-y-6 lg:min-w-0">
-          <div className="space-y-5 border border-ivory-400 bg-ivory-50 p-5">
+          <div className="space-y-5 rounded-md border border-ivory-400 bg-ivory-50 p-5">
             <AssignControl
               ticketId={ticket.id}
               assigneeId={ticket.assignee?.id ?? null}
@@ -185,7 +185,7 @@ export default async function TicketDetailPage({
           </div>
 
           {ticket.order && (
-            <div className="border border-ivory-400 bg-ivory-50 p-5">
+            <div className="rounded-md border border-ivory-400 bg-ivory-50 p-5">
               <h2 className="mb-3 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
                 The order they mean
               </h2>
@@ -212,7 +212,7 @@ export default async function TicketDetailPage({
           )}
 
           {history.length > 0 && (
-            <div className="border border-ivory-400 bg-ivory-50 p-5">
+            <div className="rounded-md border border-ivory-400 bg-ivory-50 p-5">
               <h2 className="mb-3 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
                 Their other tickets
               </h2>
@@ -236,7 +236,7 @@ export default async function TicketDetailPage({
           )}
 
           {ticket.resolutionNote && (
-            <div className="border border-success/30 bg-success-soft p-5">
+            <div className="rounded-md border border-success/30 bg-success-soft p-5">
               <h2 className="mb-2 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-success">
                 Resolution
               </h2>

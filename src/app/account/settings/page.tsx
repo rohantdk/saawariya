@@ -57,7 +57,7 @@ export default async function SettingsPage() {
       </p>
 
       {/* ---- Profile ---- */}
-      <section className="mt-8 border border-ivory-400 bg-ivory-50 p-6">
+      <section className="mt-8 rounded-md border border-ivory-400 bg-ivory-50 p-6">
         <h2 className="mb-1 font-display text-xl">Your details</h2>
         <p className="mb-5 text-sm text-ink-400">
           Signed in as {record.user.email}
@@ -83,7 +83,7 @@ export default async function SettingsPage() {
       </section>
 
       {/* ---- Account tier ---- */}
-      <section className="mt-6 border border-ivory-400 bg-ivory-50 p-6">
+      <section className="mt-6 rounded-md border border-ivory-400 bg-ivory-50 p-6">
         <h2 className="mb-1 font-display text-xl">
           {isWholesale ? "Wholesale account" : "Buying for a business?"}
         </h2>
@@ -124,7 +124,7 @@ export default async function SettingsPage() {
       </section>
 
       {/* ---- Password ---- */}
-      <section className="mt-6 border border-ivory-400 bg-ivory-50 p-6">
+      <section className="mt-6 rounded-md border border-ivory-400 bg-ivory-50 p-6">
         <h2 className="mb-1 font-display text-xl">Password</h2>
         <p className="mb-5 text-sm text-ink-400">
           Use at least 8 characters, with a letter and a number.

@@ -93,7 +93,7 @@ export function CategoryManager({
         {tree.map((parent) => (
           <li
             key={parent.id}
-            className="border border-ivory-400 bg-ivory-50"
+            className="rounded-md border border-ivory-400 bg-ivory-50"
           >
             <CategoryRow
               node={parent}
@@ -262,7 +262,7 @@ function CategoryEditor({
   return (
     <form
       action={action}
-      className="space-y-5 border border-brand-600/30 bg-ivory-50 p-5"
+      className="space-y-5 rounded-md border border-brand-600/30 bg-ivory-50 p-5"
     >
       {node && <input type="hidden" name="id" value={node.id} />}
 

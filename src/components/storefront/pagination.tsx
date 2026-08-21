@@ -80,7 +80,7 @@ function Step({
   icon: React.ReactNode;
 }) {
   const className =
-    "flex h-9 w-9 items-center justify-center border border-ivory-400 transition-colors";
+    "flex h-9 w-9 items-center justify-center rounded-md border border-ivory-400 transition-colors";
 
   if (!href) {
     return (

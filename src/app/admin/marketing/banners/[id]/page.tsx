@@ -30,7 +30,7 @@ export default async function BannerDetailPage({
       <header className="mb-6 flex flex-wrap items-start justify-between gap-4">
         <div className="min-w-0">
           <p className="eyebrow mb-2">
-            SRS §125 — {BANNER_POSITION_LABEL[banner.position]}
+            {BANNER_POSITION_LABEL[banner.position]}
           </p>
           <h1 className="font-display text-3xl">{banner.title}</h1>
         </div>
@@ -45,7 +45,7 @@ export default async function BannerDetailPage({
         cheapest way to keep that true.
       */}
       {banner.linkUrl && (
-        <p className="mb-6 border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-500">
+        <p className="mb-6 rounded-md border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-500">
           Tapping this banner takes a shopper to{" "}
           <Link
             href={banner.linkUrl}

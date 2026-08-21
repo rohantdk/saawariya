@@ -61,7 +61,7 @@ export default async function CouponsPage({
   return (
     <div className="mx-auto max-w-4xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §126 — Coupons</p>
+        <p className="eyebrow mb-2">Coupons</p>
         <h1 className="font-display text-3xl">Coupons</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
           Redemptions count orders that survived — a cancelled order gives the
@@ -75,7 +75,7 @@ export default async function CouponsPage({
         href={(key) => `/admin/marketing/coupons?filter=${key}`}
       />
 
-      <details className="mb-6 border border-ivory-400 bg-ivory-50">
+      <details className="mb-6 rounded-md border border-ivory-400 bg-ivory-50">
         <summary className="cursor-pointer px-5 py-4 text-sm font-medium text-ink-900 hover:bg-ivory-200">
           Create a coupon
         </summary>
@@ -85,7 +85,7 @@ export default async function CouponsPage({
       </details>
 
       {coupons.length === 0 ? (
-        <div className="border border-ivory-400 bg-ivory-50 p-10 text-center">
+        <div className="rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center">
           <p className="text-sm text-ink-400">No coupons in this view.</p>
         </div>
       ) : (
@@ -93,7 +93,7 @@ export default async function CouponsPage({
           {coupons.map((coupon) => (
             <li
               key={coupon.id}
-              className="border border-ivory-400 bg-ivory-50 p-5"
+              className="rounded-md border border-ivory-400 bg-ivory-50 p-5"
             >
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div className="min-w-0">

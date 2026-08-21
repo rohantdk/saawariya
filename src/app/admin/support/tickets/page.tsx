@@ -78,7 +78,7 @@ export default async function TicketsPage({
   return (
     <div className="mx-auto max-w-4xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §133 — Ticket queue</p>
+        <p className="eyebrow mb-2">Ticket queue</p>
         <h1 className="font-display text-3xl">Tickets</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
           Highest priority first, then whoever has waited longest.{" "}
@@ -138,7 +138,7 @@ export default async function TicketsPage({
       </form>
 
       {tickets.length === 0 ? (
-        <div className="border border-ivory-400 bg-ivory-50 p-10 text-center">
+        <div className="rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center">
           <p className="text-sm text-ink-400">
             {status === "open" && !q
               ? "Nothing open. Every ticket has been resolved or closed."
@@ -159,7 +159,7 @@ export default async function TicketsPage({
             return (
               <li
                 key={ticket.id}
-                className="border border-ivory-400 bg-ivory-50 p-5"
+                className="rounded-md border border-ivory-400 bg-ivory-50 p-5"
               >
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div className="min-w-0">

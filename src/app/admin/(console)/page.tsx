@@ -90,7 +90,7 @@ export default async function AdminDashboardPage() {
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-8">
-        <p className="eyebrow mb-2">SRS §69 — Super Admin</p>
+        <p className="eyebrow mb-2">Super Admin</p>
         <h1 className="font-display text-3xl">
           Good to see you, {admin.user.fullName.split(" ")[0]}
         </h1>
@@ -174,11 +174,11 @@ export default async function AdminDashboardPage() {
             </Link>
           </div>
           {recentOrders.length === 0 ? (
-            <div className="border border-ivory-400 bg-ivory-50 p-6 text-center text-sm text-ink-400">
+            <div className="rounded-md border border-ivory-400 bg-ivory-50 p-6 text-center text-sm text-ink-400">
               No orders yet.
             </div>
           ) : (
-            <ul className="border border-ivory-400 bg-ivory-50">
+            <ul className="rounded-md border border-ivory-400 bg-ivory-50">
               {recentOrders.map((order) => (
                 <li
                   key={order.id}
@@ -223,11 +223,11 @@ export default async function AdminDashboardPage() {
         <section className="min-w-0">
           <h2 className="mb-3 font-display text-xl">Fulfilment pipeline</h2>
           {activePipeline.length === 0 ? (
-            <div className="border border-ivory-400 bg-ivory-50 p-6 text-center text-sm text-ink-400">
+            <div className="rounded-md border border-ivory-400 bg-ivory-50 p-6 text-center text-sm text-ink-400">
               Nothing in the pipeline.
             </div>
           ) : (
-            <ul className="border border-ivory-400 bg-ivory-50">
+            <ul className="rounded-md border border-ivory-400 bg-ivory-50">
               {activePipeline.map(([status, count]) => (
                 <li
                   key={status}
@@ -281,11 +281,11 @@ export default async function AdminDashboardPage() {
             </Link>
           </div>
           {topSellers.length === 0 ? (
-            <div className="border border-ivory-400 bg-ivory-50 p-6 text-center text-sm text-ink-400">
+            <div className="rounded-md border border-ivory-400 bg-ivory-50 p-6 text-center text-sm text-ink-400">
               Nothing delivered yet.
             </div>
           ) : (
-            <ul className="border border-ivory-400 bg-ivory-50">
+            <ul className="rounded-md border border-ivory-400 bg-ivory-50">
               {topSellers.map((seller) => (
                 <li
                   key={seller.sellerId}
@@ -323,11 +323,11 @@ export default async function AdminDashboardPage() {
             </Link>
           </div>
           {recentAudit.length === 0 ? (
-            <div className="border border-ivory-400 bg-ivory-50 p-6 text-center text-sm text-ink-400">
+            <div className="rounded-md border border-ivory-400 bg-ivory-50 p-6 text-center text-sm text-ink-400">
               Nothing recorded yet.
             </div>
           ) : (
-            <ol className="border border-ivory-400 bg-ivory-50">
+            <ol className="rounded-md border border-ivory-400 bg-ivory-50">
               {recentAudit.map((entry) => (
                 <li
                   key={entry.id}
@@ -351,7 +351,7 @@ export default async function AdminDashboardPage() {
       </div>
 
       {/* ---- What is not here yet ---- */}
-      <section className="mt-10 border border-ivory-400 bg-ivory-50 p-5">
+      <section className="mt-10 rounded-md border border-ivory-400 bg-ivory-50 p-5">
         <p className="mb-3 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
           Other areas
         </p>

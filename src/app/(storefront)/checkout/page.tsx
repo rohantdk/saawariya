@@ -105,7 +105,7 @@ export default async function CheckoutPage(props: PageProps<"/checkout">) {
             <SectionTitle step={1} title="Delivery address" />
 
             {addresses.length === 0 ? (
-              <div className="border border-ivory-400 bg-ivory-50 p-6">
+              <div className="rounded-md border border-ivory-400 bg-ivory-50 p-6">
                 <p className="mb-5 text-sm text-ink-400">
                   Add the address you would like this order delivered to.
                 </p>
@@ -116,7 +116,7 @@ export default async function CheckoutPage(props: PageProps<"/checkout">) {
                 <ul className="space-y-3">
                   {addresses.map((address) => (
                     <li key={address.id}>
-                      <label className="flex cursor-pointer gap-3.5 border border-ivory-400 bg-ivory-50 p-4 transition-colors hover:border-ink-400 has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50">
+                      <label className="flex cursor-pointer gap-3.5 rounded-md border border-ivory-400 bg-ivory-50 p-4 transition-colors hover:border-ink-400 has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50">
                         <input
                           type="radio"
                           name="addressId"
@@ -131,7 +131,7 @@ export default async function CheckoutPage(props: PageProps<"/checkout">) {
                             <span className="text-ink-900">
                               {address.fullName}
                             </span>
-                            <span className="border border-ivory-400 px-1.5 py-0.5 text-[0.625rem] uppercase tracking-[0.1em] text-ink-400">
+                            <span className="rounded-md border border-ivory-400 px-1.5 py-0.5 text-[0.625rem] uppercase tracking-[0.1em] text-ink-400">
                               {address.label}
                             </span>
                           </span>
@@ -159,7 +159,7 @@ export default async function CheckoutPage(props: PageProps<"/checkout">) {
                 {/* <details> keeps this closed by default without any client
                     state, and it is outside the checkout form, so the address
                     form inside it is not a nested form. */}
-                <details className="group mt-4 border border-ivory-400 bg-ivory-50">
+                <details className="group mt-4 rounded-md border border-ivory-400 bg-ivory-50">
                   <summary className="flex cursor-pointer items-center gap-2 p-4 text-xs font-medium uppercase tracking-[0.14em] text-ink-900 transition-colors hover:text-brand-600">
                     <MapPin aria-hidden="true" className="h-4 w-4" />
                     Deliver somewhere else
@@ -204,7 +204,7 @@ export default async function CheckoutPage(props: PageProps<"/checkout">) {
 
             <div
               role="note"
-              className="mb-4 flex items-start gap-2.5 border border-info/30 bg-info-soft p-4 text-sm leading-relaxed text-info"
+              className="mb-4 flex items-start gap-2.5 rounded-md border border-info/30 bg-info-soft p-4 text-sm leading-relaxed text-info"
             >
               <Info aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0" />
               <span>
@@ -229,8 +229,8 @@ export default async function CheckoutPage(props: PageProps<"/checkout">) {
                     <label
                       className={
                         unavailable
-                          ? "flex cursor-not-allowed gap-3 border border-ivory-400 bg-ivory-100 p-4 opacity-60"
-                          : "flex cursor-pointer gap-3 border border-ivory-400 bg-ivory-50 p-4 transition-colors hover:border-ink-400 has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50"
+                          ? "flex cursor-not-allowed gap-3 rounded-md border border-ivory-400 bg-ivory-100 p-4 opacity-60"
+                          : "flex cursor-pointer gap-3 rounded-md border border-ivory-400 bg-ivory-50 p-4 transition-colors hover:border-ink-400 has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50"
                       }
                     >
                       <input
@@ -269,7 +269,7 @@ export default async function CheckoutPage(props: PageProps<"/checkout">) {
             {cart.groups.map((group) => (
               <div
                 key={group.sellerId}
-                className="mb-4 border border-ivory-400 bg-ivory-50 px-5"
+                className="mb-4 rounded-md border border-ivory-400 bg-ivory-50 px-5"
               >
                 <p className="flex items-center gap-2 border-b border-ivory-400 py-3.5 text-xs text-ink-400">
                   <Store aria-hidden="true" className="h-3.5 w-3.5" />

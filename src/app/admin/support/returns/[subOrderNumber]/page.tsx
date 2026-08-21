@@ -56,7 +56,7 @@ export default async function ReturnDetailPage({
 
       <header className="mb-6 flex flex-wrap items-start justify-between gap-4">
         <div className="min-w-0">
-          <p className="eyebrow mb-2">SRS §111 — Return</p>
+          <p className="eyebrow mb-2">Return</p>
           <h1 className="font-display text-3xl">{subOrder.subOrderNumber}</h1>
           <p className="mt-2 text-sm text-ink-400">
             {subOrder.order.customer.user.fullName} ·{" "}
@@ -75,7 +75,7 @@ export default async function ReturnDetailPage({
         />
       </header>
 
-      <section className="mb-6 border border-ivory-400 bg-ivory-50 p-5">
+      <section className="mb-6 rounded-md border border-ivory-400 bg-ivory-50 p-5">
         <h2 className="mb-2 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
           Why they want to return it
         </h2>
@@ -95,7 +95,7 @@ export default async function ReturnDetailPage({
 
       <section className="mb-6">
         <h2 className="mb-3 font-display text-xl">What is coming back</h2>
-        <ul className="border border-ivory-400 bg-ivory-50">
+        <ul className="rounded-md border border-ivory-400 bg-ivory-50">
           {subOrder.items.map((item) => (
             <li
               key={item.productSku}
@@ -123,7 +123,7 @@ export default async function ReturnDetailPage({
         </p>
       </section>
 
-      <section className="mb-6 border border-ivory-400 bg-ivory-50 p-5">
+      <section className="mb-6 rounded-md border border-ivory-400 bg-ivory-50 p-5">
         <h2 className="mb-2 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
           Where the parcel is
         </h2>
@@ -160,7 +160,7 @@ export default async function ReturnDetailPage({
           </p>
         )}
 
-        <div className="border border-ivory-400 bg-ivory-50 p-5">
+        <div className="rounded-md border border-ivory-400 bg-ivory-50 p-5">
           <DecisionPanel
             action={decideReturn}
             idField="returnId"

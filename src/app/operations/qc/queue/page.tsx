@@ -47,7 +47,7 @@ export default async function QcQueuePage({
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §100-102 — Inspection</p>
+        <p className="eyebrow mb-2">Inspection</p>
         <h1 className="font-display text-3xl">Inspections</h1>
       </header>
 

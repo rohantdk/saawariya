@@ -56,7 +56,7 @@ export default async function ReturnsPage({
   return (
     <div className="mx-auto max-w-4xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §111 — Returns</p>
+        <p className="eyebrow mb-2">Returns</p>
         <h1 className="font-display text-3xl">Returns</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
           Completing a return is the move that restocks the goods and raises the
@@ -90,7 +90,7 @@ export default async function ReturnsPage({
       </form>
 
       {returns.length === 0 ? (
-        <div className="border border-ivory-400 bg-ivory-50 p-10 text-center">
+        <div className="rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center">
           <p className="text-sm text-ink-400">
             {status === "open" && !q
               ? "No return is in progress."
@@ -102,7 +102,7 @@ export default async function ReturnsPage({
           {returns.map((request) => (
             <li
               key={request.id}
-              className="border border-ivory-400 bg-ivory-50 p-5"
+              className="rounded-md border border-ivory-400 bg-ivory-50 p-5"
             >
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div className="min-w-0">

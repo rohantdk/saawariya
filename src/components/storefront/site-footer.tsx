@@ -94,7 +94,7 @@ export async function SiteFooter() {
                   <span
                     aria-label={label}
                     title={label}
-                    className="flex h-8 w-8 items-center justify-center border border-cream/20 text-cream/70"
+                    className="flex h-8 w-8 items-center justify-center rounded-md border border-cream/20 text-cream/70"
                   >
                     <Icon aria-hidden="true" className="h-3.5 w-3.5" />
                   </span>

@@ -46,7 +46,7 @@ export default async function LogisticsQueuePage({
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §108-110 — Shipments</p>
+        <p className="eyebrow mb-2">Shipments</p>
         <h1 className="font-display text-3xl">Shipments</h1>
       </header>
 

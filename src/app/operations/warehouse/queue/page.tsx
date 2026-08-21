@@ -45,7 +45,7 @@ export default async function WarehouseQueuePage({
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §94-97 — Picking &amp; packing</p>
+        <p className="eyebrow mb-2">Picking &amp; packing</p>
         <h1 className="font-display text-3xl">Queues</h1>
       </header>
 

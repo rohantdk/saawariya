@@ -132,7 +132,7 @@ export default async function AccountPage() {
         </div>
 
         {recent.orders.length === 0 ? (
-          <div className="border border-ivory-400 bg-ivory-50 p-8 text-center">
+          <div className="rounded-md border border-ivory-400 bg-ivory-50 p-8 text-center">
             <p className="text-sm text-ink-400">
               You have not placed an order yet.
             </p>
@@ -152,7 +152,7 @@ export default async function AccountPage() {
                 <li key={order.id}>
                   <Link
                     href={`/account/orders/${order.orderNumber}`}
-                    className="flex flex-wrap items-center gap-4 border border-ivory-400 bg-ivory-50 p-4 transition-colors hover:border-ink-400"
+                    className="flex flex-wrap items-center gap-4 rounded-md border border-ivory-400 bg-ivory-50 p-4 transition-colors hover:border-ink-400"
                   >
                     <div className="flex -space-x-2">
                       {images.map((item) => (
@@ -195,7 +195,7 @@ export default async function AccountPage() {
 
       {/* ---- Wholesale nudge ---- */}
       {!isWholesale && (
-        <section className="mt-10 border border-ivory-400 bg-ivory-50 p-6">
+        <section className="mt-10 rounded-md border border-ivory-400 bg-ivory-50 p-6">
           <h2 className="font-display text-xl">Buying for a business?</h2>
           <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink-400">
             Register your GSTIN to unlock trade pricing, bulk minimums and
@@ -229,7 +229,7 @@ function Tile({
   return (
     <Link
       href={href}
-      className="border border-ivory-400 bg-ivory-50 p-4 transition-colors hover:border-ink-400"
+      className="rounded-md border border-ivory-400 bg-ivory-50 p-4 transition-colors hover:border-ink-400"
     >
       <span aria-hidden="true" className="text-ink-400">
         {icon}
@@ -245,7 +245,7 @@ function Prompt({ href, text }: { href: string; text: string }) {
     <li>
       <Link
         href={href}
-        className="flex items-center gap-2 border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-900 transition-colors hover:border-ink-400 hover:text-brand-600"
+        className="flex items-center gap-2 rounded-md border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-900 transition-colors hover:border-ink-400 hover:text-brand-600"
       >
         <Star aria-hidden="true" className="h-3.5 w-3.5 text-gold-500" />
         {text}

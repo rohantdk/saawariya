@@ -21,7 +21,7 @@ export function OrderSummary({
   className?: string;
 }) {
   return (
-    <div className={cn("border border-ivory-400 bg-ivory-50 p-6", className)}>
+    <div className={cn("rounded-md border border-ivory-400 bg-ivory-50 p-6", className)}>
       <h2 className="mb-5 font-display text-xl">Summary</h2>
 
       <dl className="space-y-3 text-sm">
@@ -72,7 +72,7 @@ export function OrderSummary({
       </dl>
 
       {totals.freeShippingShortfall > 0 && (
-        <p className="mt-4 flex items-start gap-2 border border-ivory-400 bg-ivory-100 p-3 text-xs leading-relaxed text-ink-500">
+        <p className="mt-4 flex items-start gap-2 rounded-md border border-ivory-400 bg-ivory-100 p-3 text-xs leading-relaxed text-ink-500">
           <Truck aria-hidden="true" className="mt-0.5 h-3.5 w-3.5 shrink-0" />
           Add {formatPaise(totals.freeShippingShortfall)} more to qualify for
           free shipping.

@@ -31,7 +31,7 @@ export default async function SupportDashboardPage() {
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §130 — Customer support</p>
+        <p className="eyebrow mb-2">Customer support</p>
         <h1 className="font-display text-3xl">Support</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
           Tickets are raised by shoppers and by sellers — a settlement query and a
@@ -90,7 +90,7 @@ export default async function SupportDashboardPage() {
           </div>
 
           {attention.tickets.length === 0 ? (
-            <p className="border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
+            <p className="rounded-md border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
               Nothing open. Every ticket has been resolved or closed.
             </p>
           ) : (
@@ -98,7 +98,7 @@ export default async function SupportDashboardPage() {
               {attention.tickets.map((ticket) => (
                 <li
                   key={ticket.id}
-                  className="border border-ivory-400 bg-ivory-50 p-4"
+                  className="rounded-md border border-ivory-400 bg-ivory-50 p-4"
                 >
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div className="min-w-0">
@@ -151,7 +151,7 @@ export default async function SupportDashboardPage() {
             </div>
 
             {attention.returns.length === 0 ? (
-              <p className="border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
+              <p className="rounded-md border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
                 No return is waiting on a decision.
               </p>
             ) : (
@@ -159,7 +159,7 @@ export default async function SupportDashboardPage() {
                 {attention.returns.map((request) => (
                   <li
                     key={request.id}
-                    className="border border-ivory-400 bg-ivory-50 p-4"
+                    className="rounded-md border border-ivory-400 bg-ivory-50 p-4"
                   >
                     <div className="flex flex-wrap items-start justify-between gap-3">
                       <div className="min-w-0">
@@ -195,11 +195,11 @@ export default async function SupportDashboardPage() {
             </p>
 
             {attention.byCategory.length === 0 ? (
-              <p className="border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
+              <p className="rounded-md border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
                 No open tickets.
               </p>
             ) : (
-              <ul className="border border-ivory-400 bg-ivory-50">
+              <ul className="rounded-md border border-ivory-400 bg-ivory-50">
                 {attention.byCategory.map((row) => (
                   <li
                     key={row.category}

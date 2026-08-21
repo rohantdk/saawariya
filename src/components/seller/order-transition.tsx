@@ -95,7 +95,7 @@ export function OrderTransition({
       {declining && declineMove && (
         <form
           action={action}
-          className="space-y-4 border border-danger/30 bg-danger-soft p-5"
+          className="space-y-4 rounded-md border border-danger/30 bg-danger-soft p-5"
         >
           <input type="hidden" name="subOrderId" value={subOrderId} />
           <input type="hidden" name="to" value={declineMove.to} />

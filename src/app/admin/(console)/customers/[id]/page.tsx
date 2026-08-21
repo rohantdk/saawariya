@@ -74,11 +74,11 @@ export default async function AdminCustomerDetailPage({
             </div>
 
             {orders.length === 0 ? (
-              <div className="border border-ivory-400 bg-ivory-50 p-6 text-center text-sm text-ink-400">
+              <div className="rounded-md border border-ivory-400 bg-ivory-50 p-6 text-center text-sm text-ink-400">
                 This customer has not ordered yet.
               </div>
             ) : (
-              <ul className="border border-ivory-400 bg-ivory-50">
+              <ul className="rounded-md border border-ivory-400 bg-ivory-50">
                 {orders.map((order) => (
                   <li
                     key={order.id}
@@ -122,7 +122,7 @@ export default async function AdminCustomerDetailPage({
           <section>
             <h2 className="mb-3 font-display text-xl">Addresses</h2>
             {user.addresses.length === 0 ? (
-              <div className="border border-ivory-400 bg-ivory-50 p-6 text-center text-sm text-ink-400">
+              <div className="rounded-md border border-ivory-400 bg-ivory-50 p-6 text-center text-sm text-ink-400">
                 No saved addresses.
               </div>
             ) : (
@@ -130,7 +130,7 @@ export default async function AdminCustomerDetailPage({
                 {user.addresses.map((address) => (
                   <li
                     key={address.id}
-                    className="border border-ivory-400 bg-ivory-50 p-4"
+                    className="rounded-md border border-ivory-400 bg-ivory-50 p-4"
                   >
                     <p className="text-xs font-medium uppercase tracking-[0.14em] text-ink-400">
                       {address.label}
@@ -161,11 +161,11 @@ export default async function AdminCustomerDetailPage({
               </Link>
             </div>
             {reviews.length === 0 ? (
-              <div className="border border-ivory-400 bg-ivory-50 p-6 text-center text-sm text-ink-400">
+              <div className="rounded-md border border-ivory-400 bg-ivory-50 p-6 text-center text-sm text-ink-400">
                 No reviews written.
               </div>
             ) : (
-              <ul className="border border-ivory-400 bg-ivory-50">
+              <ul className="rounded-md border border-ivory-400 bg-ivory-50">
                 {reviews.map((review) => (
                   <li
                     key={review.id}
@@ -194,11 +194,11 @@ export default async function AdminCustomerDetailPage({
           <section>
             <h2 className="mb-3 font-display text-xl">Support tickets</h2>
             {tickets.length === 0 ? (
-              <div className="border border-ivory-400 bg-ivory-50 p-6 text-center text-sm text-ink-400">
+              <div className="rounded-md border border-ivory-400 bg-ivory-50 p-6 text-center text-sm text-ink-400">
                 No tickets raised.
               </div>
             ) : (
-              <ul className="border border-ivory-400 bg-ivory-50">
+              <ul className="rounded-md border border-ivory-400 bg-ivory-50">
                 {tickets.map((ticket) => (
                   <li
                     key={ticket.id}
@@ -223,7 +223,7 @@ export default async function AdminCustomerDetailPage({
 
         {/* ---- Controls ---- */}
         <aside className="space-y-6">
-          <section className="border border-ivory-400 bg-ivory-50 p-5">
+          <section className="rounded-md border border-ivory-400 bg-ivory-50 p-5">
             <p className="mb-4 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
               Account
             </p>
@@ -255,7 +255,7 @@ export default async function AdminCustomerDetailPage({
             <CustomerStatusActions userId={user.id} status={user.status} />
           </section>
 
-          <section className="border border-ivory-400 bg-ivory-50 p-5">
+          <section className="rounded-md border border-ivory-400 bg-ivory-50 p-5">
             <CustomerTierForm
               customerId={customer.id}
               customerType={customer.customerType}

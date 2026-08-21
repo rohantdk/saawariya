@@ -62,7 +62,7 @@ export default async function ReviewsPage() {
         </h2>
 
         {reviewable.length === 0 ? (
-          <p className="border border-ivory-400 bg-ivory-50 p-6 text-sm text-ink-400">
+          <p className="rounded-md border border-ivory-400 bg-ivory-50 p-6 text-sm text-ink-400">
             Nothing waiting. Once an order is delivered, the pieces in it appear
             here for you to review.
           </p>
@@ -71,7 +71,7 @@ export default async function ReviewsPage() {
             {reviewable.map((item) => (
               <li
                 key={item.id}
-                className="border border-ivory-400 bg-ivory-50 p-5"
+                className="rounded-md border border-ivory-400 bg-ivory-50 p-5"
               >
                 <div className="flex gap-4">
                   <div className="relative aspect-[3/4] w-14 shrink-0 overflow-hidden bg-ivory-200">
@@ -120,7 +120,7 @@ export default async function ReviewsPage() {
         </h2>
 
         {reviews.length === 0 ? (
-          <div className="border border-ivory-400 bg-ivory-50 p-8 text-center">
+          <div className="rounded-md border border-ivory-400 bg-ivory-50 p-8 text-center">
             <span
               aria-hidden="true"
               className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-ivory-200 text-ink-400"
@@ -139,7 +139,7 @@ export default async function ReviewsPage() {
             {reviews.map((review) => (
               <li
                 key={review.id}
-                className="flex gap-4 border border-ivory-400 bg-ivory-50 p-5"
+                className="flex gap-4 rounded-md border border-ivory-400 bg-ivory-50 p-5"
               >
                 <div className="relative aspect-[3/4] w-12 shrink-0 overflow-hidden bg-ivory-200">
                   {review.product.images[0] && (

@@ -29,7 +29,7 @@ export default async function ContentEditPage({
 
       <header className="mb-6 flex flex-wrap items-end justify-between gap-4">
         <div className="min-w-0">
-          <p className="eyebrow mb-2">SRS §84 — /page/{page.slug}</p>
+          <p className="eyebrow mb-2">/page/{page.slug}</p>
           <h1 className="font-display text-3xl">{page.title}</h1>
         </div>
         {page.isPublished && (

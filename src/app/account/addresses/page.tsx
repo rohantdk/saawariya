@@ -33,7 +33,7 @@ export default async function AddressesPage() {
       </p>
 
       {addresses.length === 0 ? (
-        <div className="mt-8 border border-ivory-400 bg-ivory-50 p-6">
+        <div className="mt-8 rounded-md border border-ivory-400 bg-ivory-50 p-6">
           <span
             aria-hidden="true"
             className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-ivory-200 text-ink-400"
@@ -52,7 +52,7 @@ export default async function AddressesPage() {
             ))}
           </ul>
 
-          <details className="mt-6 border border-ivory-400 bg-ivory-50">
+          <details className="mt-6 rounded-md border border-ivory-400 bg-ivory-50">
             <summary className="cursor-pointer p-4 text-sm font-medium text-ink-900 transition-colors hover:text-brand-600">
               Add another address
             </summary>

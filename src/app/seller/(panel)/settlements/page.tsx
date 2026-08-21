@@ -75,7 +75,7 @@ export default async function SellerSettlementsPage({
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §119 — Settlements</p>
+        <p className="eyebrow mb-2">Settlements</p>
         <h1 className="font-display text-3xl">Settlements</h1>
         <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink-400">
           A settlement is raised when a parcel is delivered. Saawariya charges{" "}
@@ -107,7 +107,7 @@ export default async function SellerSettlementsPage({
 
       {/* ---- Where the money goes ---- */}
       {profile?.bankAccountNumber ? (
-        <p className="mb-8 border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-500">
+        <p className="mb-8 rounded-md border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-500">
           Payouts are credited to{" "}
           <span className="text-ink-900">
             {profile.bankAccountName ?? profile.businessName}
@@ -125,7 +125,7 @@ export default async function SellerSettlementsPage({
           </Link>
         </p>
       ) : (
-        <p className="mb-8 border border-warning/30 bg-warning-soft px-5 py-4 text-sm text-ink-900">
+        <p className="mb-8 rounded-md border border-warning/30 bg-warning-soft px-5 py-4 text-sm text-ink-900">
           You have not added a bank account, so payouts cannot be released.{" "}
           <Link
             href="/seller/profile"
@@ -161,7 +161,7 @@ export default async function SellerSettlementsPage({
       </nav>
 
       {settlements.length === 0 ? (
-        <div className="border border-ivory-400 bg-ivory-50 p-10 text-center">
+        <div className="rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center">
           <p className="text-sm text-ink-400">
             {summary.total === 0
               ? "No settlements yet. One is raised for each parcel that reaches the customer."
@@ -173,7 +173,7 @@ export default async function SellerSettlementsPage({
           {settlements.map((settlement) => (
             <li
               key={settlement.id}
-              className="border border-ivory-400 bg-ivory-50 p-4"
+              className="rounded-md border border-ivory-400 bg-ivory-50 p-4"
             >
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div className="min-w-0">

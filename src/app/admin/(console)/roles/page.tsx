@@ -27,7 +27,7 @@ export default async function AdminRolesPage() {
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §88 — Roles &amp; permissions</p>
+        <p className="eyebrow mb-2">Roles &amp; permissions</p>
         <h1 className="font-display text-3xl">Roles &amp; access</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
           {totals.roles} roles, {totals.permissions} permissions,{" "}
@@ -39,7 +39,7 @@ export default async function AdminRolesPage() {
       </header>
 
       {/* ---- Why this screen is read-only ---- */}
-      <section className="mb-8 border border-info/30 bg-info-soft p-5">
+      <section className="mb-8 rounded-md border border-info/30 bg-info-soft p-5">
         <p className="mb-1.5 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-500">
           Why this matrix cannot be edited here
         </p>
@@ -56,7 +56,7 @@ export default async function AdminRolesPage() {
 
       {/* ---- Drift ---- */}
       {(drift.length > 0 || unseeded.length > 0) && (
-        <section className="mb-8 border border-danger/30 bg-danger-soft p-5">
+        <section className="mb-8 rounded-md border border-danger/30 bg-danger-soft p-5">
           <p className="mb-2 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-500">
             The seeded rows disagree with the code
           </p>
@@ -91,7 +91,7 @@ export default async function AdminRolesPage() {
       {/* ---- Roles ---- */}
       <section className="mb-8">
         <h2 className="mb-3 font-display text-xl">Roles</h2>
-        <ul className="border border-ivory-400 bg-ivory-50">
+        <ul className="rounded-md border border-ivory-400 bg-ivory-50">
           {roles.map((role) => (
             <li
               key={role.code}
@@ -132,7 +132,7 @@ export default async function AdminRolesPage() {
         <h2 className="mb-3 font-display text-xl">Permission matrix</h2>
         {/* Wide table: scrolls inside its own container rather than pushing the
             page sideways on a phone. */}
-        <div className="overflow-x-auto border border-ivory-400 bg-ivory-50">
+        <div className="overflow-x-auto rounded-md border border-ivory-400 bg-ivory-50">
           <table className="w-full min-w-[52rem] border-collapse text-sm">
             <thead>
               <tr className="border-b border-ivory-400">

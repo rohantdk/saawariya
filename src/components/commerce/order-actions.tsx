@@ -34,7 +34,7 @@ export function CancelOrderPanel({ orderNumber }: { orderNumber: string }) {
   }
 
   return (
-    <details className="border border-ivory-400 bg-ivory-50">
+    <details className="rounded-md border border-ivory-400 bg-ivory-50">
       <summary className="cursor-pointer p-4 text-sm text-ink-500 transition-colors hover:text-danger">
         Cancel this order
       </summary>
@@ -118,7 +118,7 @@ export function ReturnRequestPanel({
   }
 
   return (
-    <details className="border border-ivory-400 bg-ivory-100">
+    <details className="rounded-md border border-ivory-400 bg-ivory-100">
       <summary className="cursor-pointer p-4 text-sm text-ink-500 transition-colors hover:text-brand-600">
         Request a return
         {closesOn && (

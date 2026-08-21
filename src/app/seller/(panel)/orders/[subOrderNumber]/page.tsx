@@ -80,7 +80,7 @@ export default async function SellerOrderPage({
 
       {/* ---- Actions ---- */}
       {moves.length > 0 && (
-        <section className="mb-10 border border-ivory-400 bg-ivory-50 p-5">
+        <section className="mb-10 rounded-md border border-ivory-400 bg-ivory-50 p-5">
           <OrderTransition subOrderId={order.id} transitions={moves} />
         </section>
       )}
@@ -90,7 +90,7 @@ export default async function SellerOrderPage({
         <h2 className="mb-4 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
           Items
         </h2>
-        <ul className="border border-ivory-400 bg-ivory-50">
+        <ul className="rounded-md border border-ivory-400 bg-ivory-50">
           {order.items.map((item) => (
             <li
               key={item.id}
@@ -154,7 +154,7 @@ export default async function SellerOrderPage({
           <h2 className="mb-3 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
             Deliver to
           </h2>
-          <div className="border border-ivory-400 bg-ivory-50 p-4 text-sm">
+          <div className="rounded-md border border-ivory-400 bg-ivory-50 p-4 text-sm">
             <p className="text-ink-900">
               {order.order.customer.user.fullName}
             </p>
@@ -175,7 +175,7 @@ export default async function SellerOrderPage({
           <h2 className="mb-3 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
             Payment
           </h2>
-          <div className="border border-ivory-400 bg-ivory-50 p-4 text-sm">
+          <div className="rounded-md border border-ivory-400 bg-ivory-50 p-4 text-sm">
             {payment ? (
               <>
                 <p className="text-ink-900">
@@ -197,7 +197,7 @@ export default async function SellerOrderPage({
           <h2 className="mb-3 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
             Your payout
           </h2>
-          <div className="border border-ivory-400 bg-ivory-50 p-4">
+          <div className="rounded-md border border-ivory-400 bg-ivory-50 p-4">
             <dl className="space-y-2 text-sm">
               <Row
                 label="Gross"
@@ -228,7 +228,7 @@ export default async function SellerOrderPage({
           <h2 className="mb-3 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
             Shipment
           </h2>
-          <div className="border border-ivory-400 bg-ivory-50 p-4 text-sm">
+          <div className="rounded-md border border-ivory-400 bg-ivory-50 p-4 text-sm">
             <p className="text-ink-900">{order.shipment.courierName}</p>
             {order.shipment.trackingNumber && (
               <p className="mt-1 text-ink-500">
@@ -244,7 +244,7 @@ export default async function SellerOrderPage({
         <h2 className="mb-3 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
           History
         </h2>
-        <ol className="border border-ivory-400 bg-ivory-50">
+        <ol className="rounded-md border border-ivory-400 bg-ivory-50">
           {order.events.map((event) => (
             <li
               key={event.id}

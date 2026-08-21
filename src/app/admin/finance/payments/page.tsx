@@ -90,7 +90,7 @@ export default async function PaymentsPage({
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §118 — Payment transactions</p>
+        <p className="eyebrow mb-2">Payment transactions</p>
         <h1 className="font-display text-3xl">Transactions</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
           A record of what was charged, not a place to change it — there is no
@@ -142,14 +142,14 @@ export default async function PaymentsPage({
       </form>
 
       {payments.length > 0 && (
-        <p className="mb-5 border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-500">
+        <p className="mb-5 rounded-md border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-500">
           {total} transaction{total === 1 ? "" : "s"} in this view, totalling{" "}
           <span className="text-ink-900">{formatPaise(amount)}</span>
         </p>
       )}
 
       {payments.length === 0 ? (
-        <div className="border border-ivory-400 bg-ivory-50 p-10 text-center">
+        <div className="rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center">
           <p className="text-sm text-ink-400">
             No transactions match this view.
           </p>
@@ -157,7 +157,7 @@ export default async function PaymentsPage({
       ) : (
         /* The table scrolls inside its own container rather than the page —
            see the Phase 6 note on horizontal overflow at 375px. */
-        <div className="overflow-x-auto border border-ivory-400 bg-ivory-50">
+        <div className="overflow-x-auto rounded-md border border-ivory-400 bg-ivory-50">
           <table className="w-full min-w-[46rem] border-collapse text-sm">
             <thead>
               <tr className="border-b border-ivory-400 text-left text-xs uppercase tracking-[0.1em] text-ink-400">

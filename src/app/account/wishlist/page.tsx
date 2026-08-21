@@ -32,7 +32,7 @@ export default async function WishlistPage() {
       </p>
 
       {items.length === 0 ? (
-        <div className="mt-8 border border-ivory-400 bg-ivory-50 p-10 text-center">
+        <div className="mt-8 rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center">
           <span
             aria-hidden="true"
             className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-ivory-200 text-ink-400"
@@ -49,7 +49,7 @@ export default async function WishlistPage() {
           {items.map((item) => (
             <li
               key={item.productId}
-              className="flex flex-wrap gap-5 border border-ivory-400 bg-ivory-50 p-4 sm:flex-nowrap"
+              className="flex flex-wrap gap-5 rounded-md border border-ivory-400 bg-ivory-50 p-4 sm:flex-nowrap"
             >
               <Link
                 href={`/product/${item.slug}`}

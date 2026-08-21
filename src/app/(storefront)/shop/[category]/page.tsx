@@ -98,7 +98,7 @@ export default async function CategoryPage(
             </p>
           )}
           {filters.collection && (
-            <p className="mt-4 inline-flex items-center gap-2 border border-gold-400 px-3 py-1.5 text-xs text-ink-900">
+            <p className="mt-4 inline-flex items-center gap-2 rounded-md border border-gold-400 px-3 py-1.5 text-xs text-ink-900">
               Collection: {filters.collection}
               <Link
                 href={pathname}
@@ -130,7 +130,7 @@ export default async function CategoryPage(
               <li key={child.id}>
                 <Link
                   href={`/shop/${category.slug}/${child.slug}`}
-                  className="inline-flex items-center gap-2 border border-ivory-400 bg-ivory-50 px-4 py-2 text-xs text-ink-900 transition-colors hover:border-ink-400 hover:text-brand-600"
+                  className="inline-flex items-center gap-2 rounded-md border border-ivory-400 bg-ivory-50 px-4 py-2 text-xs text-ink-900 transition-colors hover:border-ink-400 hover:text-brand-600"
                 >
                   {child.name}
                   <span className="tabular-nums text-ink-400">

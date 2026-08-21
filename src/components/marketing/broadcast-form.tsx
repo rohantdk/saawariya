@@ -120,7 +120,7 @@ export function BroadcastForm({
         </Field>
       </div>
 
-      <div className="border border-warning/30 bg-warning-soft p-4">
+      <div className="rounded-md border border-warning/30 bg-warning-soft p-4">
         <p className="mb-3 text-sm text-ink-900">
           This will notify{" "}
           <span className="font-medium">

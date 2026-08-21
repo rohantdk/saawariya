@@ -70,7 +70,7 @@ export function TrackingTimeline({
                   ? "bg-brand-600 text-cream"
                   : isCurrent
                     ? "bg-brand-600 ring-4 ring-brand-50"
-                    : "border border-ivory-400 bg-ivory-50",
+                    : "rounded-md border border-ivory-400 bg-ivory-50",
               )}
             >
               {isDone && <Check className="h-2 w-2" strokeWidth={4} />}

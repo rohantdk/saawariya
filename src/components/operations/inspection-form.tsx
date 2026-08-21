@@ -84,7 +84,7 @@ export function InspectionForm({
 
       <div className="grid gap-5 sm:grid-cols-2">
         {groups.map(([key, group]) => (
-          <fieldset key={key} className="border border-ivory-400 p-4">
+          <fieldset key={key} className="rounded-md border border-ivory-400 p-4">
             <legend className="px-1 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
               {group.label}
             </legend>

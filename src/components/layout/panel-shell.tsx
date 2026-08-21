@@ -36,7 +36,14 @@ export function PanelShell({
       <header className="sticky top-0 z-40 border-b border-ivory-400 bg-ivory-50/95 backdrop-blur">
         <div className="flex h-16 items-center justify-between gap-4 px-5 lg:px-8">
           <div className="flex items-center gap-4">
-            <Wordmark surface="light" size={34} />
+            {/* The wordmark is fixed artwork in two colourways, and the light
+                one is maroon on cream — on a dark panel bar it would be
+                maroon-on-near-black. Rather than swap colourways (which would
+                change the mark itself between themes), it keeps its own pale
+                plate in dark mode, the way a printed logo keeps its field. */}
+            <span className="inline-flex items-center rounded-md dark:bg-cream dark:px-2.5 dark:py-1.5">
+              <Wordmark surface="light" size={34} />
+            </span>
             <span className="hidden border-l border-ivory-400 py-1 pl-4 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-gold-500 sm:inline">
               {ROLE_LABEL[user.role]}
             </span>
@@ -75,55 +82,6 @@ export function PanelShell({
         <main className="min-w-0 flex-1 px-5 py-8 lg:px-8 lg:py-10">
           {children}
         </main>
-      </div>
-    </div>
-  );
-}
-
-/**
- * Temporary landing used by panels whose full build lands in a later phase.
- * Renders live session data, so it still proves authentication and role gating
- * are working rather than being an empty stub.
- */
-export function PhasePlaceholder({
-  title,
-  description,
-  srsRef,
-  plannedPhase,
-  modules,
-}: {
-  title: string;
-  description: string;
-  srsRef: string;
-  plannedPhase: string;
-  modules: string[];
-}) {
-  return (
-    <div className="mx-auto max-w-3xl">
-      <p className="eyebrow mb-5">{srsRef}</p>
-      <h1 className="mb-3 font-display text-4xl">{title}</h1>
-      <p className="mb-8 max-w-xl text-sm leading-relaxed text-ink-400">
-        {description}
-      </p>
-
-      <div className="border border-ivory-400 bg-ivory-50 p-6">
-        <p className="mb-4 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
-          Modules in this panel — {plannedPhase}
-        </p>
-        <ul className="grid gap-x-8 gap-y-2 sm:grid-cols-2">
-          {modules.map((module) => (
-            <li
-              key={module}
-              className="flex items-center gap-2.5 text-sm text-ink-900"
-            >
-              <span
-                aria-hidden="true"
-                className="h-1 w-1 shrink-0 rounded-full bg-gold-400"
-              />
-              {module}
-            </li>
-          ))}
-        </ul>
       </div>
     </div>
   );

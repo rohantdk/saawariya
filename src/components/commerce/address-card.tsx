@@ -27,7 +27,7 @@ export function AddressCard({ address }: { address: AddressRecord }) {
 
   if (editing) {
     return (
-      <div className="border border-brand-600 bg-ivory-50 p-5">
+      <div className="rounded-md border border-brand-600 bg-ivory-50 p-5">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-sm font-medium text-ink-900">Edit address</h2>
           <button
@@ -55,9 +55,9 @@ export function AddressCard({ address }: { address: AddressRecord }) {
         : null;
 
   return (
-    <div className="flex h-full flex-col border border-ivory-400 bg-ivory-50 p-5">
+    <div className="flex h-full flex-col rounded-md border border-ivory-400 bg-ivory-50 p-5">
       <div className="mb-2 flex flex-wrap items-center gap-2">
-        <span className="border border-ivory-400 px-1.5 py-0.5 text-[0.625rem] uppercase tracking-[0.1em] text-ink-400">
+        <span className="rounded-md border border-ivory-400 px-1.5 py-0.5 text-[0.625rem] uppercase tracking-[0.1em] text-ink-400">
           {address.label}
         </span>
         {address.isDefaultShipping && (

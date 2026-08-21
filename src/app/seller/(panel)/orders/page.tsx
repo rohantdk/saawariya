@@ -64,7 +64,7 @@ export default async function SellerOrdersPage({
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §61 — Order management</p>
+        <p className="eyebrow mb-2">Order management</p>
         <h1 className="font-display text-3xl">Orders</h1>
         <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink-400">
           Confirm a new order to release your stock to the Saawariya warehouse.
@@ -119,7 +119,7 @@ export default async function SellerOrdersPage({
       </form>
 
       {orders.length === 0 ? (
-        <div className="border border-ivory-400 bg-ivory-50 p-10 text-center">
+        <div className="rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center">
           <p className="text-sm text-ink-400">
             {q
               ? `No orders match “${q}”.`

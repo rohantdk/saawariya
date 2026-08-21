@@ -51,7 +51,7 @@ export default async function NewTicketPage(
         specific order, choose it below — it saves us both a round trip.
       </p>
 
-      <div className="mt-8 border border-ivory-400 bg-ivory-50 p-6">
+      <div className="mt-8 rounded-md border border-ivory-400 bg-ivory-50 p-6">
         <TicketForm
           orders={orders.map((order) => ({
             orderNumber: order.orderNumber,

@@ -49,7 +49,7 @@ export default async function CampaignsPage({
   return (
     <div className="mx-auto max-w-4xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §127 — Campaigns</p>
+        <p className="eyebrow mb-2">Campaigns</p>
         <h1 className="font-display text-3xl">Campaigns</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
           A campaign is a planned promotion with a window and an audience. Its
@@ -64,7 +64,7 @@ export default async function CampaignsPage({
         href={(key) => `/admin/marketing/campaigns?filter=${key}`}
       />
 
-      <details className="mb-6 border border-ivory-400 bg-ivory-50">
+      <details className="mb-6 rounded-md border border-ivory-400 bg-ivory-50">
         <summary className="cursor-pointer px-5 py-4 text-sm font-medium text-ink-900 hover:bg-ivory-200">
           Plan a campaign
         </summary>
@@ -74,7 +74,7 @@ export default async function CampaignsPage({
       </details>
 
       {campaigns.length === 0 ? (
-        <div className="border border-ivory-400 bg-ivory-50 p-10 text-center">
+        <div className="rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center">
           <p className="text-sm text-ink-400">No campaigns in this view.</p>
         </div>
       ) : (
@@ -91,7 +91,7 @@ export default async function CampaignsPage({
             return (
               <li
                 key={campaign.id}
-                className="border border-ivory-400 bg-ivory-50 p-5"
+                className="rounded-md border border-ivory-400 bg-ivory-50 p-5"
               >
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div className="min-w-0">

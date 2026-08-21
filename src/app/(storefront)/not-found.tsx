@@ -29,7 +29,7 @@ export default async function StorefrontNotFound() {
         </Link>
         <Link
           href="/"
-          className="inline-flex h-12 items-center border border-ink-900/15 px-8 text-xs font-medium uppercase tracking-[0.16em] text-ink-900 transition-colors hover:border-ink-900/40"
+          className="inline-flex h-12 items-center rounded-md border border-ink-900/15 px-8 text-xs font-medium uppercase tracking-[0.16em] text-ink-900 transition-colors hover:border-ink-900/40"
         >
           Back to home
         </Link>
@@ -44,7 +44,7 @@ export default async function StorefrontNotFound() {
             <li key={category.id}>
               <Link
                 href={`/shop/${category.slug}`}
-                className="inline-flex border border-ivory-400 bg-ivory-50 px-4 py-2 text-xs text-ink-900 transition-colors hover:border-ink-400 hover:text-brand-600"
+                className="inline-flex rounded-md border border-ivory-400 bg-ivory-50 px-4 py-2 text-xs text-ink-900 transition-colors hover:border-ink-400 hover:text-brand-600"
               >
                 {category.name}
               </Link>

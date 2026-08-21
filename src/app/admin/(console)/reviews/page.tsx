@@ -56,7 +56,7 @@ export default async function AdminReviewsPage({
   return (
     <div className="mx-auto max-w-4xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §47 — Review moderation</p>
+        <p className="eyebrow mb-2">Review moderation</p>
         <h1 className="font-display text-3xl">Reviews</h1>
         <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink-400">
           Only published reviews are visible on the storefront, and only
@@ -109,7 +109,7 @@ export default async function AdminReviewsPage({
       </form>
 
       {reviews.length === 0 ? (
-        <div className="border border-ivory-400 bg-ivory-50 p-10 text-center">
+        <div className="rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center">
           <p className="text-sm text-ink-400">
             {status === REVIEW_STATUS.PENDING && !q
               ? "Nothing awaiting moderation."
@@ -123,7 +123,7 @@ export default async function AdminReviewsPage({
             return (
               <li
                 key={review.id}
-                className="border border-ivory-400 bg-ivory-50 p-5"
+                className="rounded-md border border-ivory-400 bg-ivory-50 p-5"
               >
                 <div className="flex flex-wrap items-start gap-4">
                   <span className="relative aspect-square w-14 shrink-0 overflow-hidden bg-ivory-200">

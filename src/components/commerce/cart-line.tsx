@@ -139,7 +139,7 @@ export function CartLine({ line }: { line: CartLineData }) {
 
         {/* ---- Controls ---- */}
         <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-3 pt-4">
-          <form action={qtyAction} className="flex items-center border border-ivory-400">
+          <form action={qtyAction} className="flex items-center rounded-md border border-ivory-400">
             <input type="hidden" name="cartItemId" value={line.id} />
 
             <button

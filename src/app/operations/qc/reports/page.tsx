@@ -50,7 +50,7 @@ export default async function QcReportsPage({
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §103, §104 — QC reporting</p>
+        <p className="eyebrow mb-2">QC reporting</p>
         <h1 className="font-display text-3xl">Reports</h1>
       </header>
 
@@ -101,7 +101,7 @@ export default async function QcReportsPage({
       </div>
 
       {report.total === 0 ? (
-        <p className="border border-ivory-400 bg-ivory-50 p-10 text-center text-sm text-ink-400">
+        <p className="rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center text-sm text-ink-400">
           No inspections recorded in the last {days} days.
         </p>
       ) : (
@@ -109,7 +109,7 @@ export default async function QcReportsPage({
           <section>
             <h2 className="mb-4 font-display text-xl">Why parcels failed</h2>
             {report.reasons.length === 0 ? (
-              <p className="border border-ivory-400 bg-ivory-50 p-6 text-sm text-ink-400">
+              <p className="rounded-md border border-ivory-400 bg-ivory-50 p-6 text-sm text-ink-400">
                 Nothing failed in this period.
               </p>
             ) : (
@@ -183,7 +183,7 @@ export default async function QcReportsPage({
 
           <section className="lg:col-span-2">
             <h2 className="mb-4 font-display text-xl">By inspector</h2>
-            <ul className="divide-y divide-ivory-300 border border-ivory-400 bg-ivory-50">
+            <ul className="divide-y divide-ivory-300 rounded-md border border-ivory-400 bg-ivory-50">
               {report.inspectors.map((inspector) => {
                 const total = inspector.passed + inspector.failed;
                 return (
@@ -209,11 +209,11 @@ export default async function QcReportsPage({
       <section className="mt-10">
         <h2 className="mb-4 font-display text-xl">Inspection log</h2>
         {recent.inspections.length === 0 ? (
-          <p className="border border-ivory-400 bg-ivory-50 p-6 text-sm text-ink-400">
+          <p className="rounded-md border border-ivory-400 bg-ivory-50 p-6 text-sm text-ink-400">
             Nothing recorded yet.
           </p>
         ) : (
-          <ul className="divide-y divide-ivory-300 border border-ivory-400 bg-ivory-50">
+          <ul className="divide-y divide-ivory-300 rounded-md border border-ivory-400 bg-ivory-50">
             {recent.inspections.map((inspection) => (
               <li key={inspection.id} className="p-4">
                 <div className="flex flex-wrap items-center justify-between gap-3">

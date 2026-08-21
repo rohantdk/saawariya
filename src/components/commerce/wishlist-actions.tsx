@@ -72,7 +72,7 @@ export function WishlistActions({
       ) : (
         <Link
           href={`/product/${slug}`}
-          className="block w-full border border-ink-900/15 px-4 py-2.5 text-center text-xs font-medium uppercase tracking-[0.12em] text-ink-400"
+          className="block w-full rounded-md border border-ink-900/15 px-4 py-2.5 text-center text-xs font-medium uppercase tracking-[0.12em] text-ink-400"
         >
           View piece
         </Link>

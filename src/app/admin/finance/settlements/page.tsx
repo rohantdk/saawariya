@@ -78,7 +78,7 @@ export default async function SettlementsPage({
   return (
     <div className="mx-auto max-w-4xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §119 — Seller settlements</p>
+        <p className="eyebrow mb-2">Seller settlements</p>
         <h1 className="font-display text-3xl">Seller payouts</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
           Commission is charged on the seller&rsquo;s gross line value, before
@@ -130,7 +130,7 @@ export default async function SettlementsPage({
       </form>
 
       {settlements.length > 0 && (
-        <p className="mb-5 border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-500">
+        <p className="mb-5 rounded-md border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-500">
           {total} payout{total === 1 ? "" : "s"} in this view ·{" "}
           {formatPaise(totals.gross)} gross &minus;{" "}
           {formatPaise(totals.commission)} commission ={" "}
@@ -140,7 +140,7 @@ export default async function SettlementsPage({
       )}
 
       {settlements.length === 0 ? (
-        <div className="border border-ivory-400 bg-ivory-50 p-10 text-center">
+        <div className="rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center">
           <p className="text-sm text-ink-400">
             {status === SETTLEMENT_STATUS.PENDING && !q && !sellerId
               ? "No payouts are waiting to be released."
@@ -165,7 +165,7 @@ export default async function SettlementsPage({
             return (
               <li
                 key={settlement.id}
-                className="border border-ivory-400 bg-ivory-50 p-5"
+                className="rounded-md border border-ivory-400 bg-ivory-50 p-5"
               >
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div className="min-w-0">

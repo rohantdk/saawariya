@@ -51,7 +51,7 @@ export default async function SupportPage() {
       </div>
 
       {tickets.length === 0 ? (
-        <div className="mt-8 border border-ivory-400 bg-ivory-50 p-10 text-center">
+        <div className="mt-8 rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center">
           <span
             aria-hidden="true"
             className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-ivory-200 text-ink-400"
@@ -75,7 +75,7 @@ export default async function SupportPage() {
             <li key={ticket.id}>
               <Link
                 href={`/account/support/${ticket.ticketNumber}`}
-                className="block border border-ivory-400 bg-ivory-50 p-4 transition-colors hover:border-ink-400"
+                className="block rounded-md border border-ivory-400 bg-ivory-50 p-4 transition-colors hover:border-ink-400"
               >
                 <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
                   <div className="min-w-0">

@@ -254,7 +254,7 @@ export function ProductBuyPanel({
           <input type="hidden" name="quantity" value={quantity} />
 
           <div className="flex flex-wrap items-stretch gap-3">
-            <div className="flex items-center border border-ivory-400">
+            <div className="flex items-center rounded-md border border-ivory-400">
               <StepperButton
                 label="Decrease quantity"
                 disabled={isOutOfStock || belowMoq || quantity <= minQty}
@@ -361,7 +361,7 @@ export function ProductBuyPanel({
       ) : (
         <Link
           href={signInHref}
-          className="mt-3 flex w-full items-center justify-center gap-2 border border-ink-900/15 px-6 py-3 text-xs font-medium uppercase tracking-[0.14em] text-ink-900 transition-colors hover:border-ink-900/40"
+          className="mt-3 flex w-full items-center justify-center gap-2 rounded-md border border-ink-900/15 px-6 py-3 text-xs font-medium uppercase tracking-[0.14em] text-ink-900 transition-colors hover:border-ink-900/40"
         >
           <Heart aria-hidden="true" className="h-4 w-4" />
           Save to wishlist

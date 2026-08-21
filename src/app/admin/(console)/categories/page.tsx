@@ -30,7 +30,7 @@ export default async function AdminCategoriesPage() {
   return (
     <div className="mx-auto max-w-4xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §76 — Category management</p>
+        <p className="eyebrow mb-2">Category management</p>
         <h1 className="font-display text-3xl">Categories</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
           {total} categories across two levels — the depth the storefront routes

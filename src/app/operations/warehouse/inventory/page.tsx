@@ -73,7 +73,7 @@ export default async function WarehouseInventoryPage({
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §98 — Stock</p>
+        <p className="eyebrow mb-2">Stock</p>
         <h1 className="font-display text-3xl">Stock</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
           Every seller&rsquo;s goods, as held in the Saawariya warehouse. Free
@@ -129,7 +129,7 @@ export default async function WarehouseInventoryPage({
       </form>
 
       {items.length === 0 ? (
-        <div className="border border-ivory-400 bg-ivory-50 p-10 text-center">
+        <div className="rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center">
           <p className="text-sm text-ink-400">
             {q ? `No stock matches “${q}”.` : "Nothing in this view."}
           </p>
@@ -139,7 +139,7 @@ export default async function WarehouseInventoryPage({
           {items.map((item) => (
             <li
               key={item.id}
-              className="flex flex-wrap items-center gap-4 border border-ivory-400 bg-ivory-50 p-3"
+              className="flex flex-wrap items-center gap-4 rounded-md border border-ivory-400 bg-ivory-50 p-3"
             >
               {item.product.images[0] && (
                 <Image

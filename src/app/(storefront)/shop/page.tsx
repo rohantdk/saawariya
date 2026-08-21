@@ -60,7 +60,7 @@ export default async function ShopPage(props: PageProps<"/shop">) {
       {banner && (
         <Link
           href={banner.linkUrl ?? "/shop"}
-          className="group mb-10 grid overflow-hidden border border-ivory-400 bg-ivory-50 sm:grid-cols-[14rem_1fr]"
+          className="group mb-10 grid overflow-hidden rounded-md border border-ivory-400 bg-ivory-50 sm:grid-cols-[14rem_1fr]"
         >
           <div className="relative aspect-[2/1] bg-ivory-200 sm:aspect-auto">
             <Image

@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+/**
+ * Point the `dark:` variant at our own class instead of the OS setting.
+ *
+ * Tailwind v4 resolves `dark:` from `prefers-color-scheme` by default, but the
+ * theme here is an explicit choice the visitor makes and we persist — see
+ * components/theme/. Without this line a `dark:` utility would quietly follow
+ * the operating system and disagree with the toggle.
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ---------------------------------------------------------------------------
    Saawariya design tokens
 

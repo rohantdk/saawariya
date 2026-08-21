@@ -43,7 +43,7 @@ export default async function LogisticsReportsPage({
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §110 — Delivery performance</p>
+        <p className="eyebrow mb-2">Delivery performance</p>
         <h1 className="font-display text-3xl">Performance</h1>
       </header>
 
@@ -94,7 +94,7 @@ export default async function LogisticsReportsPage({
       </div>
 
       {report.couriers.length === 0 ? (
-        <p className="border border-ivory-400 bg-ivory-50 p-10 text-center text-sm text-ink-400">
+        <p className="rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center text-sm text-ink-400">
           No shipments in the last {days} days.
         </p>
       ) : (
@@ -172,11 +172,11 @@ export default async function LogisticsReportsPage({
       <section>
         <h2 className="mb-4 font-display text-xl">Outstanding failed attempts</h2>
         {failures.length === 0 ? (
-          <p className="border border-ivory-400 bg-ivory-50 p-6 text-sm text-ink-400">
+          <p className="rounded-md border border-ivory-400 bg-ivory-50 p-6 text-sm text-ink-400">
             Nothing outstanding.
           </p>
         ) : (
-          <ul className="divide-y divide-ivory-300 border border-ivory-400 bg-ivory-50">
+          <ul className="divide-y divide-ivory-300 rounded-md border border-ivory-400 bg-ivory-50">
             {failures.map((shipment) => (
               <li
                 key={shipment.id}

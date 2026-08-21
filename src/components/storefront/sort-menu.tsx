@@ -28,7 +28,7 @@ export function SortMenu({
 
   return (
     <details className="group relative">
-      <summary className="flex h-10 cursor-pointer list-none items-center gap-2 border border-ivory-400 bg-ivory-50 px-4 text-xs text-ink-900 transition-colors hover:border-ink-400 [&::-webkit-details-marker]:hidden">
+      <summary className="flex h-10 cursor-pointer list-none items-center gap-2 rounded-md border border-ivory-400 bg-ivory-50 px-4 text-xs text-ink-900 transition-colors hover:border-ink-400 [&::-webkit-details-marker]:hidden">
         <span className="text-ink-400">Sort:</span>
         {current.label}
         <ChevronDown
@@ -37,7 +37,7 @@ export function SortMenu({
         />
       </summary>
 
-      <ul className="absolute right-0 z-30 mt-1 w-56 border border-ivory-400 bg-ivory-50 py-1 shadow-lifted">
+      <ul className="absolute right-0 z-30 mt-1 w-56 rounded-md border border-ivory-400 bg-ivory-50 py-1 shadow-lifted">
         {SORT_OPTIONS.map((option) => {
           const isCurrent = option.slug === current.slug;
 

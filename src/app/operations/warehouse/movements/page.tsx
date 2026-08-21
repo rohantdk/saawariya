@@ -58,7 +58,7 @@ export default async function StockLedgerPage({
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §97 — Stock movement</p>
+        <p className="eyebrow mb-2">Stock movement</p>
         <h1 className="font-display text-3xl">Stock ledger</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
           Every change to every stock figure, newest first. Nothing here can be
@@ -113,11 +113,11 @@ export default async function StockLedgerPage({
       </form>
 
       {movements.length === 0 ? (
-        <div className="border border-ivory-400 bg-ivory-50 p-10 text-center">
+        <div className="rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center">
           <p className="text-sm text-ink-400">Nothing in this view.</p>
         </div>
       ) : (
-        <ul className="divide-y divide-ivory-300 border border-ivory-400 bg-ivory-50">
+        <ul className="divide-y divide-ivory-300 rounded-md border border-ivory-400 bg-ivory-50">
           {movements.map((movement) => (
             <li key={movement.id} className="flex flex-wrap gap-4 p-4">
               <div className="min-w-0 flex-1">

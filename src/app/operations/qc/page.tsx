@@ -31,7 +31,7 @@ export default async function QcDashboardPage() {
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §99-104 — Quality control</p>
+        <p className="eyebrow mb-2">Quality control</p>
         <h1 className="font-display text-3xl">Quality control</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
           Every parcel is inspected against the checklist before it is packed. A
@@ -83,7 +83,7 @@ export default async function QcDashboardPage() {
           </div>
 
           {pending.rows.length === 0 ? (
-            <p className="border border-ivory-400 bg-ivory-50 p-6 text-sm text-ink-400">
+            <p className="rounded-md border border-ivory-400 bg-ivory-50 p-6 text-sm text-ink-400">
               Nothing waiting. Every picked parcel has been inspected.
             </p>
           ) : (
@@ -92,7 +92,7 @@ export default async function QcDashboardPage() {
                 <li key={row.id}>
                   <Link
                     href={`/operations/qc/queue/${row.subOrderNumber}`}
-                    className="flex flex-wrap items-center justify-between gap-3 border border-ivory-400 bg-ivory-50 p-3 transition-colors hover:border-ink-400"
+                    className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-ivory-400 bg-ivory-50 p-3 transition-colors hover:border-ink-400"
                   >
                     <span className="min-w-0">
                       <span className="block text-sm text-ink-900">
@@ -125,11 +125,11 @@ export default async function QcDashboardPage() {
           </div>
 
           {recent.inspections.length === 0 ? (
-            <p className="border border-ivory-400 bg-ivory-50 p-6 text-sm text-ink-400">
+            <p className="rounded-md border border-ivory-400 bg-ivory-50 p-6 text-sm text-ink-400">
               No inspections recorded yet.
             </p>
           ) : (
-            <ul className="divide-y divide-ivory-300 border border-ivory-400 bg-ivory-50">
+            <ul className="divide-y divide-ivory-300 rounded-md border border-ivory-400 bg-ivory-50">
               {recent.inspections.slice(0, 6).map((inspection) => (
                 <li key={inspection.id} className="p-3">
                   <div className="flex flex-wrap items-center justify-between gap-2">

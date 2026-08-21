@@ -64,7 +64,7 @@ export default async function NotificationsPage() {
       </div>
 
       {notifications.length === 0 ? (
-        <div className="mt-8 border border-ivory-400 bg-ivory-50 p-10 text-center">
+        <div className="mt-8 rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center">
           <span
             aria-hidden="true"
             className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-ivory-200 text-ink-400"
@@ -82,8 +82,8 @@ export default async function NotificationsPage() {
               key={notification.id}
               className={
                 notification.isRead
-                  ? "border border-ivory-400 bg-ivory-50 p-4"
-                  : "border border-brand-600/30 bg-brand-50 p-4"
+                  ? "rounded-md border border-ivory-400 bg-ivory-50 p-4"
+                  : "rounded-md border border-brand-600/30 bg-brand-50 p-4"
               }
             >
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">

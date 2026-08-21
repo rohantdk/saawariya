@@ -60,7 +60,7 @@ export default async function PackingSlipPage({
         <PrintButton />
       </div>
 
-      <article className="border border-ivory-400 bg-ivory-50 p-8 print:border-0 print:p-0">
+      <article className="rounded-md border border-ivory-400 bg-ivory-50 p-8 print:border-0 print:p-0">
         {/* ---- Header ---- */}
         <header className="mb-8 flex flex-wrap items-start justify-between gap-6 border-b border-ivory-400 pb-6">
           <div>

@@ -82,8 +82,8 @@ export default async function OrdersPage(props: PageProps<"/account/orders">) {
                     aria-current={isActive ? "page" : undefined}
                     className={
                       isActive
-                        ? "inline-block border border-brand-600 bg-brand-600 px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] text-cream"
-                        : "inline-block border border-ivory-400 px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] text-ink-500 transition-colors hover:border-ink-400"
+                        ? "inline-block rounded-md border border-brand-600 bg-brand-600 px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] text-cream"
+                        : "inline-block rounded-md border border-ivory-400 px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] text-ink-500 transition-colors hover:border-ink-400"
                     }
                   >
                     {option.label} ({counts[option.slug]})
@@ -96,7 +96,7 @@ export default async function OrdersPage(props: PageProps<"/account/orders">) {
       )}
 
       {orders.length === 0 ? (
-        <div className="mt-8 border border-ivory-400 bg-ivory-50 p-10 text-center">
+        <div className="mt-8 rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center">
           <span
             aria-hidden="true"
             className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-ivory-200 text-ink-400"
@@ -123,7 +123,7 @@ export default async function OrdersPage(props: PageProps<"/account/orders">) {
             return (
               <li
                 key={order.id}
-                className="border border-ivory-400 bg-ivory-50"
+                className="rounded-md border border-ivory-400 bg-ivory-50"
               >
                 <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-3 border-b border-ivory-400 p-4">
                   <div>
@@ -208,8 +208,8 @@ export default async function OrdersPage(props: PageProps<"/account/orders">) {
                   aria-current={number === currentPage ? "page" : undefined}
                   className={
                     number === currentPage
-                      ? "border border-brand-600 bg-brand-600 px-3.5 py-2 text-xs text-cream"
-                      : "border border-ivory-400 px-3.5 py-2 text-xs text-ink-500 transition-colors hover:border-ink-400"
+                      ? "rounded-md border border-brand-600 bg-brand-600 px-3.5 py-2 text-xs text-cream"
+                      : "rounded-md border border-ivory-400 px-3.5 py-2 text-xs text-ink-500 transition-colors hover:border-ink-400"
                   }
                 >
                   {number}

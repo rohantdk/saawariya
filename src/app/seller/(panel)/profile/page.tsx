@@ -44,7 +44,7 @@ export default async function SellerProfilePage() {
   return (
     <div className="mx-auto max-w-3xl">
       <header className="mb-8">
-        <p className="eyebrow mb-2">SRS §54 — Business profile</p>
+        <p className="eyebrow mb-2">Business profile</p>
         <div className="mb-3 flex flex-wrap items-center gap-3">
           <h1 className="font-display text-3xl">{profile.businessName}</h1>
           <StatusBadge
@@ -62,7 +62,7 @@ export default async function SellerProfilePage() {
       </header>
 
       {/* ---- Commercial terms, read-only ---- */}
-      <section className="mb-10 border border-ivory-400 bg-ivory-50 p-5">
+      <section className="mb-10 rounded-md border border-ivory-400 bg-ivory-50 p-5">
         <div className="flex flex-wrap items-baseline justify-between gap-3">
           <div>
             <p className="text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
@@ -89,7 +89,7 @@ export default async function SellerProfilePage() {
           </p>
         </div>
 
-        <ul className="border border-ivory-400 bg-ivory-50">
+        <ul className="rounded-md border border-ivory-400 bg-ivory-50">
           {rows.map(({ docType, document }) => (
             <li
               key={docType}

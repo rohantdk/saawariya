@@ -46,7 +46,7 @@ export default async function FinanceDashboardPage() {
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §116 — Finance</p>
+        <p className="eyebrow mb-2">Finance</p>
         <h1 className="font-display text-3xl">Finance</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
           Payouts owed to sellers, refunds owed to customers, and what the
@@ -142,7 +142,7 @@ export default async function FinanceDashboardPage() {
       {(summary.unsettledDeliveries > 0 || summary.failedPayments > 0) && (
         <div className="mb-8 space-y-2">
           {summary.unsettledDeliveries > 0 && (
-            <p className="border border-danger/30 bg-danger-soft px-4 py-3 text-sm text-danger">
+            <p className="rounded-md border border-danger/30 bg-danger-soft px-4 py-3 text-sm text-danger">
               {summary.unsettledDeliveries} delivered parcel
               {summary.unsettledDeliveries === 1 ? " has" : "s have"} no
               settlement raised at all. Those sellers are owed money that is not
@@ -150,7 +150,7 @@ export default async function FinanceDashboardPage() {
             </p>
           )}
           {summary.failedPayments > 0 && (
-            <p className="border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-500">
+            <p className="rounded-md border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-500">
               {summary.failedPayments} payment
               {summary.failedPayments === 1 ? "" : "s"} failed at the gateway.{" "}
               <Link
@@ -180,7 +180,7 @@ export default async function FinanceDashboardPage() {
           </div>
 
           {attention.settlements.length === 0 ? (
-            <p className="border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
+            <p className="rounded-md border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
               Every raised payout has been released.
             </p>
           ) : (
@@ -188,7 +188,7 @@ export default async function FinanceDashboardPage() {
               {attention.settlements.map((settlement) => (
                 <li
                   key={settlement.id}
-                  className="border border-ivory-400 bg-ivory-50 p-4"
+                  className="rounded-md border border-ivory-400 bg-ivory-50 p-4"
                 >
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div className="min-w-0">
@@ -231,7 +231,7 @@ export default async function FinanceDashboardPage() {
           </div>
 
           {attention.refunds.length === 0 ? (
-            <p className="border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
+            <p className="rounded-md border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
               No refund is waiting on a decision or a payment.
             </p>
           ) : (
@@ -239,7 +239,7 @@ export default async function FinanceDashboardPage() {
               {attention.refunds.map((refund) => (
                 <li
                   key={refund.id}
-                  className="border border-ivory-400 bg-ivory-50 p-4"
+                  className="rounded-md border border-ivory-400 bg-ivory-50 p-4"
                 >
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div className="min-w-0">

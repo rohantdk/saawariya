@@ -31,7 +31,7 @@ export default async function MarketingDashboardPage() {
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §124 — Marketing</p>
+        <p className="eyebrow mb-2">Marketing</p>
         <h1 className="font-display text-3xl">Marketing</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
           What is running on the storefront, and what it has done. Coupon
@@ -80,7 +80,7 @@ export default async function MarketingDashboardPage() {
       {overdue > 0 && (
         <div className="mb-8 space-y-2">
           {summary.campaigns.overdueToStart > 0 && (
-            <p className="border border-warning/30 bg-warning-soft px-4 py-3 text-sm text-warning">
+            <p className="rounded-md border border-warning/30 bg-warning-soft px-4 py-3 text-sm text-warning">
               {summary.campaigns.overdueToStart} campaign
               {summary.campaigns.overdueToStart === 1 ? "" : "s"} should have
               started by now and{" "}
@@ -95,7 +95,7 @@ export default async function MarketingDashboardPage() {
             </p>
           )}
           {summary.campaigns.overdueToClose > 0 && (
-            <p className="border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-500">
+            <p className="rounded-md border border-ivory-400 bg-ivory-50 px-4 py-3 text-sm text-ink-500">
               {summary.campaigns.overdueToClose} campaign
               {summary.campaigns.overdueToClose === 1 ? "" : "s"} passed{" "}
               {summary.campaigns.overdueToClose === 1 ? "its" : "their"} end date
@@ -120,11 +120,11 @@ export default async function MarketingDashboardPage() {
           </div>
 
           {coupons.length === 0 ? (
-            <p className="border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
+            <p className="rounded-md border border-ivory-400 bg-ivory-50 px-5 py-4 text-sm text-ink-400">
               No coupon has been redeemed yet.
             </p>
           ) : (
-            <div className="overflow-x-auto border border-ivory-400 bg-ivory-50">
+            <div className="overflow-x-auto rounded-md border border-ivory-400 bg-ivory-50">
               <table className="w-full min-w-[26rem] border-collapse text-sm">
                 <thead>
                   <tr className="border-b border-ivory-400 text-left text-xs uppercase tracking-[0.1em] text-ink-400">
@@ -174,7 +174,7 @@ export default async function MarketingDashboardPage() {
         <section className="min-w-0">
           <h2 className="mb-3 font-display text-xl">Campaign reach</h2>
 
-          <div className="border border-ivory-400 bg-ivory-50 p-5">
+          <div className="rounded-md border border-ivory-400 bg-ivory-50 p-5">
             <dl className="grid grid-cols-3 gap-3">
               <div className="min-w-0">
                 <dt className="text-xs text-ink-400">Reached</dt>

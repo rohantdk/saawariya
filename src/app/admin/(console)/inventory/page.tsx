@@ -64,7 +64,7 @@ export default async function AdminInventoryPage({
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §77 — Inventory monitoring</p>
+        <p className="eyebrow mb-2">Inventory monitoring</p>
         <h1 className="font-display text-3xl">Inventory</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
           Read-only. Stock is a statement about goods a seller physically holds,
@@ -99,7 +99,7 @@ export default async function AdminInventoryPage({
         ].map(([label, value, hint]) => (
           <div
             key={label}
-            className="border border-ivory-400 bg-ivory-50 px-5 py-4"
+            className="rounded-md border border-ivory-400 bg-ivory-50 px-5 py-4"
           >
             <dt className="text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
               {label}
@@ -173,7 +173,7 @@ export default async function AdminInventoryPage({
       </form>
 
       {items.length === 0 ? (
-        <div className="border border-ivory-400 bg-ivory-50 p-10 text-center">
+        <div className="rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center">
           <p className="text-sm text-ink-400">
             {status === "alerts" && !q && !sellerId
               ? "Nothing is low or out of stock."
@@ -181,7 +181,7 @@ export default async function AdminInventoryPage({
           </p>
         </div>
       ) : (
-        <ul className="border border-ivory-400 bg-ivory-50">
+        <ul className="rounded-md border border-ivory-400 bg-ivory-50">
           {items.map((item) => {
             const live = item.product.status === PRODUCT_STATUS.APPROVED;
             const unbuyable = live && item.stockQty === 0;

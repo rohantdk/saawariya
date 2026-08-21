@@ -68,7 +68,7 @@ export default async function AdminAuditPage({
   return (
     <div className="mx-auto max-w-4xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §89 — Audit log</p>
+        <p className="eyebrow mb-2">Audit log</p>
         <h1 className="font-display text-3xl">Audit log</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-400">
           Append-only. Each row is written in the same transaction as the change
@@ -150,13 +150,13 @@ export default async function AdminAuditPage({
       </form>
 
       {entries.length === 0 ? (
-        <div className="border border-ivory-400 bg-ivory-50 p-10 text-center">
+        <div className="rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center">
           <p className="text-sm text-ink-400">
             Nothing recorded for these filters.
           </p>
         </div>
       ) : (
-        <ol className="border border-ivory-400 bg-ivory-50">
+        <ol className="rounded-md border border-ivory-400 bg-ivory-50">
           {entries.map((entry) => (
             <li
               key={entry.id}

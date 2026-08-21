@@ -80,7 +80,7 @@ export default async function CartPage(props: PageProps<"/cart">) {
       {cart.issueCount > 0 && (
         <div
           role="alert"
-          className="mt-6 flex items-start gap-2.5 border border-danger/30 bg-danger-soft p-4 text-sm text-danger"
+          className="mt-6 flex items-start gap-2.5 rounded-md border border-danger/30 bg-danger-soft p-4 text-sm text-danger"
         >
           <AlertTriangle aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0" />
           <p>
@@ -97,7 +97,7 @@ export default async function CartPage(props: PageProps<"/cart">) {
           {cart.groups.map((group) => (
             <section
               key={group.sellerId}
-              className="mb-8 border border-ivory-400 bg-ivory-50 px-5 sm:px-6"
+              className="mb-8 rounded-md border border-ivory-400 bg-ivory-50 px-5 sm:px-6"
             >
               <header className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-ivory-400 py-4">
                 <h2 className="flex items-center gap-2 text-sm text-ink-900">

@@ -54,7 +54,7 @@ export default async function PickListPage({
         <PrintButton />
       </div>
 
-      <article className="border border-ivory-400 bg-ivory-50 p-8 print:border-0 print:p-0">
+      <article className="rounded-md border border-ivory-400 bg-ivory-50 p-8 print:border-0 print:p-0">
         <header className="mb-8 flex flex-wrap items-start justify-between gap-6 border-b border-ivory-400 pb-6">
           <div>
             <p className="font-display text-2xl text-ink-900">Saawariya</p>
@@ -109,7 +109,7 @@ export default async function PickListPage({
         </div>
 
         {isCod && (
-          <p className="mb-6 border border-warning/40 bg-warning-soft px-4 py-3 text-sm text-warning">
+          <p className="mb-6 rounded-md border border-warning/40 bg-warning-soft px-4 py-3 text-sm text-warning">
             Cash on delivery —{" "}
             {PAYMENT_METHOD_LABEL[payment.method as PaymentMethod]} of{" "}
             {new Intl.NumberFormat("en-IN", {
@@ -178,7 +178,7 @@ export default async function PickListPage({
                         from a screen, which is the whole point of printing it. */}
                     <span
                       aria-hidden="true"
-                      className="inline-block h-5 w-5 border border-ink-900/40"
+                      className="inline-block h-5 w-5 rounded-md border border-ink-900/40"
                     />
                   </td>
                 </tr>

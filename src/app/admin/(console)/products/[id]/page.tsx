@@ -102,7 +102,7 @@ export default async function AdminProductReviewPage({
       </header>
 
       {/* ---- Decision ---- */}
-      <section className="mb-8 border border-ivory-400 bg-ivory-50 p-5">
+      <section className="mb-8 rounded-md border border-ivory-400 bg-ivory-50 p-5">
         <p className="mb-4 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
           Approval decision
         </p>
@@ -149,7 +149,7 @@ export default async function AdminProductReviewPage({
               </span>
             </h2>
             {product.images.length === 0 ? (
-              <div className="border border-danger/30 bg-danger-soft p-6 text-center text-sm text-danger">
+              <div className="rounded-md border border-danger/30 bg-danger-soft p-6 text-center text-sm text-danger">
                 This listing has no photographs and cannot be approved.
               </div>
             ) : (
@@ -209,7 +209,7 @@ export default async function AdminProductReviewPage({
           {/* ---- Description ---- */}
           <section>
             <h2 className="mb-3 font-display text-xl">Description</h2>
-            <p className="whitespace-pre-line border border-ivory-400 bg-ivory-50 p-5 text-sm leading-relaxed text-ink-900">
+            <p className="whitespace-pre-line rounded-md border border-ivory-400 bg-ivory-50 p-5 text-sm leading-relaxed text-ink-900">
               {product.description}
             </p>
           </section>
@@ -217,7 +217,7 @@ export default async function AdminProductReviewPage({
           {/* ---- Attributes ---- */}
           <section>
             <h2 className="mb-3 font-display text-xl">Textile details</h2>
-            <dl className="border border-ivory-400 bg-ivory-50">
+            <dl className="rounded-md border border-ivory-400 bg-ivory-50">
               {attributes.map(([label, value]) => (
                 <div
                   key={label}
@@ -238,7 +238,7 @@ export default async function AdminProductReviewPage({
           {product.variants.length > 0 && (
             <section>
               <h2 className="mb-3 font-display text-xl">Variants</h2>
-              <ul className="border border-ivory-400 bg-ivory-50">
+              <ul className="rounded-md border border-ivory-400 bg-ivory-50">
                 {product.variants.map((variant) => (
                   <li
                     key={variant.id}
@@ -267,7 +267,7 @@ export default async function AdminProductReviewPage({
 
         {/* ---- Sidebar ---- */}
         <aside className="space-y-6">
-          <section className="border border-ivory-400 bg-ivory-50 p-5">
+          <section className="rounded-md border border-ivory-400 bg-ivory-50 p-5">
             <p className="mb-4 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
               Pricing
             </p>
@@ -281,7 +281,7 @@ export default async function AdminProductReviewPage({
             </dl>
           </section>
 
-          <section className="border border-ivory-400 bg-ivory-50 p-5">
+          <section className="rounded-md border border-ivory-400 bg-ivory-50 p-5">
             <p className="mb-4 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
               Stock &amp; performance
             </p>
@@ -330,7 +330,7 @@ export default async function AdminProductReviewPage({
             </dl>
           </section>
 
-          <section className="border border-ivory-400 bg-ivory-50 p-5">
+          <section className="rounded-md border border-ivory-400 bg-ivory-50 p-5">
             <p className="mb-4 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
               Seller
             </p>
@@ -364,7 +364,7 @@ export default async function AdminProductReviewPage({
           {isLive && (
             <Link
               href={`/product/${product.slug}`}
-              className="block border border-ivory-400 bg-ivory-50 p-5 text-xs font-medium uppercase tracking-[0.14em] text-ink-500 transition-colors hover:border-ink-400 hover:text-brand-600"
+              className="block rounded-md border border-ivory-400 bg-ivory-50 p-5 text-xs font-medium uppercase tracking-[0.14em] text-ink-500 transition-colors hover:border-ink-400 hover:text-brand-600"
             >
               View on the storefront →
             </Link>

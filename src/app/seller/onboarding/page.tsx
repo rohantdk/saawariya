@@ -36,7 +36,7 @@ export default async function SellerOnboardingPage() {
   return (
     <PanelShell user={user}>
       <div className="mx-auto max-w-3xl">
-        <p className="eyebrow mb-5">SRS §54 — Seller registration</p>
+        <p className="eyebrow mb-5">Seller registration</p>
         <h1 className="mb-3 font-display text-4xl">
           {isEditing ? "Edit your application" : "Sell on Saawariya"}
         </h1>

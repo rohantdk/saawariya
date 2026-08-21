@@ -70,7 +70,7 @@ export default async function AdminCustomersPage({
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §73 — Customer management</p>
+        <p className="eyebrow mb-2">Customer management</p>
         <h1 className="font-display text-3xl">Customers</h1>
       </header>
 
@@ -120,7 +120,7 @@ export default async function AdminCustomersPage({
       </form>
 
       {customers.length === 0 ? (
-        <div className="border border-ivory-400 bg-ivory-50 p-10 text-center">
+        <div className="rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center">
           <p className="text-sm text-ink-400">
             {q ? `No customers match “${q}”.` : "No customers in this view."}
           </p>
@@ -131,7 +131,7 @@ export default async function AdminCustomersPage({
             <li key={customer.id}>
               <Link
                 href={`/admin/customers/${customer.id}`}
-                className="flex flex-wrap items-center gap-4 border border-ivory-400 bg-ivory-50 p-4 transition-colors hover:border-ink-400"
+                className="flex flex-wrap items-center gap-4 rounded-md border border-ivory-400 bg-ivory-50 p-4 transition-colors hover:border-ink-400"
               >
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm text-ink-900">

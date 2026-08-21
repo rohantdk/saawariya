@@ -198,7 +198,7 @@ export default async function ProductPage(props: PageProps<"/product/[slug]">) {
           </div>
 
           {/* ---- Seller ---- */}
-          <section className="mt-8 border border-ivory-400 bg-ivory-50 p-5">
+          <section className="mt-8 rounded-md border border-ivory-400 bg-ivory-50 p-5">
             <h2 className="mb-3 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
               Sold by
             </h2>
@@ -240,7 +240,7 @@ export default async function ProductPage(props: PageProps<"/product/[slug]">) {
 
           {/* ---- Delivery & returns ---- */}
           <dl className="mt-6 grid gap-3 text-xs text-ink-400 sm:grid-cols-2">
-            <div className="border border-ivory-400 p-4">
+            <div className="rounded-md border border-ivory-400 p-4">
               <dt className="mb-1 font-medium text-ink-900">Delivery</dt>
               <dd className="leading-relaxed">
                 Dispatched within {settings.dispatchDays} working days. Free
@@ -254,7 +254,7 @@ export default async function ProductPage(props: PageProps<"/product/[slug]">) {
                 </Link>
               </dd>
             </div>
-            <div className="border border-ivory-400 p-4">
+            <div className="rounded-md border border-ivory-400 p-4">
               <dt className="mb-1 font-medium text-ink-900">Returns</dt>
               <dd className="leading-relaxed">
                 {settings.returnWindowDays} days from delivery, unused and

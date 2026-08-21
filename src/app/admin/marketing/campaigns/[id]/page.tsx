@@ -35,7 +35,7 @@ export default async function CampaignDetailPage({
       <header className="mb-6 flex flex-wrap items-start justify-between gap-4">
         <div className="min-w-0">
           <p className="eyebrow mb-2">
-            SRS §127 — {CAMPAIGN_AUDIENCE_LABEL[campaign.audience]}
+            {CAMPAIGN_AUDIENCE_LABEL[campaign.audience]}
           </p>
           <h1 className="font-display text-3xl">{campaign.name}</h1>
         </div>
@@ -45,7 +45,7 @@ export default async function CampaignDetailPage({
         />
       </header>
 
-      <section className="mb-8 border border-ivory-400 bg-ivory-50 p-5">
+      <section className="mb-8 rounded-md border border-ivory-400 bg-ivory-50 p-5">
         <h2 className="mb-3 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
           Where this campaign goes next
         </h2>
@@ -57,7 +57,7 @@ export default async function CampaignDetailPage({
 
       <section className="mb-8">
         <h2 className="mb-3 font-display text-xl">Performance</h2>
-        <div className="grid grid-cols-3 gap-3 border border-ivory-400 bg-ivory-50 p-5">
+        <div className="grid grid-cols-3 gap-3 rounded-md border border-ivory-400 bg-ivory-50 p-5">
           <div className="min-w-0">
             <p className="text-xs text-ink-400">Reached</p>
             <p className="font-display text-2xl text-ink-900">

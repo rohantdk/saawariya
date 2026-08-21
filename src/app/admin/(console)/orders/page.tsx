@@ -66,7 +66,7 @@ export default async function AdminOrdersPage({
   return (
     <div className="mx-auto max-w-5xl">
       <header className="mb-6">
-        <p className="eyebrow mb-2">SRS §78 — Order management</p>
+        <p className="eyebrow mb-2">Order management</p>
         <h1 className="font-display text-3xl">Orders</h1>
         <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink-400">
           One order, one payment, and a sub-order per seller. The pipeline runs
@@ -121,7 +121,7 @@ export default async function AdminOrdersPage({
       </form>
 
       {orders.length === 0 ? (
-        <div className="border border-ivory-400 bg-ivory-50 p-10 text-center">
+        <div className="rounded-md border border-ivory-400 bg-ivory-50 p-10 text-center">
           <p className="text-sm text-ink-400">
             {q ? `No orders match “${q}”.` : "No orders in this view."}
           </p>
@@ -134,7 +134,7 @@ export default async function AdminOrdersPage({
               <li key={order.id}>
                 <Link
                   href={`/admin/orders/${order.orderNumber}`}
-                  className="block border border-ivory-400 bg-ivory-50 p-4 transition-colors hover:border-ink-400"
+                  className="block rounded-md border border-ivory-400 bg-ivory-50 p-4 transition-colors hover:border-ink-400"
                 >
                   <div className="flex flex-wrap items-start gap-4">
                     <div className="min-w-0 flex-1">

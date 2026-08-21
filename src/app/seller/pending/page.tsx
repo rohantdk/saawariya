@@ -47,7 +47,7 @@ export default async function SellerPendingPage() {
   return (
     <PanelShell user={seller.user}>
       <div className="mx-auto max-w-3xl">
-        <p className="eyebrow mb-5">SRS §55 — Seller verification</p>
+        <p className="eyebrow mb-5">Seller verification</p>
         <div className="mb-3 flex flex-wrap items-center gap-3">
           <h1 className="font-display text-4xl">{profile.businessName}</h1>
           <StatusBadge
@@ -82,7 +82,7 @@ export default async function SellerPendingPage() {
           </div>
         )}
 
-        <div className="mb-8 border border-ivory-400 bg-ivory-50">
+        <div className="mb-8 rounded-md border border-ivory-400 bg-ivory-50">
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-ivory-400 px-5 py-4">
             <p className="text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
               KYC documents

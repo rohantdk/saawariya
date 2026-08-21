@@ -102,7 +102,7 @@ export default async function OrderDetailPage(
       </header>
 
       {order.status === "CANCELLED" && order.cancelReason && (
-        <p className="mt-5 border border-danger/30 bg-danger-soft p-4 text-sm text-danger">
+        <p className="mt-5 rounded-md border border-danger/30 bg-danger-soft p-4 text-sm text-danger">
           Cancelled{order.cancelledAt && ` on ${formatDate(order.cancelledAt)}`}
           {" — "}
           {order.cancelReason}
@@ -117,7 +117,7 @@ export default async function OrderDetailPage(
           return (
             <section
               key={subOrder.id}
-              className="border border-ivory-400 bg-ivory-50"
+              className="rounded-md border border-ivory-400 bg-ivory-50"
             >
               <header className="flex flex-wrap items-start justify-between gap-x-6 gap-y-2 border-b border-ivory-400 p-5">
                 <div>
@@ -273,7 +273,7 @@ export default async function OrderDetailPage(
 
       {/* ---- Payment, delivery, billing ---- */}
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
-        <section className="border border-ivory-400 bg-ivory-50 p-5">
+        <section className="rounded-md border border-ivory-400 bg-ivory-50 p-5">
           <h2 className="mb-3 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
             Payment
           </h2>
@@ -329,7 +329,7 @@ export default async function OrderDetailPage(
           )}
         </section>
 
-        <section className="border border-ivory-400 bg-ivory-50 p-5">
+        <section className="rounded-md border border-ivory-400 bg-ivory-50 p-5">
           <h2 className="mb-3 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
             Delivering to
           </h2>
@@ -377,7 +377,7 @@ export default async function OrderDetailPage(
       {/* ---- Order-level history and cancellation ---- */}
       {order.events.length > 0 && (
         <section className="mt-6">
-          <details className="border border-ivory-400 bg-ivory-50">
+          <details className="rounded-md border border-ivory-400 bg-ivory-50">
             <summary className="cursor-pointer p-4 text-xs font-medium uppercase tracking-[0.14em] text-ink-400 transition-colors hover:text-brand-600">
               Order history ({order.events.length})
             </summary>
