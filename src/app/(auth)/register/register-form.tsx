@@ -1,9 +1,11 @@
 "use client";
 
 import { useActionState, useState } from "react";
+import { Briefcase, Mail, Phone, ShoppingBag, User } from "lucide-react";
 import { register } from "@/app/actions/auth";
 import { Button } from "@/components/ui/button";
 import { Field, Input, FormMessage } from "@/components/ui/field";
+import { PasswordInput } from "@/components/ui/password-input";
 import { cn } from "@/lib/utils";
 
 /**
@@ -31,32 +33,42 @@ export function RegisterForm({
           Account type
         </legend>
         <div className="grid grid-cols-2 gap-3">
-          {(["RETAIL", "WHOLESALE"] as const).map((type) => (
-            <label
-              key={type}
-              className={cn(
-                "cursor-pointer border px-4 py-3 text-center transition-colors",
-                customerType === type
-                  ? "border-brand-600 bg-brand-50"
-                  : "border-ivory-400 bg-ivory-50 hover:border-ink-900/30",
-              )}
-            >
-              <input
-                type="radio"
-                name="customerType"
-                value={type}
-                checked={customerType === type}
-                onChange={() => setCustomerType(type)}
-                className="sr-only"
-              />
-              <span className="block text-sm font-medium text-ink-900">
-                {type === "RETAIL" ? "Retail" : "Wholesale"}
-              </span>
-              <span className="mt-0.5 block text-xs text-ink-400">
-                {type === "RETAIL" ? "Personal shopping" : "Business buying"}
-              </span>
-            </label>
-          ))}
+          {(["RETAIL", "WHOLESALE"] as const).map((type) => {
+            const Icon = type === "RETAIL" ? ShoppingBag : Briefcase;
+            return (
+              <label
+                key={type}
+                className={cn(
+                  "cursor-pointer border px-4 py-4 text-center transition-colors",
+                  customerType === type
+                    ? "border-brand-600 bg-brand-50"
+                    : "border-ivory-400 bg-ivory-50 hover:border-ink-900/30",
+                )}
+              >
+                <input
+                  type="radio"
+                  name="customerType"
+                  value={type}
+                  checked={customerType === type}
+                  onChange={() => setCustomerType(type)}
+                  className="sr-only"
+                />
+                <Icon
+                  aria-hidden="true"
+                  className={cn(
+                    "mx-auto h-5 w-5",
+                    customerType === type ? "text-brand-600" : "text-ink-400",
+                  )}
+                />
+                <span className="mt-2 block text-sm font-medium text-ink-900">
+                  {type === "RETAIL" ? "Retail" : "Wholesale"}
+                </span>
+                <span className="mt-0.5 block text-xs text-ink-400">
+                  {type === "RETAIL" ? "Personal shopping" : "Business buying"}
+                </span>
+              </label>
+            );
+          })}
         </div>
       </fieldset>
 
@@ -71,6 +83,7 @@ export function RegisterForm({
           autoComplete="name"
           placeholder="Rahul Sharma"
           required
+          icon={<User className="h-4 w-4" />}
           invalid={Boolean(state?.errors?.fullName)}
         />
       </Field>
@@ -83,6 +96,7 @@ export function RegisterForm({
           autoComplete="email"
           placeholder="you@example.com"
           required
+          icon={<Mail className="h-4 w-4" />}
           invalid={Boolean(state?.errors?.email)}
         />
       </Field>
@@ -102,6 +116,7 @@ export function RegisterForm({
           placeholder="9876543210"
           maxLength={10}
           required
+          icon={<Phone className="h-4 w-4" />}
           invalid={Boolean(state?.errors?.mobile)}
         />
       </Field>
@@ -128,10 +143,9 @@ export function RegisterForm({
         errors={state?.errors?.password}
         hint="At least 8 characters, with a letter and a number"
       >
-        <Input
+        <PasswordInput
           id="password"
           name="password"
-          type="password"
           autoComplete="new-password"
           placeholder="••••••••"
           required
@@ -144,10 +158,9 @@ export function RegisterForm({
         htmlFor="confirmPassword"
         errors={state?.errors?.confirmPassword}
       >
-        <Input
+        <PasswordInput
           id="confirmPassword"
           name="confirmPassword"
-          type="password"
           autoComplete="new-password"
           placeholder="••••••••"
           required

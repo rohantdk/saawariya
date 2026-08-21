@@ -70,7 +70,6 @@ const PUBLIC = [
   "/product",
   "/search",
   "/page",
-  "/wholesale",
   "/login",
   "/register",
   "/forgot-password",
@@ -115,7 +114,9 @@ const PERSONAS = [
     key: "wholesale",
     label: "Customer (wholesale)",
     email: "wholesale@saawariya.test",
-    roots: ["/account", "/wholesale"],
+    // The /wholesale landing page was removed on 2026-08-21; trade pricing
+    // itself is unchanged and is still exercised through the catalogue.
+    roots: ["/account"],
     area: ["/account", "/cart", "/checkout"],
   },
   {
@@ -443,13 +444,6 @@ async function run() {
       visited += 1;
       pagesVisited += 1;
 
-      // Bound how much this browser is holding. Signing in again is cheap
-      // beside the memory a browser accumulates over a long catalogue crawl.
-      if (visited % RECYCLE_EVERY === 0 && queue.length) {
-        await closeSession();
-        await openSession();
-      }
-
       const status = response?.status() ?? 0;
       if (status !== 200) fail(persona.key, "status", `${target} returned ${status}`);
 
@@ -459,29 +453,46 @@ async function run() {
         visitedPatterns.set(pattern, `${BASE}${target}`);
       }
 
-      if (!expandable) continue;
+      if (expandable) {
+        const hrefs = await page.$$eval("a[href]", (as) => as.map((a) => a.getAttribute("href")));
+        for (const href of hrefs) {
+          if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) continue;
+          let url;
+          try {
+            url = new URL(href, page.url());
+          } catch {
+            fail(persona.key, "bad-href", `${finalPath} → ${href}`);
+            continue;
+          }
+          if (url.origin !== new URL(BASE).origin) continue;
+          const next = url.pathname + url.search;
+          if (seen.has(next)) continue;
 
-      const hrefs = await page.$$eval("a[href]", (as) => as.map((a) => a.getAttribute("href")));
-      for (const href of hrefs) {
-        if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) continue;
-        let url;
-        try {
-          url = new URL(href, page.url());
-        } catch {
-          fail(persona.key, "bad-href", `${finalPath} → ${href}`);
-          continue;
+          if (url.search) {
+            const n = queryCount.get(url.pathname) ?? 0;
+            if (n >= MAX_QUERIES_PER_PATH) continue;
+            queryCount.set(url.pathname, n + 1);
+          }
+          seen.add(next);
+          queue.push(next);
         }
-        if (url.origin !== new URL(BASE).origin) continue;
-        const next = url.pathname + url.search;
-        if (seen.has(next)) continue;
+      }
 
-        if (url.search) {
-          const n = queryCount.get(url.pathname) ?? 0;
-          if (n >= MAX_QUERIES_PER_PATH) continue;
-          queryCount.set(url.pathname, n + 1);
-        }
-        seen.add(next);
-        queue.push(next);
+      // Bound how much this browser is holding. Signing in again is cheap
+      // beside the memory a browser accumulates over a long catalogue crawl.
+      //
+      // This has to be the LAST thing in the iteration. It used to sit just
+      // after the goto, which meant that on every RECYCLE_EVERY-th page the
+      // context was torn down and replaced *before* `page.url()` was read —
+      // so that page reported `about:blank`, its route pattern was recorded
+      // as null, and its links were never followed. It cost one route per 40
+      // crawled, silently: the page really was fetched and really did return
+      // 200, so the only visible symptom was a coverage failure claiming "no
+      // link reaches" a route that is plainly linked. `/forgot-password` was
+      // the one it happened to land on.
+      if (visited % RECYCLE_EVERY === 0 && queue.length) {
+        await closeSession();
+        await openSession();
       }
     }
 

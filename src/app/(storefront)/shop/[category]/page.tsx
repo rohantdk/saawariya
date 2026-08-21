@@ -5,6 +5,8 @@ import { notFound, redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth/dal";
 import { viewerTier } from "@/lib/catalogue/pricing";
 import { parseFilters } from "@/lib/catalogue/filters";
+import { getCustomerContext } from "@/lib/commerce/context";
+import { wishlistedIds } from "@/lib/commerce/wishlist";
 import {
   getCategoryBySlug,
   getCategoryProductCounts,
@@ -38,10 +40,11 @@ export async function generateMetadata(
 export default async function CategoryPage(
   props: PageProps<"/shop/[category]">,
 ) {
-  const [{ category: slug }, searchParams, user] = await Promise.all([
+  const [{ category: slug }, searchParams, user, customer] = await Promise.all([
     props.params,
     props.searchParams,
     getCurrentUser(),
+    getCustomerContext(),
   ]);
 
   const category = await getCategoryBySlug(slug);
@@ -63,6 +66,13 @@ export default async function CategoryPage(
     getFacetCounts(filters, scope),
     getCategoryProductCounts(),
   ]);
+
+  const wishlisted = customer
+    ? await wishlistedIds(
+        customer.customerId,
+        listing.items.map((item) => item.id),
+      )
+    : null;
 
   const pathname = `/shop/${category.slug}`;
 
@@ -139,6 +149,7 @@ export default async function CategoryPage(
         listing={listing}
         counts={counts}
         tier={viewerTier(user)}
+        wishlisted={wishlisted}
         emptyTitle={`Nothing in ${category.name} yet`}
         emptyDescription="No products in this category have been approved for sale yet. New pieces are added as sellers list them."
       />

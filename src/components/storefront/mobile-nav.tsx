@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Wordmark } from "@/components/brand/wordmark";
 import { SearchBox } from "@/components/storefront/search-box";
 import type { CategoryNode } from "@/lib/catalogue/queries";
 
@@ -56,7 +57,7 @@ export function MobileNav({
         onClick={() => setIsOpen(true)}
         aria-expanded={isOpen}
         aria-controls="mobile-nav-drawer"
-        className="flex h-10 w-10 items-center justify-center text-ink-900 lg:hidden"
+        className="-ml-2 flex h-10 w-10 items-center justify-center text-cream/85 transition-colors hover:text-gold-300 lg:hidden"
       >
         <Menu aria-hidden="true" className="h-5 w-5" />
         <span className="sr-only">Open menu</span>
@@ -67,7 +68,7 @@ export function MobileNav({
           <button
             type="button"
             onClick={() => setIsOpen(false)}
-            className="absolute inset-0 bg-ink-900/40"
+            className="absolute inset-0 bg-scrim/40"
             tabIndex={-1}
           >
             <span className="sr-only">Close menu</span>
@@ -77,20 +78,23 @@ export function MobileNav({
             id="mobile-nav-drawer"
             className="absolute inset-y-0 left-0 flex w-[min(22rem,88vw)] flex-col bg-ivory-50 shadow-lifted"
           >
-            <div className="flex h-16 shrink-0 items-center justify-between border-b border-ivory-400 px-5">
-              <span className="font-display text-xl lowercase">saawariya</span>
+            <div className="flex h-20 shrink-0 items-center justify-between border-b border-ivory-400 bg-brand-900 px-5">
+              <Wordmark surface="dark" size={40} />
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                className="flex h-10 w-10 items-center justify-center text-ink-900"
+                className="flex h-10 w-10 items-center justify-center text-cream/85 transition-colors hover:text-gold-300"
               >
                 <X aria-hidden="true" className="h-5 w-5" />
                 <span className="sr-only">Close menu</span>
               </button>
             </div>
 
+            {/* A distinct id: the header already has both a desktop and a mobile
+                search input in the document, and duplicate ids would break the
+                label association for all three. */}
             <div className="border-b border-ivory-400 p-5">
-              <SearchBox />
+              <SearchBox id="site-search-drawer" />
             </div>
 
             <nav

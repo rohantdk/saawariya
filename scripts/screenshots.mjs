@@ -42,8 +42,10 @@ const PERSONAS = [
       s("shop-category", "/shop/sarees"),
       s("shop-subcategory", "/shop/sarees/banarasi-sarees"),
       s("product", "/product/pure-zari-banarasi-silk-saree"),
+      // A made-to-order listing: the buy panel, badges and dispatch copy all
+      // differ from a stocked one, so both states need capturing.
+      s("product-made-to-order", "/product/banarasi-katan-silk-saree-with-jangla-weave"),
       s("search", "/search?q=silk"),
-      s("wholesale", "/wholesale"),
       s("cms-about", "/page/about-us"),
       s("cms-faq", "/page/faq"),
       s("login", "/login"),

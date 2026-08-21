@@ -4,7 +4,12 @@ import { useActionState, useState } from "react";
 import Link from "next/link";
 import { Heart, Minus, Plus, ShoppingBag } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { INVENTORY_STATUS, type PriceTier } from "@/lib/constants";
+import { type PriceTier } from "@/lib/constants";
+import {
+  availabilityOf,
+  loomNoteFor,
+  weeksLabel,
+} from "@/lib/catalogue/availability";
 import { resolvePrice } from "@/lib/catalogue/pricing";
 import { addToCart } from "@/app/actions/cart";
 import { toggleWishlist } from "@/app/actions/wishlist";
@@ -57,6 +62,8 @@ export function ProductBuyPanel({
     priceWholesale: number | null;
     minOrderQty: number;
     maxOrderQty: number;
+    isMadeToOrder: boolean;
+    loomWeeks: number | null;
   };
   variants: BuyPanelVariant[];
   tier: PriceTier;
@@ -96,18 +103,22 @@ export function ProductBuyPanel({
     ? Math.max(0, Math.min(selected.stockQty, unreserved))
     : unreserved;
 
+  const availability = availabilityOf({ ...product, inventory });
+  // Woven to order: the shelf is empty but the loom is not, so the only ceiling
+  // is the per-order maximum. Mirrors the same branch in getCart().
+  const onTheLoom = availability.isOnTheLoom;
+  const sellableQty = onTheLoom ? product.maxOrderQty : availableQty;
+  const loomNote = loomNoteFor({ ...product, inventory }, availability);
+
   const threshold = inventory?.lowStockThreshold ?? 5;
-  const isOutOfStock =
-    availableQty <= 0 ||
-    inventory?.status === INVENTORY_STATUS.OUT_OF_STOCK ||
-    inventory?.status === INVENTORY_STATUS.DISCONTINUED;
-  const isLowStock = !isOutOfStock && availableQty <= threshold;
+  const isOutOfStock = !availability.isPurchasable;
+  const isLowStock = !isOutOfStock && !onTheLoom && sellableQty <= threshold;
 
   const minQty = price.minOrderQty;
-  const maxQty = Math.max(minQty, Math.min(availableQty, product.maxOrderQty));
+  const maxQty = Math.max(minQty, Math.min(sellableQty, product.maxOrderQty));
   // A trade account looking at a 25-metre MOQ with 10 metres in stock cannot
   // buy at all; saying so is better than a stepper that refuses to move.
-  const belowMoq = !isOutOfStock && availableQty < minQty;
+  const belowMoq = !isOutOfStock && sellableQty < minQty;
 
   const [quantity, setQuantity] = useState(minQty);
   // React 19 lints setState inside an effect. Re-clamping during render against
@@ -168,7 +179,7 @@ export function ProductBuyPanel({
                   className={cn(
                     "border px-4 py-2.5 text-sm transition-colors",
                     isSelected
-                      ? "border-brand-600 bg-brand-600 text-ivory-50"
+                      ? "border-brand-600 bg-brand-600 text-cream"
                       : "border-ivory-400 text-ink-900 hover:border-ink-400",
                     // Sold-out variants stay selectable so the price and the
                     // reason are still visible — hiding them just makes a
@@ -181,7 +192,7 @@ export function ProductBuyPanel({
                     <span
                       className={cn(
                         "ml-1.5 text-xs",
-                        isSelected ? "text-ivory-100/80" : "text-ink-400",
+                        isSelected ? "text-cream/80" : "text-ink-400",
                       )}
                     >
                       +₹{(variant.priceDeltaPaise / 100).toLocaleString("en-IN")}
@@ -201,19 +212,32 @@ export function ProductBuyPanel({
         {isOutOfStock ? (
           <p className="flex items-center gap-2 text-sm text-danger">
             <Dot className="bg-danger" />
-            Out of stock
+            {availability.label}
+          </p>
+        ) : onTheLoom ? (
+          <p className="flex items-start gap-2 text-sm text-ink-900">
+            <Dot className="mt-1.5 bg-gold-500" />
+            <span>
+              <strong className="font-medium">On the loom</strong> — woven to
+              order, about {weeksLabel(availability.loomWeeks ?? 0)} before it
+              is dispatched.
+            </span>
           </p>
         ) : isLowStock ? (
           <p className="flex items-center gap-2 text-sm text-warning">
             <Dot className="bg-warning" />
-            Only {availableQty} left
+            Only {sellableQty} left
           </p>
         ) : (
           <p className="flex items-center gap-2 text-sm text-success">
             <Dot className="bg-success" />
-            In stock · {availableQty} available
+            In stock · {sellableQty} available
           </p>
         )}
+
+        {/* Stocked, but the weaver will also make another. Said here so a
+            single remaining piece does not read as the last one ever. */}
+        {loomNote && <p className="mt-2 text-xs text-ink-400">{loomNote}</p>}
       </div>
 
       {price.isTradePrice && minQty > 1 && (
@@ -262,13 +286,19 @@ export function ProductBuyPanel({
               className="flex-1"
             >
               <ShoppingBag aria-hidden="true" className="h-4 w-4" />
-              {addPending ? "Adding…" : isOutOfStock ? "Out of stock" : "Add to bag"}
+              {addPending
+                ? "Adding…"
+                : isOutOfStock
+                  ? availability.label
+                  : onTheLoom
+                    ? "Commission this piece"
+                    : "Add to bag"}
             </Button>
           </div>
 
           {belowMoq && (
             <p className="mt-3 text-sm text-warning" role="status">
-              Only {availableQty} in stock, below the {minQty}-unit trade
+              Only {sellableQty} in stock, below the {minQty}-unit trade
               minimum. Contact us for a restock date.
             </p>
           )}

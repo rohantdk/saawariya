@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { getCustomerContext } from "@/lib/commerce/context";
 import { availableFor } from "@/lib/commerce/cart";
+import { availabilityOf } from "@/lib/catalogue/availability";
 import { resolvePrice } from "@/lib/catalogue/pricing";
 import { PUBLIC_PRODUCT_WHERE } from "@/lib/catalogue/queries";
 import {
@@ -66,8 +67,10 @@ export async function addToCart(
       priceWholesale: true,
       minOrderQty: true,
       maxOrderQty: true,
+      isMadeToOrder: true,
+      loomWeeks: true,
       variants: { select: { id: true, stockQty: true } },
-      inventory: { select: { stockQty: true, reservedQty: true } },
+      inventory: { select: { status: true, stockQty: true, reservedQty: true } },
     },
   });
 
@@ -103,10 +106,18 @@ export async function addToCart(
 
   // Adding to something already in the bag tops it up rather than replacing it.
   const requested = (existing?.quantity ?? 0) + quantity;
-  const available = availableFor(product.inventory, variant);
+  // A commissioned piece is not bound by the shelf — see availabilityOf(). The
+  // per-order maximum below is then the only ceiling, and it still applies.
+  const availability = availabilityOf(product);
+  const available = availability.isOnTheLoom
+    ? product.maxOrderQty
+    : availableFor(product.inventory, variant);
 
-  if (available <= 0) {
-    return { status: "error", message: `${product.name} is out of stock.` };
+  if (!availability.isPurchasable || available <= 0) {
+    return {
+      status: "error",
+      message: `${product.name} is ${availability.label.toLowerCase()}.`,
+    };
   }
   if (requested > available) {
     return {
@@ -183,8 +194,10 @@ export async function updateCartQuantity(
         select: {
           name: true,
           maxOrderQty: true,
+          isMadeToOrder: true,
+          loomWeeks: true,
           variants: { select: { id: true, stockQty: true } },
-          inventory: { select: { stockQty: true, reservedQty: true } },
+          inventory: { select: { status: true, stockQty: true, reservedQty: true } },
         },
       },
     },
@@ -195,7 +208,10 @@ export async function updateCartQuantity(
   const variant = item.variantId
     ? (item.product.variants.find((v) => v.id === item.variantId) ?? null)
     : null;
-  const available = availableFor(item.product.inventory, variant);
+  // Same rule as adding: the loom, not the shelf, sets the ceiling.
+  const available = availabilityOf(item.product).isOnTheLoom
+    ? item.product.maxOrderQty
+    : availableFor(item.product.inventory, variant);
 
   if (parsed.data.quantity > available) {
     return {

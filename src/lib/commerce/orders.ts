@@ -168,6 +168,7 @@ export async function getCustomerOrder(
               priceTier: true,
               quantity: true,
               lineTotal: true,
+              loomWeeks: true,
               product: { select: { slug: true, status: true } },
             },
           },

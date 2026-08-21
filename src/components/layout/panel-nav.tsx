@@ -80,7 +80,7 @@ export function PanelNav({
                     className={cn(
                       "ml-auto hidden min-w-5 rounded-full px-1.5 py-0.5 text-center text-[0.625rem] font-medium leading-none lg:inline-block",
                       isActive
-                        ? "bg-brand-600 text-ivory-50"
+                        ? "bg-brand-600 text-cream"
                         : "bg-ivory-300 text-ink-500",
                     )}
                   >

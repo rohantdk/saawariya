@@ -67,7 +67,7 @@ export function TrackingTimeline({
               className={cn(
                 "relative z-10 flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full",
                 isDone
-                  ? "bg-brand-600 text-ivory-50"
+                  ? "bg-brand-600 text-cream"
                   : isCurrent
                     ? "bg-brand-600 ring-4 ring-brand-50"
                     : "border border-ivory-400 bg-ivory-50",

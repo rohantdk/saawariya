@@ -37,7 +37,7 @@ describes what `/cart` does, and `/cart` cites §42 Shopping Cart.
 | 11 | Business Model | Narrative — Business model narrative |
 | 12 | Marketplace Flow | Narrative — Restates the marketplace flow implemented across §52-114 |
 | 13 | Revenue Model | `prisma/schema.prisma`, `src/app/actions/admin-sellers.ts`, `src/components/admin/seller-actions.tsx`, `src/lib/constants.ts` |
-| 14 | Platform Scope | `/wholesale`, `prisma/schema.prisma`, `prisma/seed/customers.ts`, `prisma/seed/products.ts` +4 more |
+| 14 | Platform Scope | `prisma/schema.prisma`, `prisma/seed/customers.ts`, `prisma/seed/products.ts`, `src/app/actions/admin-customers.ts` +3 more |
 | 15 | Stakeholder Ecosystem | Narrative — Ecosystem diagram |
 | 16 | User Roles | `/admin/roles`, `prisma/schema.prisma`, `src/app/(auth)/register/register-form.tsx`, `src/lib/constants.ts` |
 | 17 | Role Hierarchy | `prisma/schema.prisma`, `src/lib/constants.ts` |
@@ -49,7 +49,7 @@ describes what `/cart` does, and `/cart` cites §42 Shopping Cart.
 | 18 | Introduction | Narrative — Chapter opener |
 | 19 | High-Level Platform Workflow | Narrative — Workflow diagram, implemented as the sub-order pipeline |
 | 20 | Visitor Journey | Journey — The storefront, signed out — `/`, `/shop`, `/product/[slug]` |
-| 21 | Customer Registration Journey | `/wholesale`, `prisma/schema.prisma`, `src/app/actions/auth.ts`, `src/lib/validations/auth.ts` |
+| 21 | Customer Registration Journey | `prisma/schema.prisma`, `src/app/actions/auth.ts`, `src/lib/validations/auth.ts` |
 | 22 | Product Discovery Journey | Journey — Listing, facets and search — `/shop`, `/search` |
 | 23 | Product Detail Journey | Journey — `/product/[slug]` |
 | 24 | Shopping Cart Journey | Journey — `/cart` |
@@ -74,11 +74,11 @@ describes what `/cart` does, and `/cart` cites §42 Shopping Cart.
 | 38 | Customer Profile | `/account/addresses`, `/account/settings`, `prisma/schema.prisma`, `src/app/account/layout.tsx` +4 more |
 | 39 | Product Search | `/search`, `src/app/account/layout.tsx` |
 | 40 | Product Filters | `prisma/seed/categories.ts`, `src/app/account/layout.tsx`, `src/lib/constants.ts` |
-| 41 | Wishlist Module | `/account/wishlist`, `prisma/schema.prisma`, `prisma/seed/baskets.ts`, `src/app/account/layout.tsx` +4 more |
+| 41 | Wishlist Module | `/account/wishlist`, `prisma/schema.prisma`, `prisma/seed/baskets.ts`, `src/app/account/layout.tsx` +5 more |
 | 42 | Shopping Cart | `/cart`, `prisma/schema.prisma`, `prisma/seed/baskets.ts`, `src/app/account/layout.tsx` +2 more |
 | 43 | Checkout Module | `/checkout`, `src/app/account/layout.tsx`, `src/app/actions/checkout.ts`, `src/lib/commerce/coupons.ts` +1 more |
 | 44 | Payment Module | `/checkout`, `src/app/account/layout.tsx`, `src/app/actions/checkout.ts`, `src/lib/constants.ts` +1 more |
-| 45 | Orders Module | `/account/orders/[orderNumber]`, `/account/orders`, `/checkout/success/[orderNumber]`, `src/app/account/layout.tsx` +3 more |
+| 45 | Orders Module | `/account/orders/[orderNumber]`, `/account/orders`, `/checkout/success/[orderNumber]`, `src/app/account/layout.tsx` +4 more |
 | 46 | Order Tracking | `/account/orders/[orderNumber]`, `prisma/schema.prisma`, `src/app/account/layout.tsx`, `src/lib/validations/commerce.ts` |
 | 47 | Reviews & Ratings | `/account/reviews`, `/admin/reviews`, `prisma/schema.prisma`, `prisma/seed/reviews.ts` +11 more |
 | 48 | Notifications | `/account/notifications`, `prisma/schema.prisma`, `src/app/account/layout.tsx`, `src/lib/validations/commerce.ts` |
@@ -96,7 +96,7 @@ describes what `/cart` does, and `/cart` cites §42 Shopping Cart.
 | 55 | Seller Verification | `/admin/sellers/[id]`, `/admin/sellers`, `/seller/pending`, `prisma/schema.prisma` +13 more |
 | 56 | Seller Dashboard | `/seller`, `prisma/schema.prisma`, `src/app/seller/(panel)/layout.tsx`, `src/lib/validations/seller.ts` |
 | 57 | Seller Profile | `/seller/profile`, `prisma/schema.prisma`, `src/app/actions/seller-profile.ts`, `src/app/seller/(panel)/layout.tsx` +2 more |
-| 58 | Product Management | `/seller/products/[id]`, `/seller/products`, `prisma/schema.prisma`, `src/app/actions/seller-products.ts` +5 more |
+| 58 | Product Management | `/product/[slug]`, `/seller/products/[id]`, `/seller/products`, `prisma/schema.prisma` +8 more |
 | 59 | Product Approval Workflow | `/seller/products/[id]`, `/seller/products`, `prisma/schema.prisma`, `src/app/actions/admin-products.ts` +5 more |
 | 60 | Inventory Management | `/seller/inventory`, `prisma/schema.prisma`, `src/app/actions/seller-inventory.ts`, `src/app/seller/(panel)/layout.tsx` +4 more |
 | 61 | Order Management | `/seller/orders/[subOrderNumber]`, `/seller/orders`, `prisma/schema.prisma`, `src/app/actions/seller-orders.ts` +4 more |
@@ -214,7 +214,7 @@ describes what `/cart` does, and `/cart` cites §42 Shopping Cart.
 | 143 | Website Structure (Site Map) | Documented — The route tree is the site map; see the header, mega-menu and footer |
 | 144 | Header | `src/app/(storefront)/layout.tsx`, `src/components/storefront/site-header.tsx` |
 | 145 | Mega Navigation | `prisma/schema.prisma`, `src/components/storefront/site-header.tsx` |
-| 146 | Homepage | `/`, `prisma/seed/content.ts`, `src/app/actions/newsletter.ts` |
+| 146 | Homepage | `/`, `prisma/seed/content.ts` |
 | 147 | Hero Section | `/`, `src/components/storefront/hero-carousel.tsx` |
 | 148 | Featured Categories | `/` |
 | 149 | Featured Products | `/` |
@@ -222,8 +222,8 @@ describes what `/cart` does, and `/cart` cites §42 Shopping Cart.
 | 151 | Best Sellers | `/`, `src/lib/catalogue/queries.ts`, `src/lib/constants.ts` |
 | 152 | Why Choose Saawariya | `/`, `src/components/storefront/why-saawariya.tsx` |
 | 153 | Become a Seller Section | `/`, `/page/[slug]`, `prisma/seed/content.ts`, `src/components/storefront/site-footer.tsx` |
-| 154 | Testimonials | `/`, `src/components/storefront/testimonials.tsx`, `src/lib/catalogue/queries.ts` |
-| 155 | Newsletter Subscription | `/`, `/admin/marketing/audience`, `src/app/actions/newsletter.ts`, `src/lib/marketing/audience.ts` +1 more |
+| 154 | Testimonials | `/`, `src/lib/catalogue/queries.ts` |
+| 155 | Newsletter Subscription | `/`, `/admin/marketing/audience`, `src/lib/marketing/audience.ts`, `src/lib/validations/marketing.ts` |
 | 156 | Footer | `src/app/(storefront)/layout.tsx`, `src/components/storefront/site-footer.tsx` |
 | 157 | Product Listing Page | `/shop/[category]/[sub]`, `/shop/[category]`, `/shop`, `prisma/schema.prisma` +4 more |
 | 158 | Product Card | `prisma/schema.prisma`, `src/components/storefront/product-card.tsx` |

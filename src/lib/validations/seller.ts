@@ -94,6 +94,34 @@ export const productSchema = z
       .max(100_000, "Weight is too large.")
       .optional(),
 
+    // Specification block — the three questions that decide most returns.
+    zariType: optionalText,
+    blousePieceCm: z
+      .string()
+      .trim()
+      .optional()
+      .transform((value) => (value ? Math.round(Number(value)) : null))
+      .refine(
+        (value) => value === null || (Number.isFinite(value) && value >= 0 && value <= 500),
+        { message: "Blouse piece must be a length in centimetres, up to 500." },
+      ),
+    washCare: optionalText,
+
+    // Made to order.
+    isMadeToOrder: z
+      .union([z.literal("on"), z.literal("true"), z.literal("")])
+      .optional()
+      .transform((value) => value === "on" || value === "true"),
+    loomWeeks: z
+      .string()
+      .trim()
+      .optional()
+      .transform((value) => (value ? Math.round(Number(value)) : null))
+      .refine(
+        (value) => value === null || (Number.isFinite(value) && value >= 1 && value <= 104),
+        { message: "Lead time must be between 1 and 104 weeks." },
+      ),
+
     priceRetail: rupeesToPaise("Retail price"),
     priceWholesale: z
       .string()
@@ -146,6 +174,17 @@ export const productSchema = z
   .refine((data) => data.maxOrderQty >= data.minOrderQty, {
     message: "Maximum order quantity cannot be below the minimum.",
     path: ["maxOrderQty"],
+  })
+  /**
+   * A made-to-order listing sells against a lead time rather than against
+   * stock, so the lead time is the only thing standing between the buyer and an
+   * open-ended wait. Without it `availabilityOf()` refuses to treat the listing
+   * as purchasable at all, which would leave a seller who ticked the box
+   * looking at a "Sold out" badge they cannot explain.
+   */
+  .refine((data) => !data.isMadeToOrder || data.loomWeeks !== null, {
+    message: "Give the expected time on the loom, in weeks.",
+    path: ["loomWeeks"],
   });
 
 export type ProductInput = z.infer<typeof productSchema>;

@@ -4,6 +4,8 @@ import Image from "next/image";
 import { getCurrentUser } from "@/lib/auth/dal";
 import { viewerTier } from "@/lib/catalogue/pricing";
 import { parseFilters } from "@/lib/catalogue/filters";
+import { getCustomerContext } from "@/lib/commerce/context";
+import { wishlistedIds } from "@/lib/commerce/wishlist";
 import {
   getBanners,
   getFacetCounts,
@@ -20,9 +22,10 @@ export const metadata: Metadata = {
 
 /** The unscoped catalogue — SRS §157. */
 export default async function ShopPage(props: PageProps<"/shop">) {
-  const [searchParams, user] = await Promise.all([
+  const [searchParams, user, customer] = await Promise.all([
     props.searchParams,
     getCurrentUser(),
+    getCustomerContext(),
   ]);
 
   const filters = parseFilters(searchParams);
@@ -31,6 +34,13 @@ export default async function ShopPage(props: PageProps<"/shop">) {
     getFacetCounts(filters),
     getBanners("CATEGORY_TOP"),
   ]);
+
+  const wishlisted = customer
+    ? await wishlistedIds(
+        customer.customerId,
+        listing.items.map((item) => item.id),
+      )
+    : null;
 
   const banner = categoryBanners[0];
 
@@ -78,6 +88,7 @@ export default async function ShopPage(props: PageProps<"/shop">) {
         listing={listing}
         counts={counts}
         tier={viewerTier(user)}
+        wishlisted={wishlisted}
         emptyTitle="The catalogue is empty"
         emptyDescription="No products are currently approved for sale. Please check back shortly."
       />

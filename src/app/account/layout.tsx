@@ -83,7 +83,11 @@ export default async function AccountLayout({
   ];
 
   return (
-    <PanelShell user={customer.user} sidebar={<PanelNav items={items} />}>
+    <PanelShell
+      user={customer.user}
+      sidebar={<PanelNav items={items} />}
+      showThemeToggle
+    >
       {children}
     </PanelShell>
   );

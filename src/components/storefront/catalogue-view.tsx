@@ -32,6 +32,7 @@ export function CatalogueView({
   listing,
   counts,
   tier,
+  wishlisted,
   emptyTitle,
   emptyDescription,
 }: {
@@ -40,6 +41,7 @@ export function CatalogueView({
   listing: ProductListing;
   counts: FacetCounts;
   tier: PriceTier;
+  wishlisted?: Set<string> | null;
   emptyTitle: string;
   emptyDescription: string;
 }) {
@@ -90,7 +92,12 @@ export function CatalogueView({
 
         {items.length > 0 ? (
           <>
-            <ProductGrid products={items} tier={tier} priorityCount={4} />
+            <ProductGrid
+              products={items}
+              tier={tier}
+              priorityCount={4}
+              wishlisted={wishlisted}
+            />
             <Pagination
               pathname={pathname}
               filters={filters}

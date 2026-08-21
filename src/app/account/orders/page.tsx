@@ -82,7 +82,7 @@ export default async function OrdersPage(props: PageProps<"/account/orders">) {
                     aria-current={isActive ? "page" : undefined}
                     className={
                       isActive
-                        ? "inline-block border border-brand-600 bg-brand-600 px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] text-ivory-50"
+                        ? "inline-block border border-brand-600 bg-brand-600 px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] text-cream"
                         : "inline-block border border-ivory-400 px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] text-ink-500 transition-colors hover:border-ink-400"
                     }
                   >
@@ -208,7 +208,7 @@ export default async function OrdersPage(props: PageProps<"/account/orders">) {
                   aria-current={number === currentPage ? "page" : undefined}
                   className={
                     number === currentPage
-                      ? "border border-brand-600 bg-brand-600 px-3.5 py-2 text-xs text-ivory-50"
+                      ? "border border-brand-600 bg-brand-600 px-3.5 py-2 text-xs text-cream"
                       : "border border-ivory-400 px-3.5 py-2 text-xs text-ink-500 transition-colors hover:border-ink-400"
                   }
                 >

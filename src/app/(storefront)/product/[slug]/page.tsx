@@ -7,7 +7,7 @@ import { formatPaise } from "@/lib/utils";
 import { viewerTier } from "@/lib/catalogue/pricing";
 import { getCustomerContext } from "@/lib/commerce/context";
 import { getCommerceSettings } from "@/lib/commerce/settings";
-import { isWishlisted } from "@/lib/commerce/wishlist";
+import { isWishlisted, wishlistedIds } from "@/lib/commerce/wishlist";
 import {
   getProductBySlug,
   getProductReviews,
@@ -19,6 +19,7 @@ import { ProductBuyPanel } from "@/components/storefront/product-buy-panel";
 import { ProductGallery } from "@/components/storefront/product-gallery";
 import { ProductGrid } from "@/components/storefront/product-card";
 import { RatingStars } from "@/components/storefront/rating-stars";
+import { ReverseSide } from "@/components/storefront/reverse-side";
 import { ReviewList } from "@/components/storefront/review-list";
 import { SectionHeading } from "@/components/storefront/section";
 
@@ -67,24 +68,82 @@ export default async function ProductPage(props: PageProps<"/product/[slug]">) {
     customer ? isWishlisted(customer.customerId, product.id) : Promise.resolve(false),
   ]);
 
+  const relatedWishlisted = customer
+    ? await wishlistedIds(
+        customer.customerId,
+        related.map((item) => item.id),
+      )
+    : null;
+
   // Staff browsing the storefront are not customers and have no bag; they see
   // retail pricing and a sign-in prompt, which is the honest state.
   const tier = customer?.tier ?? viewerTier(await getCurrentUser());
   const parent = product.category.parent;
 
-  const specifications = [
-    { label: "Fabric", value: product.fabric },
-    { label: "Pattern", value: product.pattern },
-    { label: "Work", value: product.workType },
-    { label: "Colour", value: product.color },
-    { label: "Occasion", value: product.occasion },
+  /**
+   * The specification sheet — SRS §58.
+   *
+   * Grouped rather than run together as one list, because these answer three
+   * different questions: what the cloth is, what you physically receive, and
+   * what you have to do to keep it. The three rows that decide most saree
+   * returns — is the zari real, does a blouse piece come with it, can it be
+   * washed at home — each have a line of their own instead of being buried in a
+   * paragraph of description.
+   *
+   * Empty rows are dropped, and a whole group disappears if nothing in it has a
+   * value. A cushion cover has no blouse piece and must not show "—" against
+   * one, which would read as "we did not bother to check".
+   */
+  const specGroups = [
     {
-      label: "Weight",
-      value: product.weightGrams ? `${product.weightGrams} g` : null,
+      title: "The cloth",
+      rows: [
+        { label: "Fabric", value: product.fabric },
+        { label: "Colour", value: product.color },
+        { label: "Pattern", value: product.pattern },
+        { label: "Work", value: product.workType },
+        { label: "Zari", value: product.zariType },
+      ],
     },
-    { label: "Collection", value: product.collection },
-    { label: "SKU", value: product.sku },
-  ].filter((row): row is { label: string; value: string } => Boolean(row.value));
+    {
+      title: "What you receive",
+      rows: [
+        {
+          label: "Weight",
+          value: product.weightGrams ? `${product.weightGrams} g` : null,
+        },
+        {
+          label: "Blouse piece",
+          value: product.blousePieceCm
+            ? `${product.blousePieceCm} cm, unstitched`
+            : null,
+        },
+        { label: "Occasion", value: product.occasion },
+      ],
+    },
+    {
+      title: "Care & provenance",
+      rows: [
+        { label: "Wash care", value: product.washCare },
+        {
+          label: "Woven in",
+          value: product.seller.cluster
+            ? `${product.seller.cluster.name}, ${product.seller.cluster.state}`
+            : (product.seller.city ?? null),
+        },
+        { label: "Collection", value: product.collection },
+        { label: "SKU", value: product.sku },
+      ],
+    },
+  ]
+    .map((group) => ({
+      ...group,
+      rows: group.rows.filter(
+        (row): row is { label: string; value: string; href?: string | null } =>
+          Boolean(row.value),
+      ),
+    }))
+    .filter((group) => group.rows.length > 0);
 
   return (
     <div className="mx-auto max-w-7xl px-5 py-10 lg:px-8">
@@ -146,7 +205,7 @@ export default async function ProductPage(props: PageProps<"/product/[slug]">) {
             <div className="flex items-start gap-3">
               <span
                 aria-hidden="true"
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-600 text-xs font-medium text-ivory-50"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-600 text-xs font-medium text-cream"
               >
                 {product.seller.businessName.slice(0, 2).toUpperCase()}
               </span>
@@ -229,16 +288,42 @@ export default async function ProductPage(props: PageProps<"/product/[slug]">) {
 
         <div>
           <h2 className="mb-4 font-display text-2xl">Specification</h2>
-          <dl className="divide-y divide-ivory-400 border-y border-ivory-400">
-            {specifications.map((row) => (
-              <div key={row.label} className="flex gap-4 py-2.5 text-sm">
-                <dt className="w-32 shrink-0 text-ink-400">{row.label}</dt>
-                <dd className="text-ink-900">{row.value}</dd>
+          <div className="space-y-7">
+            {specGroups.map((group) => (
+              <div key={group.title}>
+                <h3 className="mb-2 text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-gold-500">
+                  {group.title}
+                </h3>
+                <dl className="divide-y divide-ivory-400 border-y border-ivory-400">
+                  {group.rows.map((row) => (
+                    <div key={row.label} className="flex gap-4 py-2.5 text-sm">
+                      <dt className="w-32 shrink-0 text-ink-400">{row.label}</dt>
+                      <dd className="text-ink-900">
+                        {row.href ? (
+                          <Link
+                            href={row.href}
+                            className="text-brand-600 underline-offset-4 hover:underline"
+                          >
+                            {row.value}
+                          </Link>
+                        ) : (
+                          row.value
+                        )}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
               </div>
             ))}
-          </dl>
+          </div>
         </div>
       </div>
+
+      {/* ---- The reverse ---- */}
+      <ReverseSide
+        image={product.images.find((image) => image.kind === "REVERSE") ?? null}
+        sellerName={product.seller.businessName}
+      />
 
       {/* ---- Reviews ---- */}
       <section
@@ -262,7 +347,7 @@ export default async function ProductPage(props: PageProps<"/product/[slug]">) {
               label: `All ${product.category.name}`,
             }}
           />
-          <ProductGrid products={related} tier={tier} />
+          <ProductGrid products={related} tier={tier} wishlisted={relatedWishlisted} />
         </section>
       )}
     </div>

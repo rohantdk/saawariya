@@ -160,7 +160,7 @@ export async function getProductForReview(productId: string) {
       approvedBy: { select: { fullName: true } },
       images: {
         orderBy: { sortOrder: "asc" },
-        select: { id: true, url: true, alt: true, isMain: true },
+        select: { id: true, url: true, alt: true, isMain: true, kind: true },
       },
       variants: {
         orderBy: { sku: "asc" },

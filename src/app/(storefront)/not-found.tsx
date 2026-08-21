@@ -23,7 +23,7 @@ export default async function StorefrontNotFound() {
       <div className="mt-9 flex flex-wrap justify-center gap-3">
         <Link
           href="/shop"
-          className="inline-flex h-12 items-center bg-brand-600 px-8 text-xs font-medium uppercase tracking-[0.16em] text-ivory-50 transition-colors hover:bg-brand-700"
+          className="inline-flex h-12 items-center bg-brand-600 px-8 text-xs font-medium uppercase tracking-[0.16em] text-cream transition-colors hover:bg-brand-700"
         >
           Browse the catalogue
         </Link>

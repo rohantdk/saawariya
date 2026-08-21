@@ -30,7 +30,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: baseUrl, changeFrequency: "daily", priority: 1 },
     { url: `${baseUrl}/shop`, changeFrequency: "daily", priority: 0.9 },
     { url: `${baseUrl}/search`, changeFrequency: "weekly", priority: 0.5 },
-    { url: `${baseUrl}/wholesale`, changeFrequency: "monthly", priority: 0.7 },
   ];
 
   const categoryRoutes: MetadataRoute.Sitemap = categories.map((category) => ({
@@ -55,5 +54,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.3,
   }));
 
-  return [...staticRoutes, ...categoryRoutes, ...productRoutes, ...cmsRoutes];
+  return [
+    ...staticRoutes,
+    ...categoryRoutes,
+    ...productRoutes,
+    ...cmsRoutes,
+  ];
 }

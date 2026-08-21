@@ -81,7 +81,10 @@ export function WholesaleTeaser({
         ? `Trade pricing available from ${minOrderQty} units`
         : "Trade pricing available"}{" "}
       for{" "}
-      <a href="/wholesale" className="text-brand-600 underline underline-offset-2">
+      <a
+        href="/register?type=wholesale"
+        className="text-brand-600 underline underline-offset-2"
+      >
         verified business accounts
       </a>
     </p>

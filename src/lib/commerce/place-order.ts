@@ -2,6 +2,7 @@ import "server-only";
 import { prisma } from "@/lib/prisma";
 import type { Prisma } from "@/generated/prisma/client";
 import { getCart, availableFor } from "@/lib/commerce/cart";
+import { availabilityOf } from "@/lib/catalogue/availability";
 import { getCommerceSettings } from "@/lib/commerce/settings";
 import { validateCoupon } from "@/lib/commerce/coupons";
 import { apportion, computeTotals, type AppliedCoupon } from "@/lib/commerce/totals";
@@ -146,7 +147,9 @@ export async function placeOrder(
           where: { id: line.productId },
           select: {
             name: true,
-            inventory: { select: { stockQty: true, reservedQty: true } },
+            isMadeToOrder: true,
+            loomWeeks: true,
+            inventory: { select: { status: true, stockQty: true, reservedQty: true } },
             variants: {
               where: { id: line.variantId ?? "" },
               select: { stockQty: true },
@@ -167,13 +170,19 @@ export async function placeOrder(
           );
         }
 
-        const available = availableFor(product.inventory, variant);
-        if (available < line.quantity) {
-          throw new OrderError(
-            available === 0
-              ? `${line.name} sold out while you were checking out.`
-              : `Only ${available} of ${line.name} left. Reduce the quantity in your bag.`,
-          );
+        // A piece being woven to order has no shelf to run out of, so the
+        // race this re-check exists to catch — two buyers reaching the last
+        // unit at once — cannot happen to it. Everything else is still
+        // re-checked under the write lock.
+        if (!availabilityOf(product).isOnTheLoom) {
+          const available = availableFor(product.inventory, variant);
+          if (available < line.quantity) {
+            throw new OrderError(
+              available === 0
+                ? `${line.name} sold out while you were checking out.`
+                : `Only ${available} of ${line.name} left. Reduce the quantity in your bag.`,
+            );
+          }
         }
       }
 
@@ -248,6 +257,9 @@ export async function placeOrder(
                 priceTier: line.price.tier,
                 quantity: line.quantity,
                 lineTotal: line.lineTotal,
+                // Snapshot: the dispatch estimate this customer is shown must
+                // not move if the seller later changes their lead time.
+                loomWeeks: line.loomWeeks,
               })),
             },
           },
@@ -273,10 +285,17 @@ export async function placeOrder(
           });
           if (!inventory) continue;
 
-          await tx.inventory.update({
-            where: { id: inventory.id },
-            data: { reservedQty: { increment: line.quantity } },
-          });
+          // A commissioned piece holds nothing back, because there is nothing
+          // on the shelf to hold: incrementing reservedQty here would push it
+          // above stockQty and make every "available" sum in the admin
+          // inventory screen read negative. The ledger below still records the
+          // order, so the movement history stays complete.
+          if (line.loomWeeks === null) {
+            await tx.inventory.update({
+              where: { id: inventory.id },
+              data: { reservedQty: { increment: line.quantity } },
+            });
+          }
 
           // Append-only ledger. Stock does not LEAVE until dispatch (Phase 7);
           // it is held, so changeQty is 0 and the reservation is the event.
@@ -286,7 +305,10 @@ export async function placeOrder(
               changeQty: 0,
               reason: "ORDER_RESERVED",
               referenceId: subOrder.id,
-              note: `${line.quantity} × ${line.sku} reserved for ${subOrder.subOrderNumber}`,
+              note:
+                line.loomWeeks === null
+                  ? `${line.quantity} × ${line.sku} reserved for ${subOrder.subOrderNumber}`
+                  : `${line.quantity} × ${line.sku} commissioned for ${subOrder.subOrderNumber} — woven to order, ~${line.loomWeeks} weeks`,
             },
           });
         }

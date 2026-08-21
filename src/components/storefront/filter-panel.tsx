@@ -57,19 +57,35 @@ export function FilterPanel({
         )}
       </div>
 
-      {FACET_GROUPS.map((group) => (
-        <FacetGroup
-          key={group.key}
-          label={group.label}
-          filterKey={group.key}
-          options={group.values.map((value) => ({ value, label: value }))}
-          pathname={pathname}
-          filters={filters}
-          counts={counts}
-        />
-      ))}
-
       <ColourFacet pathname={pathname} filters={filters} counts={counts} />
+
+      {FACET_GROUPS.map((group) =>
+        // Fabric is the facet people actually shop by — "I want Chanderi" — so
+        // it gets chips that can be scanned in one pass. Pattern, occasion and
+        // work are narrowing filters applied after that decision and stay as
+        // rows, which suit longer lists and read faster top to bottom.
+        group.key === "fabric" ? (
+          <ChipFacet
+            key={group.key}
+            label={group.label}
+            filterKey={group.key}
+            options={group.values.map((value) => ({ value, label: value }))}
+            pathname={pathname}
+            filters={filters}
+            counts={counts}
+          />
+        ) : (
+          <FacetGroup
+            key={group.key}
+            label={group.label}
+            filterKey={group.key}
+            options={group.values.map((value) => ({ value, label: value }))}
+            pathname={pathname}
+            filters={filters}
+            counts={counts}
+          />
+        ),
+      )}
 
       <FacetGroup
         label="Price"
@@ -148,7 +164,7 @@ function FacetGroup({
                   className={cn(
                     "flex h-4 w-4 shrink-0 items-center justify-center border transition-colors",
                     isChecked
-                      ? "border-brand-600 bg-brand-600 text-ivory-50"
+                      ? "border-brand-600 bg-brand-600 text-cream"
                       : "border-ivory-500 group-hover:border-ink-400",
                   )}
                 >
@@ -172,6 +188,16 @@ function FacetGroup({
   );
 }
 
+/**
+ * Colour, as labelled swatch chips.
+ *
+ * The swatches used to be bare 32px dots with the colour name only in a title
+ * attribute. That is unusable for anyone who cannot distinguish two of them —
+ * "Cream & Natural" and "White" are four percent apart in luminance — and a
+ * title tooltip never appears on touch at all. The name is now on the chip, and
+ * the dot is what it should have been from the start: a hint beside a label,
+ * not the label itself.
+ */
 function ColourFacet({
   pathname,
   filters,
@@ -194,7 +220,7 @@ function ColourFacet({
       <legend className="mb-3 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
         Colour
       </legend>
-      <ul className="flex flex-wrap gap-2">
+      <ul className="flex flex-wrap gap-1.5">
         {available.map((family) => {
           const isChecked = filters.colour.includes(family.slug);
           const count = counts.colour[family.slug] ?? 0;
@@ -207,22 +233,92 @@ function ColourFacet({
                   toggleFilter(filters, "colour", family.slug),
                 )}
                 aria-pressed={isChecked}
-                // The swatch is decorative; the accessible name carries the
-                // colour name and the count, which a swatch alone cannot.
-                aria-label={`${family.label} (${count})`}
-                title={`${family.label} (${count})`}
                 className={cn(
-                  "flex h-8 w-8 items-center justify-center rounded-full border-2 transition-colors",
+                  "inline-flex items-center gap-2 rounded-full border py-1 pl-1.5 pr-3 text-xs transition-colors",
                   isChecked
-                    ? "border-brand-600"
-                    : "border-transparent hover:border-ivory-500",
+                    ? "border-brand-600 bg-brand-50 text-ink-900"
+                    : "border-ivory-400 text-ink-500 hover:border-ink-400 hover:text-ink-900",
                 )}
               >
                 <span
                   aria-hidden="true"
-                  className="h-6 w-6 rounded-full border border-ink-900/10"
-                  style={{ backgroundColor: family.swatch }}
+                  className={cn(
+                    "h-4 w-4 shrink-0 rounded-full border",
+                    // Multicolour has no single hex that is honest, so it gets
+                    // a spectrum rather than a stand-in colour.
+                    family.slug === "multi"
+                      ? "border-ink-900/15 bg-[conic-gradient(#9E302F,#c8a96a,#3d6f53,#33507f,#cf7b9b,#9E302F)]"
+                      : "border-ink-900/15",
+                  )}
+                  style={
+                    family.slug === "multi"
+                      ? undefined
+                      : { backgroundColor: family.swatch }
+                  }
                 />
+                {family.label}
+                <span className="tabular-nums text-ink-400">{count}</span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </fieldset>
+  );
+}
+
+/** A facet rendered as pill chips rather than a checkbox list. */
+function ChipFacet({
+  label,
+  filterKey,
+  options,
+  pathname,
+  filters,
+  counts,
+}: {
+  label: string;
+  filterKey: MultiKey;
+  options: { value: string; label: string }[];
+  pathname: string;
+  filters: CatalogueFilters;
+  counts: FacetCounts;
+}) {
+  const selected = filters[filterKey];
+  const available = options.filter(
+    (option) =>
+      (counts[filterKey][option.value] ?? 0) > 0 ||
+      selected.includes(option.value),
+  );
+
+  if (available.length === 0) return null;
+
+  return (
+    <fieldset className="border-t border-ivory-400 pt-5">
+      <legend className="mb-3 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
+        {label}
+      </legend>
+      <ul className="flex flex-wrap gap-1.5">
+        {available.map((option) => {
+          const isChecked = selected.includes(option.value);
+          const count = counts[filterKey][option.value] ?? 0;
+
+          return (
+            <li key={option.value}>
+              <Link
+                href={filterHref(
+                  pathname,
+                  toggleFilter(filters, filterKey, option.value),
+                )}
+                aria-pressed={isChecked}
+                className={cn(
+                  "inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs transition-colors",
+                  isChecked
+                    ? "border-brand-600 bg-brand-50 text-ink-900"
+                    : "border-ivory-400 text-ink-500 hover:border-ink-400 hover:text-ink-900",
+                )}
+              >
+                {option.label}
+                <span className="tabular-nums text-ink-400">{count}</span>
               </Link>
             </li>
           );

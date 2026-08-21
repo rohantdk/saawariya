@@ -24,26 +24,43 @@ export function Label({
   );
 }
 
-const CONTROL_BASE =
+export const CONTROL_BASE =
   "w-full border bg-ivory-50 px-4 py-3 text-sm text-ink-900 " +
   "placeholder:text-ink-400/60 transition-colors duration-200 " +
   "focus:border-brand-600 focus:outline-none disabled:opacity-60";
 
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   invalid?: boolean;
+  /** A leading glyph — a mail, lock or phone icon — rendered inside the field. */
+  icon?: React.ReactNode;
 };
 
-export function Input({ className, invalid, ...props }: InputProps) {
-  return (
+export function Input({ className, invalid, icon, ...props }: InputProps) {
+  const control = (
     <input
       aria-invalid={invalid || undefined}
       className={cn(
         CONTROL_BASE,
+        icon && "pl-10",
         invalid ? "border-danger" : "border-ivory-400",
         className,
       )}
       {...props}
     />
+  );
+
+  if (!icon) return control;
+
+  return (
+    <div className="relative">
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-400"
+      >
+        {icon}
+      </span>
+      {control}
+    </div>
   );
 }
 

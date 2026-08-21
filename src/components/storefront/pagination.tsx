@@ -52,7 +52,7 @@ export function Pagination({
             className={cn(
               "flex h-9 min-w-9 items-center justify-center border px-3 text-xs tabular-nums transition-colors",
               entry === page
-                ? "border-brand-600 bg-brand-600 text-ivory-50"
+                ? "border-brand-600 bg-brand-600 text-cream"
                 : "border-ivory-400 text-ink-900 hover:border-ink-400",
             )}
           >

@@ -147,6 +147,8 @@ export async function seedOrders(prisma: PrismaClient) {
         priceOffer: true,
         priceWholesale: true,
         minOrderQty: true,
+        isMadeToOrder: true,
+        loomWeeks: true,
         images: {
           where: { isMain: true },
           take: 1,
@@ -401,6 +403,11 @@ export async function seedOrders(prisma: PrismaClient) {
               priceTier: line.priceTier,
               quantity: line.quantity,
               lineTotal: line.lineTotal,
+              // Snapshot, exactly as place-order does it, so a seeded order and
+              // a placed one carry the same shape. Null for stocked lines.
+              loomWeeks: line.product.isMadeToOrder
+                ? line.product.loomWeeks
+                : null,
             })),
           },
         },

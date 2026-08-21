@@ -64,7 +64,7 @@ export function FilterDrawer({
         <SlidersHorizontal aria-hidden="true" className="h-3.5 w-3.5" />
         Filter
         {activeCount > 0 && (
-          <span className="flex h-4 min-w-4 items-center justify-center bg-brand-600 px-1 text-[0.625rem] text-ivory-50">
+          <span className="flex h-4 min-w-4 items-center justify-center bg-brand-600 px-1 text-[0.625rem] text-cream">
             {activeCount}
           </span>
         )}
@@ -75,7 +75,7 @@ export function FilterDrawer({
           <button
             type="button"
             onClick={() => setIsOpen(false)}
-            className="absolute inset-0 bg-ink-900/40"
+            className="absolute inset-0 bg-scrim/40"
             tabIndex={-1}
           >
             <span className="sr-only">Close filters</span>

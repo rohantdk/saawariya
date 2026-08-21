@@ -27,6 +27,11 @@ export type ProductRecord = {
   workType: string | null;
   color: string | null;
   weightGrams: number | null;
+  zariType: string | null;
+  blousePieceCm: number | null;
+  washCare: string | null;
+  isMadeToOrder: boolean;
+  loomWeeks: number | null;
   priceRetail: number;
   priceWholesale: number | null;
   priceOffer: number | null;
@@ -227,6 +232,86 @@ export function ProductForm({
               inputMode="numeric"
               defaultValue={product?.weightGrams ?? ""}
               invalid={Boolean(errors.weightGrams)}
+            />
+          </Field>
+
+          {/* The three rows buyers ask support about most. They print as their
+              own lines in the specification block on the product page. */}
+          <Field label="Zari" htmlFor="zariType" errors={errors.zariType}>
+            <Input
+              id="zariType"
+              name="zariType"
+              defaultValue={product?.zariType ?? ""}
+              invalid={Boolean(errors.zariType)}
+              placeholder="e.g. Pure silver zari, gold gilt"
+            />
+          </Field>
+
+          <Field
+            label="Blouse piece (cm)"
+            htmlFor="blousePieceCm"
+            errors={errors.blousePieceCm}
+            hint="Leave blank if none is attached."
+          >
+            <Input
+              id="blousePieceCm"
+              name="blousePieceCm"
+              inputMode="numeric"
+              defaultValue={product?.blousePieceCm ?? ""}
+              invalid={Boolean(errors.blousePieceCm)}
+            />
+          </Field>
+
+          <Field label="Wash care" htmlFor="washCare" errors={errors.washCare}>
+            <Input
+              id="washCare"
+              name="washCare"
+              defaultValue={product?.washCare ?? ""}
+              invalid={Boolean(errors.washCare)}
+              placeholder="e.g. Dry clean only"
+            />
+          </Field>
+        </div>
+      </section>
+
+      {/* ---- Made to order ---- */}
+      <section className="space-y-5">
+        <h2 className="text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-ink-400">
+          Made to order
+        </h2>
+        <p className="text-xs leading-relaxed text-ink-400">
+          Tick this if you will weave the piece to order once your stock runs
+          out. The listing then stays open when the shelf is empty and shows the
+          lead time instead of a sold-out badge — so give a figure you can meet.
+        </p>
+
+        <label
+          htmlFor="isMadeToOrder"
+          className="flex items-start gap-3 text-sm text-ink-900"
+        >
+          <input
+            type="checkbox"
+            id="isMadeToOrder"
+            name="isMadeToOrder"
+            defaultChecked={product?.isMadeToOrder ?? false}
+            className="mt-0.5 h-4 w-4 accent-[var(--color-brand-600)]"
+          />
+          I will weave this piece to order
+        </label>
+
+        <div className="grid gap-5 sm:grid-cols-3">
+          <Field
+            label="Weeks on the loom"
+            htmlFor="loomWeeks"
+            errors={errors.loomWeeks}
+            hint="Required when the box above is ticked."
+          >
+            <Input
+              id="loomWeeks"
+              name="loomWeeks"
+              inputMode="numeric"
+              defaultValue={product?.loomWeeks ?? ""}
+              invalid={Boolean(errors.loomWeeks)}
             />
           </Field>
         </div>

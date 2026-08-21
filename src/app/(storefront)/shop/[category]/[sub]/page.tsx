@@ -3,6 +3,8 @@ import { notFound, redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth/dal";
 import { viewerTier } from "@/lib/catalogue/pricing";
 import { parseFilters } from "@/lib/catalogue/filters";
+import { getCustomerContext } from "@/lib/commerce/context";
+import { wishlistedIds } from "@/lib/commerce/wishlist";
 import {
   getCategoryBySlug,
   getFacetCounts,
@@ -35,10 +37,11 @@ export async function generateMetadata(
 export default async function SubCategoryPage(
   props: PageProps<"/shop/[category]/[sub]">,
 ) {
-  const [params, searchParams, user] = await Promise.all([
+  const [params, searchParams, user, customer] = await Promise.all([
     props.params,
     props.searchParams,
     getCurrentUser(),
+    getCustomerContext(),
   ]);
 
   const category = await getCategoryBySlug(params.sub);
@@ -59,6 +62,13 @@ export default async function SubCategoryPage(
     listProducts(filters, scope),
     getFacetCounts(filters, scope),
   ]);
+
+  const wishlisted = customer
+    ? await wishlistedIds(
+        customer.customerId,
+        listing.items.map((item) => item.id),
+      )
+    : null;
 
   const pathname = `/shop/${category.parent.slug}/${category.slug}`;
 
@@ -89,6 +99,7 @@ export default async function SubCategoryPage(
         listing={listing}
         counts={counts}
         tier={viewerTier(user)}
+        wishlisted={wishlisted}
         emptyTitle={`Nothing in ${category.name} yet`}
         emptyDescription={`No ${category.name.toLowerCase()} have been approved for sale yet. Browse the rest of ${category.parent.name} in the meantime.`}
       />

@@ -1,15 +1,20 @@
 # Catalogue image credits
 
-Every image in this directory comes from [Wikimedia Commons](https://commons.wikimedia.org)
-and is in the **public domain** or released under **CC0**. Neither requires
-attribution; the sources are listed anyway so the licensing can be verified
-rather than taken on trust.
+Every image in this directory **except the five `frame-*.jpg` files** comes
+from [Wikimedia Commons](https://commons.wikimedia.org) and is in the **public
+domain** or released under **CC0**. Neither requires attribution; the sources
+are listed anyway so the licensing can be verified rather than taken on trust.
 
 Most are photographs of museum textile holdings — the Metropolitan Museum of
 Art, the Cleveland Museum of Art, LACMA, the Honolulu Museum of Art and
 Cooper Hewitt — which is why they are shot flat against neutral grounds.
 
-Regenerate with `node scripts/fetch-catalogue-images.mjs`.
+> **The five `frame-*.jpg` files are the exception and are not CC0.** They are
+> of undocumented origin, their licence is unresolved, and they are attached to live
+> product listings. See [the section at the end](#prototype-frames--not-cc0-read-before-launch).
+
+Regenerate the CC0 set with `node scripts/fetch-catalogue-images.mjs` — it does
+not know about the `frame-*` files and will not touch them.
 
 ## banarasi
 
@@ -137,3 +142,37 @@ Regenerate with `node scripts/fetch-catalogue-images.mjs`.
 | `suits-02.jpg` | [Angarkha MET CI64.78.2 F.jpg](https://commons.wikimedia.org/wiki/File:Angarkha_MET_CI64.78.2_F.jpg) | CC0 |
 | `suits-03.jpg` | [India, Cutch, 19th - early 20th century - "Salwar"- Woman's Trousers - 1925.514 - Cleveland Museum of Art.tif](https://commons.wikimedia.org/wiki/File:India,_Cutch,_19th_-_early_20th_century_-_%22Salwar%22-_Woman%27s_Trousers_-_1925.514_-_Cleveland_Museum_of_Art.tif) | CC0 |
 | `suits-04.jpg` | [India, Cutch, 19th century - Woman's Blouse (Pairan) - 1916.1463 - Cleveland Museum of Art.tif](https://commons.wikimedia.org/wiki/File:India,_Cutch,_19th_century_-_Woman%27s_Blouse_(Pairan)_-_1916.1463_-_Cleveland_Museum_of_Art.tif) | CC0 |
+
+## Prototype frames — not CC0, read before launch
+
+Added 2026-08-21 at the client's request, from the prototype at
+the prototype site. Unlike everything above,
+these are **of undocumented origin** — every source filename on that CDN is of the form
+the original file names — and **no licence, model or terms of use is stated
+anywhere on that site**.
+
+They differ from the prototype images in `public/editorial/` in one way that
+matters: those are mood pieces, but **these hang on product pages**, where a
+picture is a representation of goods offered for sale. Two of them show a
+garment on a model or a form.
+
+Confirm with Team ARJITAY that these are theirs to use commercially, and that
+they are willing to show them against real listings, **before the site is
+public**. Deleting the five files and the `extraImages` entries in
+`prisma/seed/products.ts` reverts this completely — the products keep their CC0
+photography, which was never replaced.
+
+| File | Attached to | `kind` | Why that listing |
+| --- | --- | --- | --- |
+| `frame-banarasi-zari-detail.jpg` | Pure Zari Banarasi Silk Saree | DETAIL | Deep Maroon / Banarasi Silk / Zari — the macro is maroon silk with gold zari |
+| `frame-organza-sequin-detail.jpg` | Organza Party Lehenga with Sequin Work | DETAIL | Champagne / Sequin — the macro is gold sequin work on a champagne ground |
+| `frame-georgette-emerald-booti.jpg` | Banarasi Georgette Saree with Cutwork Booti | DETAIL | Emerald Green / Zari — emerald cloth with gold booti and a zari pallu |
+| `frame-kanjivaram-korvai-drape.jpg` | Kanjivaram Silk Saree with Korvai Border | DRAPE | Mustard & Maroon — korvai is a contrast-colour border, which is what the frame shows |
+| `frame-chanderi-blush-drape.jpg` | Chanderi Saree with Gold Booti | DRAPE | Blush Pink / Chanderi / Zari — sheer blush body scattered with gold booti |
+
+Each was matched so the frame agrees with the listing's stated `color`,
+`fabric` and `workType`. A frame that argued with the spec block would make the
+product page contradict itself, which is worse than having one fewer picture.
+
+`DRAPE` is a frame type the CC0 set has none of — museum holdings are shot
+flat — so these two do add something the catalogue could not otherwise show.

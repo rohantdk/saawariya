@@ -13,11 +13,18 @@ import { cn } from "@/lib/utils";
  * a wide border band cannot share a letterboxed frame without one of them
  * looking broken.
  */
+/** Human labels for ProductImage.kind. FRONT is unlabelled — it is the default view. */
+const KIND_LABEL: Record<string, string> = {
+  REVERSE: "Reverse side",
+  DETAIL: "Detail",
+  DRAPE: "On the drape",
+};
+
 export function ProductGallery({
   images,
   productName,
 }: {
-  images: { id: string; url: string; alt: string }[];
+  images: { id: string; url: string; alt: string; kind: string }[];
   productName: string;
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -57,7 +64,8 @@ export function ProductGallery({
                   className="object-cover"
                 />
                 <span className="sr-only">
-                  View image {index + 1} of {productName}
+                  View {KIND_LABEL[image.kind]?.toLowerCase() ?? "image"}{" "}
+                  {index + 1} of {productName}
                 </span>
               </button>
             </li>
@@ -75,6 +83,14 @@ export function ProductGallery({
           sizes="(min-width: 1024px) 32rem, 100vw"
           className="object-cover"
         />
+
+        {/* Naming the view matters most for the reverse: an unlabelled photo of
+            the back of a saree just looks like a bad photograph of the front. */}
+        {KIND_LABEL[active.kind] && (
+          <span className="absolute bottom-3 left-3 bg-scrim/80 px-2.5 py-1 text-[0.625rem] font-medium uppercase tracking-[0.12em] text-cream">
+            {KIND_LABEL[active.kind]}
+          </span>
+        )}
       </div>
     </div>
   );

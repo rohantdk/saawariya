@@ -167,12 +167,49 @@ model Address {
 // SELLERS  (SRS §52-68, §74)
 // ---------------------------------------------------------------------------
 
+/// A weaving cluster — Varanasi, Kanchipuram, Chanderi, Bagru.
+///
+/// The platform already knew where each seller was (Seller.city) and printed it
+/// on every product card, but the town was only ever a string: there was nowhere
+/// to say what Chanderi actually is, and no way to browse by it. This gives the
+/// place a row of its own, so the provenance the marketplace already claims is
+/// something a buyer can follow rather than just read.
+///
+/// Sellers point at a cluster rather than products, because a workshop belongs
+/// to a cluster and its catalogue follows from that. A product's cluster is
+/// therefore product.seller.cluster — there is no second, contradictable copy.
+model Cluster {
+  id   String @id @default(cuid())
+  slug String @unique
+  /// The town or region as it is known: "Varanasi", "Bagru".
+  name String
+  state String
+  /// The weave this place is known for: "Banarasi brocade".
+  tradition String
+  /// One line, for the index card.
+  blurb String
+  /// Editorial body for the cluster page.
+  description String
+  imageUrl    String?
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  sellers Seller[]
+
+  @@index([isActive])
+}
+
 model Seller {
   id                 String    @id @default(cuid())
   userId             String    @unique
   businessName       String
   ownerName          String
   businessType       String // MANUFACTURER | WHOLESALER | DISTRIBUTOR | RETAILER
+  /// Optional: a seller may trade from a town that is not one of the named
+  /// clusters, and must still be able to list.
+  clusterId          String?
   gstNumber          String?
   panNumber          String?
   logoUrl            String?
@@ -197,12 +234,14 @@ model Seller {
   updatedAt          DateTime  @updatedAt
 
   user        User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cluster     Cluster?         @relation(fields: [clusterId], references: [id], onDelete: SetNull)
   products    Product[]
   subOrders   SubOrder[]
   settlements Settlement[]
   documents   SellerDocument[]
 
   @@index([verificationStatus])
+  @@index([clusterId])
 }
 
 /// KYC documents uploaded during seller onboarding — SRS §54, §55.
@@ -263,6 +302,26 @@ model Product {
   color       String?
   weightGrams Int?
 
+  /// Specification block — SRS §58 "Textile Details", rendered as a table on the
+  /// product page. These are the three questions the support inbox actually
+  /// receives about a saree ("is the zari real?", "does it come with a blouse
+  /// piece?", "can I wash it at home?"), and answering them on the listing is
+  /// what stops them becoming returns. All optional: a cushion cover has no
+  /// blouse piece, and a listing may not know its zari type.
+  zariType      String? // "Pure silver zari" | "Tested zari" | "Art silk zari" | "None"
+  blousePieceCm Int? // length of the attached blouse piece, in centimetres
+  washCare      String? // "Dry clean only", "Hand wash cold, separately"
+
+  /// Made to order — SRS §58.
+  ///
+  /// A handloom piece is woven, not picked off a shelf, and a weaver can accept
+  /// an order for cloth that is still on the loom. Such a listing is not bound
+  /// by Inventory.stockQty; what it owes the buyer instead is an honest lead
+  /// time, which is why loomWeeks is required whenever this is set — see the
+  /// check in src/lib/catalogue/availability.ts.
+  isMadeToOrder Boolean @default(false)
+  loomWeeks     Int? // weeks from order placed to off the loom
+
   // Pricing, in PAISE. Dual retail/wholesale per SRS §58, §14.
   priceRetail    Int
   priceWholesale Int?
@@ -321,6 +380,16 @@ model ProductImage {
   alt       String
   sortOrder Int     @default(0)
   isMain    Boolean @default(false)
+
+  /// What the frame shows — SRS §58.
+  ///
+  /// REVERSE is the point of this column. On handloom the back of the cloth is
+  /// where quality is actually visible: short, tied-off floats last, long loose
+  /// ones snag within a season. Buyers who know textiles turn a piece over
+  /// before deciding, and one of the platform's own published reviews says
+  /// exactly that. Making the reverse a distinct, required frame turns a thing
+  /// only experts ask for into something every listing has to answer.
+  kind String @default("FRONT") // FRONT | REVERSE | DETAIL | DRAPE
 
   product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
@@ -535,6 +604,15 @@ model OrderItem {
   priceTier   String @default("RETAIL") // RETAIL | WHOLESALE
   quantity    Int
   lineTotal   Int
+
+  /// Weeks on the loom, snapshotted when the order was placed — null for a line
+  /// picked off the shelf.
+  ///
+  /// A snapshot for the same reason unitPrice is one: the seller can retire the
+  /// made-to-order flag or change the lead time next week, and the promise this
+  /// customer was shown at checkout must not move with it. Dispatch expectations
+  /// are computed from this column, never from Product — see lib/commerce/dispatch.
+  loomWeeks Int?
 
   subOrder SubOrder @relation(fields: [subOrderId], references: [id], onDelete: Cascade)
   product  Product  @relation(fields: [productId], references: [id])

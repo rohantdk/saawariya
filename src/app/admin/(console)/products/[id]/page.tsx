@@ -14,7 +14,7 @@ import {
   SELLER_VERIFICATION_LABEL,
 } from "@/lib/constants";
 import { INVENTORY_STATUS_TONE, SELLER_STATUS_TONE } from "@/lib/status-tone";
-import { formatDate, formatPaise, formatRating } from "@/lib/utils";
+import { cn, formatDate, formatPaise, formatRating } from "@/lib/utils";
 import { StatusBadge } from "@/components/commerce/status-badge";
 import { ProductDecision } from "@/components/admin/product-actions";
 
@@ -170,9 +170,39 @@ export default async function AdminProductReviewPage({
                         Main
                       </span>
                     )}
+                    {image.kind !== "FRONT" && (
+                      <span className="absolute bottom-1.5 left-1.5 bg-ivory-50/90 px-1.5 py-0.5 text-[0.625rem] uppercase tracking-[0.1em] text-ink-900">
+                        {image.kind.toLowerCase()}
+                      </span>
+                    )}
                   </li>
                 ))}
               </ul>
+            )}
+
+            {/*
+              The reverse-side check.
+
+              Advisory rather than blocking, and deliberately so: the seeded
+              catalogue predates the requirement, and a hard gate would put
+              every already-approved listing into breach the moment it was next
+              edited. It states the position, names what is missing, and leaves
+              the decision with the reviewer — which is what the rest of this
+              screen does too.
+            */}
+            {product.images.length > 0 && (
+              <p
+                className={cn(
+                  "mt-3 border px-4 py-3 text-sm",
+                  product.images.some((image) => image.kind === "REVERSE")
+                    ? "border-success/30 bg-success-soft text-success"
+                    : "border-warning/30 bg-warning-soft text-warning",
+                )}
+              >
+                {product.images.some((image) => image.kind === "REVERSE")
+                  ? "Reverse-side photograph supplied — the back of the cloth can be assessed."
+                  : "No reverse-side photograph. Ask the seller for one before approving: the back of the cloth is where float length and finishing are visible."}
+              </p>
             )}
           </section>
 

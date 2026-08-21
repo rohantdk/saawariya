@@ -98,16 +98,18 @@ export function CouponForm({
           <p className="mb-2 text-[0.6875rem] uppercase tracking-[0.12em] text-ink-400">
             Available offers
           </p>
-          <ul className="space-y-1.5">
+          <ul className="space-y-2">
             {offers.slice(0, 3).map((offer) => (
-              <li key={offer.code} className="text-xs text-ink-400">
+              <li key={offer.code}>
                 <Link
                   href={`${action}?coupon=${offer.code}`}
-                  className="font-medium text-brand-600 underline underline-offset-2"
+                  className="group/offer flex items-center gap-2 text-xs text-ink-400 transition-colors hover:text-ink-900"
                 >
-                  {offer.code}
-                </Link>{" "}
-                — {describeOffer(offer)}
+                  <span className="border border-brand-600 px-2 py-0.5 font-mono text-[0.6875rem] font-medium text-brand-600 transition-colors group-hover/offer:bg-brand-600 group-hover/offer:text-cream">
+                    {offer.code}
+                  </span>
+                  {describeOffer(offer)}
+                </Link>
               </li>
             ))}
           </ul>

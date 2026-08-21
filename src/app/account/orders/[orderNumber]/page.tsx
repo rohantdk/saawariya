@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { ChevronLeft, Store, Truck } from "lucide-react";
 import { formatDate, formatDateTime, formatPaise } from "@/lib/utils";
 import { requireCustomer } from "@/lib/commerce/context";
+import { getCommerceSettings } from "@/lib/commerce/settings";
+import { orderDispatch } from "@/lib/commerce/dispatch";
 import {
   canCancel,
   getCustomerOrder,
@@ -49,9 +51,10 @@ export async function generateMetadata(
 export default async function OrderDetailPage(
   props: PageProps<"/account/orders/[orderNumber]">,
 ) {
-  const [{ orderNumber }, customer] = await Promise.all([
+  const [{ orderNumber }, customer, settings] = await Promise.all([
     props.params,
     requireCustomer(),
+    getCommerceSettings(),
   ]);
 
   const order = await getCustomerOrder(customer.customerId, orderNumber);
@@ -65,6 +68,13 @@ export default async function OrderDetailPage(
   const returnStates = await Promise.all(
     order.subOrders.map((subOrder) => returnEligibility(subOrder)),
   );
+
+  // Same rule as the confirmation page: per parcel, governed by its slowest line.
+  const dispatch = orderDispatch({
+    placedAt: order.placedAt,
+    dispatchDays: settings.dispatchDays,
+    parcels: order.subOrders,
+  });
 
   return (
     <div className="mx-auto max-w-4xl">
@@ -120,6 +130,17 @@ export default async function OrderDetailPage(
                     {subOrder.seller.city &&
                       ` · ships from ${subOrder.seller.city}, ${subOrder.seller.state}`}
                   </p>
+                  {/* Only while it is still coming. Once the parcel is on its
+                      way the real tracking below is the better answer, and an
+                      estimate sitting beside a dispatched date just contradicts
+                      it. */}
+                  {!subOrder.dispatchedAt && dispatch.parcels[index] && (
+                    <p className="mt-1 text-xs text-ink-400">
+                      {dispatch.parcels[index].loomWeeks
+                        ? `Woven to order · dispatch expected by ${formatDate(dispatch.parcels[index].date)}`
+                        : `Dispatch expected by ${formatDate(dispatch.parcels[index].date)}`}
+                    </p>
+                  )}
                 </div>
                 <StatusBadge
                   label={customerSubOrderLabel(subOrder.status)}

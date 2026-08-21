@@ -2,9 +2,11 @@
 
 import { useActionState } from "react";
 import Link from "next/link";
+import { Mail } from "lucide-react";
 import { login } from "@/app/actions/auth";
 import { Button } from "@/components/ui/button";
 import { Field, Input, FormMessage } from "@/components/ui/field";
+import { PasswordInput } from "@/components/ui/password-input";
 
 export function LoginForm({ next }: { next?: string }) {
   const [state, formAction, pending] = useActionState(login, undefined);
@@ -23,6 +25,7 @@ export function LoginForm({ next }: { next?: string }) {
           autoComplete="email"
           placeholder="you@example.com"
           required
+          icon={<Mail className="h-4 w-4" />}
           invalid={Boolean(state?.errors?.email)}
         />
       </Field>
@@ -32,10 +35,9 @@ export function LoginForm({ next }: { next?: string }) {
         htmlFor="password"
         errors={state?.errors?.password}
       >
-        <Input
+        <PasswordInput
           id="password"
           name="password"
-          type="password"
           autoComplete="current-password"
           placeholder="••••••••"
           required

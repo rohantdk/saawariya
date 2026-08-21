@@ -24,22 +24,22 @@ export default function AuthLayout({
           }}
         />
 
-        <Wordmark tone="light" showMark={false} className="relative" />
+        <Wordmark surface="dark" showMark={false} className="relative" />
 
         <div className="relative hidden lg:block">
           <p className="eyebrow mb-6">Est. in tradition</p>
-          <p className="max-w-sm font-display text-4xl leading-[1.15] text-ivory-100">
+          <p className="max-w-sm font-display text-4xl leading-[1.15] text-cream">
             A saree is not worn.
             <br />
             It is inherited.
           </p>
-          <p className="mt-6 max-w-sm text-sm leading-relaxed text-ivory-100/60">
+          <p className="mt-6 max-w-sm text-sm leading-relaxed text-cream/60">
             India&apos;s premium textile marketplace, connecting verified
             manufacturers with retail and wholesale buyers.
           </p>
         </div>
 
-        <p className="relative hidden text-xs text-ivory-100/40 lg:block">
+        <p className="relative hidden text-xs text-cream/40 lg:block">
           © {new Date().getFullYear()} Saawariya
         </p>
       </aside>

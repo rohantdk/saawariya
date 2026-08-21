@@ -22,6 +22,7 @@ import { seedRoles } from "./seed/roles";
 import { seedUsers } from "./seed/users";
 import { seedCustomers } from "./seed/customers";
 import { seedSellers } from "./seed/sellers";
+import { seedClusters } from "./seed/clusters";
 import { seedCategories } from "./seed/categories";
 import { seedProducts } from "./seed/products";
 import { seedReviews } from "./seed/reviews";
@@ -49,6 +50,11 @@ async function main() {
 
   console.log("- Sellers & KYC documents");
   const sellerIds = await seedSellers(prisma);
+
+  // After sellers: a cluster is linked by pointing its sellers at it, so the
+  // seller rows have to exist first.
+  console.log("- Weaving clusters");
+  await seedClusters(prisma, sellerIds);
 
   console.log("- Categories");
   await seedCategories(prisma);

@@ -48,7 +48,74 @@ type ProductSeed = {
   isNewArrival?: boolean;
   collection?: string;
   variants?: Array<{ name: string; value: string; priceDeltaPaise?: number; stockQty: number }>;
+  /** Spec-block overrides. Left unset, each is derived — see specsFor(). */
+  zariType?: string;
+  blousePieceCm?: number;
+  washCare?: string;
+  /** Woven to order. loomWeeks is required alongside it. */
+  isMadeToOrder?: boolean;
+  loomWeeks?: number;
+  /**
+   * Extra frames appended after the pool images — see EXTRA_FRAMES below for
+   * where they come from and why only a few products carry them.
+   */
+  extraImages?: Array<{ url: string; alt: string; kind: string }>;
 };
+
+const SILKS = new Set([
+  "Banarasi Silk",
+  "Kanjivaram Silk",
+  "Mulberry Silk",
+  "Tussar Silk",
+]);
+
+/** Fabrics that cannot be washed at home whatever the dye. */
+const DRY_CLEAN_ONLY = new Set([
+  ...SILKS,
+  "Velvet",
+  "Organza",
+  "Chiffon",
+  "Crepe",
+  "Georgette",
+]);
+
+/**
+ * The specification block, derived rather than typed out forty times.
+ *
+ * Deriving it is not laziness: these three answers follow from the fabric and
+ * the work already recorded on the product, and hand-authoring them would let
+ * a cotton saree quietly acquire silver zari on a typo. Any product that needs
+ * to differ says so explicitly and the override wins.
+ */
+function specsFor(seed: ProductSeed) {
+  const isSilk = SILKS.has(seed.fabric);
+
+  const zariType =
+    seed.zariType ??
+    (seed.workType === "Zari"
+      ? // Real metal zari is wound on a silk core, so it is only claimed where
+        // the ground is silk; the same weave on cotton or blends is art silk.
+        isSilk
+        ? "Pure silver zari, gold gilt"
+        : "Art silk zari"
+      : "None");
+
+  const washCare =
+    seed.washCare ??
+    (DRY_CLEAN_ONLY.has(seed.fabric)
+      ? "Dry clean only"
+      : seed.fabric === "Chanderi"
+        ? "Dry clean recommended. Hand wash cold if required."
+        : // Cotton and linen, much of it naturally dyed — the platform's own
+          // published review describes exactly this first-wash behaviour.
+          "Hand wash cold, separately for the first three washes.");
+
+  // Only a saree carries an unstitched blouse piece.
+  const blousePieceCm =
+    seed.blousePieceCm ?? (seed.category.endsWith("-sarees") ? 80 : null);
+
+  return { zariType, washCare, blousePieceCm };
+}
 
 /** Sarees run 5.5m with an unstitched blouse piece; fabric sells by the metre. */
 const SAREE_LENGTHS = [
@@ -69,6 +136,59 @@ const APPAREL_SIZES = [
   { name: "Size", value: "XL", priceDeltaPaise: 15_000, stockQty: 0 },
 ];
 
+/**
+ * Extra gallery frames taken from the client's prototype, 2026-08-21.
+ *
+ * These are **of undocumented origin** (every source filename on that CDN is
+ * the original file names) and their licence is unsettled — the same caveat
+ * that governs `public/editorial/`. See `public/catalogue/CREDITS.md` and
+ * `assets/frame-reference/README.md` before launch.
+ *
+ * Two rules were applied when placing them, and both matter if more are added:
+ *
+ * 1. **The frame has to agree with the listing it hangs on.** Each one is
+ *    attached only to a product whose stated `color`, `fabric` and `workType`
+ *    actually match what the picture shows — an emerald-and-gold booti frame
+ *    goes on the Emerald Green zari georgette, the contrast-border drape goes
+ *    on the Mustard & Maroon korvai Kanjivaram. A frame whose colour argued
+ *    with the spec block would make the listing contradict itself.
+ * 2. **`kind` has to describe what the frame actually shows**, for the same
+ *    reason no REVERSE is seeded (see the note at the createMany below). The
+ *    two macros are DETAIL; the two shot-on-a-form pieces are DRAPE, which is
+ *    a frame type the seeded catalogue otherwise has none of.
+ *
+ * They are appended to the pool images rather than replacing them, so every
+ * product keeps its CC0 museum photography and this is one delete away from
+ * being undone.
+ */
+const EXTRA_FRAMES = {
+  banarasiZari: {
+    url: "/catalogue/frame-banarasi-zari-detail.jpg",
+    alt: "Macro of gold zari floral work woven into deep maroon silk.",
+    kind: "DETAIL",
+  },
+  organzaSequin: {
+    url: "/catalogue/frame-organza-sequin-detail.jpg",
+    alt: "Close-up of dense gold sequin and thread work on a champagne ground.",
+    kind: "DETAIL",
+  },
+  emeraldBooti: {
+    url: "/catalogue/frame-georgette-emerald-booti.jpg",
+    alt: "Emerald green cloth folded to show gold booti and a broad zari pallu.",
+    kind: "DETAIL",
+  },
+  korvaiDrape: {
+    url: "/catalogue/frame-kanjivaram-korvai-drape.jpg",
+    alt: "The saree draped on a form, showing the contrast maroon korvai border against the mustard body.",
+    kind: "DRAPE",
+  },
+  blushDrape: {
+    url: "/catalogue/frame-chanderi-blush-drape.jpg",
+    alt: "The saree draped, showing the sheer blush body scattered with gold booti and the fall of the pallu.",
+    kind: "DRAPE",
+  },
+} as const;
+
 export const PRODUCTS: ProductSeed[] = [
   // ---- Banarasi (Anil Textiles, Varanasi) --------------------------------
   {
@@ -83,6 +203,7 @@ export const PRODUCTS: ProductSeed[] = [
     occasion: "Bridal",
     workType: "Zari",
     color: "Deep Maroon",
+    extraImages: [EXTRA_FRAMES.banarasiZari],
     weightGrams: 850,
     priceRetail: 2_450_000,
     priceWholesale: 1_690_000,
@@ -109,7 +230,13 @@ export const PRODUCTS: ProductSeed[] = [
     priceRetail: 1_875_000,
     priceWholesale: 1_290_000,
     minOrderQty: 1,
-    stockQty: 9,
+    // Nothing on the shelf, but the loom is free: this is the pair to the
+    // Kanjivaram below, so both made-to-order states are visible in the demo —
+    // one that can only be commissioned, one that can be bought today or
+    // commissioned in another colour.
+    stockQty: 0,
+    isMadeToOrder: true,
+    loomWeeks: 8,
     isFeatured: true,
     collection: "Vivaah Bridal",
     variants: SAREE_LENGTHS,
@@ -126,6 +253,7 @@ export const PRODUCTS: ProductSeed[] = [
     occasion: "Party",
     workType: "Zari",
     color: "Emerald Green",
+    extraImages: [EXTRA_FRAMES.emeraldBooti],
     weightGrams: 480,
     priceRetail: 985_000,
     priceWholesale: 665_000,
@@ -203,6 +331,7 @@ export const PRODUCTS: ProductSeed[] = [
     occasion: "Bridal",
     workType: "Zari",
     color: "Mustard & Maroon",
+    extraImages: [EXTRA_FRAMES.korvaiDrape],
     weightGrams: 920,
     priceRetail: 3_250_000,
     priceWholesale: 2_280_000,
@@ -228,6 +357,8 @@ export const PRODUCTS: ProductSeed[] = [
     priceRetail: 2_890_000,
     priceWholesale: 1_995_000,
     stockQty: 11,
+    isMadeToOrder: true,
+    loomWeeks: 6,
     isFeatured: true,
     variants: SAREE_LENGTHS,
   },
@@ -340,6 +471,7 @@ export const PRODUCTS: ProductSeed[] = [
     occasion: "Party",
     workType: "Zari",
     color: "Blush Pink",
+    extraImages: [EXTRA_FRAMES.blushDrape],
     weightGrams: 360,
     priceRetail: 595_000,
     priceWholesale: 385_000,
@@ -741,6 +873,7 @@ export const PRODUCTS: ProductSeed[] = [
     occasion: "Party",
     workType: "Sequin",
     color: "Champagne",
+    extraImages: [EXTRA_FRAMES.organzaSequin],
     weightGrams: 1_450,
     priceRetail: 2_150_000,
     priceWholesale: 1_480_000,
@@ -937,6 +1070,9 @@ export async function seedProducts(
       approvedAt: isApproved ? new Date("2026-07-01T08:00:00Z") : null,
       isFeatured: seed.isFeatured ?? false,
       isNewArrival: seed.isNewArrival ?? false,
+      ...specsFor(seed),
+      isMadeToOrder: seed.isMadeToOrder ?? false,
+      loomWeeks: seed.loomWeeks ?? null,
     };
 
     const product = await prisma.product.upsert({
@@ -958,13 +1094,32 @@ export async function seedProducts(
 
     await prisma.productImage.deleteMany({ where: { productId: product.id } });
     await prisma.productImage.createMany({
-      data: picked.map((url, i) => ({
-        productId: product.id,
-        url,
-        alt: `${seed.name} — view ${i + 1}`,
-        sortOrder: i,
-        isMain: i === 0,
-      })),
+      // No REVERSE frame is seeded, and that is deliberate. The catalogue
+      // images are photographs of museum textile holdings shot from the front;
+      // labelling one of them "the reverse" would put a claim on the product
+      // page that the picture does not support. The seeded catalogue therefore
+      // shows the honest state — reverse not yet supplied — which is also the
+      // state the seller form and the approval checklist are built to chase.
+      data: [
+        ...picked.map((url, i) => ({
+          productId: product.id,
+          url,
+          alt: `${seed.name} — view ${i + 1}`,
+          sortOrder: i,
+          isMain: i === 0,
+          kind: i === 0 ? "FRONT" : "DETAIL",
+        })),
+        // Appended after the pool, never isMain: the CC0 museum photograph
+        // stays the frame the product card opens with.
+        ...(seed.extraImages ?? []).map((frame, i) => ({
+          productId: product.id,
+          url: frame.url,
+          alt: frame.alt,
+          sortOrder: picked.length + i,
+          isMain: false,
+          kind: frame.kind,
+        })),
+      ],
     });
 
     // Variants split the product's stock between them; the sum matches Inventory.

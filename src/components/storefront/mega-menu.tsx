@@ -74,11 +74,12 @@ export function MegaMenu({ categories }: { categories: CategoryNode[] }) {
           <li>
             <Link
               href="/shop"
+              data-current={pathname === "/shop"}
               className={cn(
-                "inline-flex h-11 items-center px-3 text-[0.6875rem] font-medium uppercase tracking-[0.14em] transition-colors",
+                "nav-underline inline-flex h-12 items-center px-3.5 text-[0.6875rem] font-semibold uppercase tracking-[0.16em] transition-colors",
                 pathname === "/shop"
-                  ? "text-brand-600"
-                  : "text-ink-900 hover:text-brand-600",
+                  ? "text-gold-300"
+                  : "text-cream/80 hover:text-cream",
               )}
             >
               All
@@ -95,14 +96,15 @@ export function MegaMenu({ categories }: { categories: CategoryNode[] }) {
                   type="button"
                   aria-expanded={isOpen}
                   aria-haspopup="true"
+                  data-current={isOpen || isCurrent}
                   onMouseEnter={() => open(category.slug)}
                   onFocus={() => open(category.slug)}
                   onClick={() => setOpenSlug(isOpen ? null : category.slug)}
                   className={cn(
-                    "inline-flex h-11 items-center gap-1.5 px-3 text-[0.6875rem] font-medium uppercase tracking-[0.14em] transition-colors",
+                    "nav-underline inline-flex h-12 items-center gap-1.5 px-3.5 text-[0.6875rem] font-semibold uppercase tracking-[0.16em] transition-colors",
                     isOpen || isCurrent
-                      ? "text-brand-600"
-                      : "text-ink-900 hover:text-brand-600",
+                      ? "text-gold-300"
+                      : "text-cream/80 hover:text-cream",
                   )}
                 >
                   {category.name}
@@ -127,7 +129,12 @@ export function MegaMenu({ categories }: { categories: CategoryNode[] }) {
           <div
             key={category.id}
             onMouseEnter={() => open(category.slug)}
-            className="absolute left-1/2 top-full z-50 w-[min(60rem,calc(100vw-3rem))] -translate-x-1/2 border border-ivory-400 bg-ivory-50 shadow-lifted"
+            className={cn(
+              "absolute left-1/2 top-full z-50 w-[min(60rem,calc(100vw-3rem))] -translate-x-1/2",
+              "border-x border-b border-ivory-400 border-t-gold-400 border-t-2 bg-ivory-50 shadow-lifted",
+              // Drops out of the bar rather than appearing under it.
+              "origin-top animate-[ribbon-in_0.22s_var(--ease-out-soft)_both]",
+            )}
           >
             <div className="grid grid-cols-[1fr_15rem]">
               <div className="p-7">

@@ -7,6 +7,7 @@ import { formatDate, formatPaise } from "@/lib/utils";
 import { requireCustomer } from "@/lib/commerce/context";
 import { getCustomerOrder } from "@/lib/commerce/orders";
 import { getCommerceSettings } from "@/lib/commerce/settings";
+import { orderDispatch } from "@/lib/commerce/dispatch";
 import { PAYMENT_METHOD_LABEL, type PaymentMethod } from "@/lib/constants";
 import { ButtonLink } from "@/components/ui/button";
 
@@ -39,8 +40,13 @@ export default async function OrderSuccessPage(
   const payment = order.payments[0] ?? null;
   const isCod = payment?.method === "COD";
 
-  const dispatchBy = new Date(order.placedAt);
-  dispatchBy.setDate(dispatchBy.getDate() + settings.dispatchDays);
+  // Per parcel, and within a parcel governed by its slowest line — a seller
+  // cannot post the box before the cloth is off the loom. See lib/commerce/dispatch.
+  const dispatch = orderDispatch({
+    placedAt: order.placedAt,
+    dispatchDays: settings.dispatchDays,
+    parcels: order.subOrders,
+  });
 
   return (
     <div className="mx-auto max-w-3xl px-5 py-14 lg:px-8">
@@ -78,8 +84,15 @@ export default async function OrderSuccessPage(
         />
         <NextStep
           icon={<Package className="h-4 w-4" />}
-          title="Being prepared"
-          detail={`Dispatch expected by ${formatDate(dispatchBy)}.`}
+          title={dispatch.hasCommission ? "Being woven" : "Being prepared"}
+          // The latest parcel, never the earliest. Leading with the quickest
+          // date and hiding an eight-week commission further down the page is
+          // the misleading summary this replaced.
+          detail={
+            dispatch.isStaggered
+              ? `Parcels dispatch between ${formatDate(dispatch.earliest)} and ${formatDate(dispatch.latest)}.`
+              : `Dispatch expected by ${formatDate(dispatch.latest)}.`
+          }
         />
         <NextStep
           icon={<Truck className="h-4 w-4" />}
@@ -104,7 +117,10 @@ export default async function OrderSuccessPage(
         )}
 
         <div className="space-y-4">
-          {order.subOrders.map((subOrder) => (
+          {order.subOrders.map((subOrder, index) => {
+            const parcel = dispatch.parcels[index];
+
+            return (
             <div
               key={subOrder.id}
               className="border border-ivory-400 bg-ivory-50 px-5"
@@ -115,6 +131,14 @@ export default async function OrderSuccessPage(
                 </p>
                 <p className="text-xs text-ink-400">{subOrder.subOrderNumber}</p>
               </div>
+
+              {/* Each parcel carries its own date, because they genuinely
+                  differ once anything in the order is being woven. */}
+              <p className="border-b border-ivory-300 py-2.5 text-xs text-ink-400">
+                {parcel?.loomWeeks
+                  ? `Woven to order — dispatch expected by ${formatDate(parcel.date)}`
+                  : `Dispatch expected by ${formatDate(parcel?.date ?? dispatch.latest)}`}
+              </p>
 
               <ul className="divide-y divide-ivory-300">
                 {subOrder.items.map((item) => (
@@ -139,6 +163,11 @@ export default async function OrderSuccessPage(
                           Qty {item.quantity} · {formatPaise(item.unitPrice)}{" "}
                           each
                         </p>
+                        {item.loomWeeks !== null && (
+                          <p className="mt-1 text-xs text-gold-600">
+                            Woven to order · about {item.loomWeeks} weeks
+                          </p>
+                        )}
                       </div>
                       <p className="shrink-0 text-sm tabular-nums text-ink-900">
                         {formatPaise(item.lineTotal)}
@@ -148,7 +177,8 @@ export default async function OrderSuccessPage(
                 ))}
               </ul>
             </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 

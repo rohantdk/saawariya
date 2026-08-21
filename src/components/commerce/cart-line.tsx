@@ -87,6 +87,15 @@ export function CartLine({ line }: { line: CartLineData }) {
               <p className="mt-1 text-xs text-ink-400">{line.variantLabel}</p>
             )}
             <p className="mt-0.5 text-xs text-ink-400">SKU {line.sku}</p>
+            {/* A bag can hold one piece off the shelf and one still on the
+                loom. Saying so per line stops the whole order reading as if it
+                ships together. */}
+            {line.loomWeeks !== null && (
+              <p className="mt-1.5 inline-flex items-center gap-1.5 text-xs text-gold-600">
+                <span aria-hidden="true" className="h-1 w-1 rounded-full bg-gold-500" />
+                Woven to order · about {line.loomWeeks} weeks
+              </p>
+            )}
           </div>
 
           <div className="text-right">

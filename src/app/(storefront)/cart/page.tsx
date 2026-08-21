@@ -5,6 +5,7 @@ import { formatPaise } from "@/lib/utils";
 import { requireCustomer } from "@/lib/commerce/context";
 import { getCart } from "@/lib/commerce/cart";
 import { getCommerceSettings } from "@/lib/commerce/settings";
+import { longestLoomWeeks } from "@/lib/commerce/dispatch";
 import { getOfferableCoupons, validateCoupon } from "@/lib/commerce/coupons";
 import { computeTotals, type AppliedCoupon } from "@/lib/commerce/totals";
 import { CartLine } from "@/components/commerce/cart-line";
@@ -151,7 +152,7 @@ export default async function CartPage(props: PageProps<"/cart">) {
                 <button
                   type="button"
                   disabled
-                  className="w-full cursor-not-allowed bg-brand-600/50 px-8 py-4 text-sm font-medium uppercase tracking-[0.16em] text-ivory-50"
+                  className="w-full cursor-not-allowed bg-brand-600/50 px-8 py-4 text-sm font-medium uppercase tracking-[0.16em] text-cream"
                 >
                   Proceed to checkout
                 </button>
@@ -165,7 +166,13 @@ export default async function CartPage(props: PageProps<"/cart">) {
               {settings.pricesIncludeGst
                 ? `Prices include GST at ${settings.gstPercent}%.`
                 : `GST at ${settings.gstPercent}% is added at checkout.`}{" "}
-              Dispatched within {settings.dispatchDays} working days.
+              {/* The flat dispatch window only holds for a bag of stocked
+                  goods. With a commission in it, quoting two days here and the
+                  real lead time only on the confirmation page would be a
+                  promise made and then withdrawn. */}
+              {longestLoomWeeks(cart.lines)
+                ? `Stocked pieces are dispatched within ${settings.dispatchDays} working days; commissioned pieces follow their own lead time, shown on each line.`
+                : `Dispatched within ${settings.dispatchDays} working days.`}
             </p>
           </OrderSummary>
         </aside>

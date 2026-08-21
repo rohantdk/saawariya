@@ -59,9 +59,9 @@
   --color-info: #2f5a6b;
   --color-info-soft: #e8f0f2;
 
-  /* Typography */
-  --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  /* Typography — see the note in app/layout.tsx for why this pairing */
+  --font-display: var(--font-bodoni), "Didot", Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter-tight), system-ui, -apple-system, sans-serif;
 
   /* Elevation — soft and warm, tinted with the ink colour rather than black */
   --shadow-card: 0 1px 2px rgba(38, 28, 23, 0.04), 0 4px 12px rgba(38, 28, 23, 0.06);
@@ -69,6 +69,63 @@
 
   /* Motion — restrained; premium reads as calm, not bouncy */
   --ease-out-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* Fixed on-brand tokens — NEVER redefined under .dark.
+     The wine header/footer/hero/CTA bands are wine regardless of site theme,
+     so their text, hairlines and badge/button pairs must not flip with the
+     rest of the page. `cream` is light text/borders on those fixed-dark
+     surfaces; `onyx` is dark text on a fixed-light chip sitting over a photo
+     (e.g. the hero CTA button); `scrim` is the dimming overlay behind a
+     drawer or lightbox, which must stay dark in both themes or it would
+     brighten the page instead of dimming it. */
+  --color-cream: #f8f5f1;
+  --color-onyx: #261c17;
+  --color-scrim: #261c17;
+}
+
+/* ---------------------------------------------------------------------------
+   Dark mode
+
+   Toggled by a `dark` class on <html> (see components/theme/theme-toggle.tsx),
+   not by prefers-color-scheme, so a visitor's choice always wins. Redefining
+   the ivory/ink/status variables here is what re-themes every existing
+   component for free — they were all built against these custom properties,
+   never a literal hex, so nothing but this block has to change.
+--------------------------------------------------------------------------- */
+.dark {
+  /* Ivory — page and surface neutrals, inverted */
+  --color-ivory-50: #221a15;
+  --color-ivory-100: #191310;
+  --color-ivory-200: #2b221b;
+  --color-ivory-300: #362a20;
+  --color-ivory-400: #47372a;
+  --color-ivory-500: #5c4a38;
+
+  /* Ink — body text, inverted to warm off-white */
+  --color-ink-400: #ab9a89;
+  --color-ink-500: #c7b8a8;
+  --color-ink-600: #ddd0c1;
+  --color-ink-900: #f3ece2;
+
+  /* Brand — brightened slightly; the logo maroon reads too dark against a
+     near-black page otherwise */
+  --color-brand-600: #c1443f;
+  --color-brand-700: #a83a36;
+
+  /* Semantic status — brightened and given a translucent soft variant so it
+     tints the dark surface instead of painting a pale-on-pale rectangle */
+  --color-success: #62b189;
+  --color-success-soft: rgba(98, 177, 137, 0.16);
+  --color-warning: #dba550;
+  --color-warning-soft: rgba(219, 165, 80, 0.16);
+  --color-danger: #e2776f;
+  --color-danger-soft: rgba(226, 119, 111, 0.16);
+  --color-info: #6fabc0;
+  --color-info-soft: rgba(111, 171, 192, 0.16);
+
+  /* Elevation — a light-tinted shadow is invisible on a dark surface */
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 14px rgba(0, 0, 0, 0.45);
+  --shadow-lifted: 0 2px 6px rgba(0, 0, 0, 0.45), 0 16px 32px rgba(0, 0, 0, 0.55);
 }
 
 @layer base {
@@ -89,9 +146,17 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    font-weight: 400; /* the display serif carries weight through size, not boldness */
-    letter-spacing: -0.01em;
+    /* Bodoni is a high-contrast face: at 700 the thick stems get heavier while
+       the hairlines stay fine, so headings read emphatic rather than merely
+       large. The negative tracking closes the gaps that opening up the weight
+       would otherwise leave between letters. */
+    font-weight: 700;
+    letter-spacing: -0.02em;
     color: var(--color-ink-900);
+  }
+
+  h1 {
+    letter-spacing: -0.03em;
   }
 
   /* Visible, on-brand focus ring — SRS §164 keyboard navigation */
@@ -127,6 +192,49 @@
     width: 1.75rem;
     height: 1px;
     background-color: var(--color-gold-400);
+  }
+
+  /* Category-bar link: a zari-gold rule that wipes in from the left on hover and
+     stays drawn for the section you are in. A pseudo-element rather than
+     text-decoration, because only this can animate its own width. */
+  .nav-underline {
+    position: relative;
+  }
+
+  .nav-underline::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0.6rem;
+    height: 1px;
+    background-color: var(--color-gold-400);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.34s var(--ease-out-soft);
+  }
+
+  .nav-underline:hover::after,
+  .nav-underline:focus-visible::after,
+  .nav-underline[data-current="true"]::after {
+    transform: scaleX(1);
+  }
+
+  /* The announcement ribbon swaps its message on a timer. Each new line rises
+     into place instead of cutting, so the eye registers it as one strip
+     changing rather than as content jumping. */
+  @keyframes ribbon-in {
+    from {
+      opacity: 0;
+      transform: translateY(0.45rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .ribbon-line {
+    animation: ribbon-in 0.5s var(--ease-out-soft) both;
   }
 
   /* Long-form body copy coming out of the CMS as raw HTML — /page/[slug].

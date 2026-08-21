@@ -75,7 +75,18 @@ export const PRODUCT_CARD_SELECT = {
   ratingAvg: true,
   ratingCount: true,
   isNewArrival: true,
-  seller: { select: { businessName: true, city: true, state: true } },
+  // Availability is derived from these together with `inventory`, so the card
+  // can say "On the loom" instead of "Sold out" — see lib/catalogue/availability.
+  isMadeToOrder: true,
+  loomWeeks: true,
+  seller: {
+    select: {
+      businessName: true,
+      city: true,
+      state: true,
+      cluster: { select: { name: true, slug: true } },
+    },
+  },
   category: { select: { name: true, slug: true, parent: { select: { slug: true } } } },
   images: {
     where: { isMain: true },
@@ -610,6 +621,11 @@ export const getProductBySlug = cache(async (slug: string) => {
       workType: true,
       color: true,
       weightGrams: true,
+      zariType: true,
+      blousePieceCm: true,
+      washCare: true,
+      isMadeToOrder: true,
+      loomWeeks: true,
       priceRetail: true,
       priceOffer: true,
       priceWholesale: true,
@@ -633,6 +649,9 @@ export const getProductBySlug = cache(async (slug: string) => {
           state: true,
           verificationStatus: true,
           verifiedAt: true,
+          cluster: {
+            select: { slug: true, name: true, tradition: true, state: true },
+          },
         },
       },
       category: {
@@ -645,7 +664,7 @@ export const getProductBySlug = cache(async (slug: string) => {
       },
       images: {
         orderBy: [{ isMain: "desc" }, { sortOrder: "asc" }],
-        select: { id: true, url: true, alt: true },
+        select: { id: true, url: true, alt: true, kind: true },
       },
       variants: {
         orderBy: { sku: "asc" },

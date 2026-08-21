@@ -1,10 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { cn, formatRating } from "@/lib/utils";
-import { INVENTORY_STATUS, type PriceTier } from "@/lib/constants";
+import { type PriceTier } from "@/lib/constants";
+import { availabilityOf } from "@/lib/catalogue/availability";
 import { resolvePrice } from "@/lib/catalogue/pricing";
 import { Price } from "@/components/storefront/price";
 import { RatingStars } from "@/components/storefront/rating-stars";
+import { WishlistButton } from "@/components/storefront/wishlist-button";
 import type { ProductCard as ProductCardData } from "@/lib/catalogue/queries";
 
 /**
@@ -20,22 +22,41 @@ export function ProductCard({
   product,
   tier,
   priority = false,
+  wishlisted,
 }: {
   product: ProductCardData;
   tier: PriceTier;
   priority?: boolean;
+  /**
+   * `undefined` — the caller has not wired up wishlist state, so no heart is
+   * shown. `null` — no customer is signed in. `Set` — the saved product ids
+   * for the signed-in customer.
+   */
+  wishlisted?: Set<string> | null;
 }) {
   const price = resolvePrice(product, tier);
   const image = product.images[0];
   const rating = product.ratingAvg / 10;
 
-  const isOutOfStock =
-    product.inventory?.status === INVENTORY_STATUS.OUT_OF_STOCK ||
-    product.inventory?.status === INVENTORY_STATUS.DISCONTINUED;
-  const isLowStock = product.inventory?.status === INVENTORY_STATUS.LOW_STOCK;
+  const availability = availabilityOf(product);
+  // Only a listing that cannot be bought at all is dimmed. A made-to-order
+  // piece with an empty shelf is still for sale, so greying it out would be a
+  // lie told in CSS.
+  const isUnavailable = !availability.isPurchasable;
 
   return (
-    <article className="group">
+    <article className="group relative">
+      {/* A sibling of the card <Link>, not a descendant — an anchor cannot
+          contain another anchor, and this button has to stay clickable on its
+          own without navigating to the product. */}
+      {wishlisted !== undefined && (
+        <WishlistButton
+          productId={product.id}
+          initialSaved={wishlisted ? wishlisted.has(product.id) : null}
+          signInHref={`/login?next=${encodeURIComponent("/account/wishlist")}`}
+        />
+      )}
+
       <Link href={`/product/${product.slug}`} className="block">
         <div className="relative aspect-[3/4] overflow-hidden bg-ivory-200">
           {image ? (
@@ -47,7 +68,7 @@ export function ProductCard({
               sizes="(min-width: 1280px) 20rem, (min-width: 768px) 33vw, 50vw"
               className={cn(
                 "object-cover transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:scale-[1.03]",
-                isOutOfStock && "opacity-60",
+                isUnavailable && "opacity-60",
               )}
             />
           ) : (
@@ -61,9 +82,15 @@ export function ProductCard({
               <Badge tone="brand">{price.discountPercent}% off</Badge>
             )}
             {product.isNewArrival && <Badge tone="ink">New</Badge>}
-            {isOutOfStock && <Badge tone="muted">Sold out</Badge>}
-            {isLowStock && !isOutOfStock && (
+            {availability.state === "MADE_TO_ORDER" && (
+              <Badge tone="loom">On the loom</Badge>
+            )}
+            {availability.state === "LOW_STOCK" && (
               <Badge tone="warning">Low stock</Badge>
+            )}
+            {(availability.state === "SOLD_OUT" ||
+              availability.state === "DISCONTINUED") && (
+              <Badge tone="muted">{availability.label}</Badge>
             )}
           </div>
         </div>
@@ -113,13 +140,16 @@ function Badge({
   tone,
 }: {
   children: React.ReactNode;
-  tone: "brand" | "ink" | "muted" | "warning";
+  tone: "brand" | "ink" | "muted" | "warning" | "loom";
 }) {
   const tones = {
-    brand: "bg-brand-600 text-ivory-50",
-    ink: "bg-ink-900 text-ivory-50",
+    brand: "bg-brand-600 text-cream",
+    ink: "bg-scrim text-cream",
     muted: "bg-ivory-50 text-ink-900",
     warning: "bg-warning-soft text-warning",
+    // Gold, not the warning amber: being woven to order is a mark of the piece,
+    // not a problem with it.
+    loom: "bg-gold-400 text-brand-950",
   };
 
   return (
@@ -139,12 +169,14 @@ export function ProductGrid({
   products,
   tier,
   priorityCount = 0,
+  wishlisted,
   className,
 }: {
   products: ProductCardData[];
   tier: PriceTier;
   /** How many images to mark priority — only ever the above-the-fold row. */
   priorityCount?: number;
+  wishlisted?: Set<string> | null;
   className?: string;
 }) {
   return (
@@ -160,6 +192,7 @@ export function ProductGrid({
           product={product}
           tier={tier}
           priority={index < priorityCount}
+          wishlisted={wishlisted}
         />
       ))}
     </div>

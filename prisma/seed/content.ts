@@ -34,12 +34,34 @@ const daysFromNow = (n: number) => new Date(now.getTime() + n * DAY);
 // Banners — SRS §125
 // ---------------------------------------------------------------------------
 
+/**
+ * Editorial photography, in public/editorial/. Distinct from CATALOGUE_IMAGES:
+ * those are product shots tied to a specific listing, these are styled set
+ * pieces used only in the hero and the marketing bands, where the frame carries
+ * a mood rather than a SKU. Credits are in public/editorial/CREDITS.md.
+ *
+ * Each is matched to copy it actually depicts — the block-print slide keeps a
+ * real block-print photograph rather than borrowing a silk one.
+ */
+const EDITORIAL = {
+  bridalHero: "/editorial/hero-bridal.jpg",
+  sheerSilk: "/editorial/silk-sanctuary.jpg",
+  atelier: "/editorial/bridal-atelier.jpg",
+  loom: "/editorial/handloom-craft.jpg",
+  banarasiDetail: "/editorial/banarasi-heritage.jpg",
+  // Added 2026-08-21 from the same prototype as the five above, and
+  // under the same unresolved licence — see public/editorial/CREDITS.md.
+  zariTexture: "/editorial/zari-brocade-texture.jpg",
+  festive: "/editorial/festive-diwali.jpg",
+  weaverAtLoom: "/editorial/weaver-pit-loom.jpg",
+} as const;
+
 const BANNERS = [
   {
     title: "The Vivaah Bridal Edit",
     subtitle:
       "Handwoven Banarasi and Kanjivaram for the wedding season, direct from the loom.",
-    imageUrl: CATALOGUE_IMAGES.banarasi[0],
+    imageUrl: EDITORIAL.bridalHero,
     linkUrl: "/shop/sarees?collection=Vivaah+Bridal",
     position: "HOME_HERO",
     sortOrder: 0,
@@ -47,7 +69,7 @@ const BANNERS = [
   {
     title: "Chanderi, Woven Light",
     subtitle: "Sheer silk-cotton from Pranpur village, on pit looms worked by hand.",
-    imageUrl: CATALOGUE_IMAGES.chanderi[0],
+    imageUrl: EDITORIAL.sheerSilk,
     linkUrl: "/shop/sarees/chanderi-sarees",
     position: "HOME_HERO",
     sortOrder: 1,
@@ -61,17 +83,27 @@ const BANNERS = [
     sortOrder: 2,
   },
   {
+    title: "Dressed for the Season",
+    subtitle: "Silk and zari for Diwali, weddings and the nights in between.",
+    imageUrl: EDITORIAL.festive,
+    // `occasion` is a real facet key (see catalogue/filters.ts) and "Festive"
+    // is a seeded value, so this resolves to a populated listing.
+    linkUrl: "/shop?occasion=Festive",
+    position: "HOME_HERO",
+    sortOrder: 3,
+  },
+  {
     title: "Buying for a boutique?",
     subtitle: "Wholesale pricing, GST invoicing and MOQ from 10 metres.",
-    imageUrl: CATALOGUE_IMAGES.brocade[1],
-    linkUrl: "/wholesale",
+    imageUrl: EDITORIAL.atelier,
+    linkUrl: "/register?type=wholesale",
     position: "HOME_STRIP",
     sortOrder: 0,
   },
   {
     title: "Fabric by the Metre",
     subtitle: "Silk, cotton, brocade and kalamkari — cut to your requirement.",
-    imageUrl: CATALOGUE_IMAGES.silk[1],
+    imageUrl: EDITORIAL.zariTexture,
     linkUrl: "/shop/fabric-by-the-metre",
     position: "CATEGORY_TOP",
     sortOrder: 0,
@@ -92,7 +124,7 @@ const BANNERS = [
   {
     title: "Handloom Week",
     subtitle: "Seven days of weaver-direct pricing across every loom region.",
-    imageUrl: CATALOGUE_IMAGES.chanderi[1],
+    imageUrl: EDITORIAL.weaverAtLoom,
     linkUrl: "/shop",
     position: "HOME_STRIP",
     sortOrder: 1,

@@ -3,6 +3,7 @@ import { cache } from "react";
 import { prisma } from "@/lib/prisma";
 import { resolvePrice, type ResolvedPrice } from "@/lib/catalogue/pricing";
 import { PUBLIC_PRODUCT_WHERE } from "@/lib/catalogue/queries";
+import { availabilityOf } from "@/lib/catalogue/availability";
 import { INVENTORY_STATUS, type PriceTier } from "@/lib/constants";
 
 /**
@@ -46,6 +47,12 @@ export type CartLine = {
   availableQty: number;
   minOrderQty: number;
   maxOrderQty: number;
+  /**
+   * Set when this line is being woven rather than picked. The cart and the
+   * checkout both print it, because a bag holding one stocked piece and one
+   * eight-week commission must not imply the whole order ships together.
+   */
+  loomWeeks: number | null;
   issues: CartIssue[];
 };
 
@@ -104,6 +111,8 @@ export async function getCart(
           priceWholesale: true,
           minOrderQty: true,
           maxOrderQty: true,
+          isMadeToOrder: true,
+          loomWeeks: true,
           seller: {
             select: {
               id: true,
@@ -170,7 +179,14 @@ export async function getCart(
       tier,
     );
 
-    const availableQty = availableFor(product.inventory, variant);
+    const availability = availabilityOf(product);
+    // A piece being woven to order is not limited by what is on the shelf, so
+    // the only ceiling left is the per-order maximum. Anything still selling
+    // from stock is capped by stock, exactly as before.
+    const availableQty = availability.isOnTheLoom
+      ? product.maxOrderQty
+      : availableFor(product.inventory, variant);
+
     const issues = lineIssues({
       isBuyable: buyableIds.has(product.id),
       // A variant that has been deleted since it was added leaves a dangling
@@ -178,6 +194,7 @@ export async function getCart(
       // base price for something the customer did not choose.
       variantMissing: variantId !== null && variant === null,
       inventoryStatus: product.inventory?.status ?? null,
+      isOnTheLoom: availability.isOnTheLoom,
       availableQty,
       quantity: item.quantity,
       minOrderQty: price.minOrderQty,
@@ -202,6 +219,7 @@ export async function getCart(
       availableQty,
       minOrderQty: price.minOrderQty,
       maxOrderQty: product.maxOrderQty,
+      loomWeeks: availability.isOnTheLoom ? availability.loomWeeks : null,
       issues,
     };
   });
@@ -246,6 +264,8 @@ function lineIssues(input: {
   isBuyable: boolean;
   variantMissing: boolean;
   inventoryStatus: string | null;
+  /** Woven to order: the inventory row says nothing about whether it can be had. */
+  isOnTheLoom: boolean;
   availableQty: number;
   quantity: number;
   minOrderQty: number;
@@ -263,10 +283,14 @@ function lineIssues(input: {
 
   const issues: CartIssue[] = [];
 
-  const isOut =
-    input.availableQty <= 0 ||
-    input.inventoryStatus === INVENTORY_STATUS.OUT_OF_STOCK ||
-    input.inventoryStatus === INVENTORY_STATUS.DISCONTINUED;
+  // DISCONTINUED still blocks a made-to-order line: that status means the loom
+  // is not being set up for this piece again, which is a stronger statement
+  // than an empty shelf.
+  const isOut = input.isOnTheLoom
+    ? input.inventoryStatus === INVENTORY_STATUS.DISCONTINUED
+    : input.availableQty <= 0 ||
+      input.inventoryStatus === INVENTORY_STATUS.OUT_OF_STOCK ||
+      input.inventoryStatus === INVENTORY_STATUS.DISCONTINUED;
 
   if (isOut) {
     issues.push({ kind: "OUT_OF_STOCK", message: "Out of stock." });
