@@ -63,44 +63,36 @@ const BASKETS: Basket[] = [
     // that are refused are just as useful: WELCOME10 is new-customers-only, and
     // this account has already used its one FESTIVE500. It also lands above the
     // ₹10,000 ceiling on Cash on Delivery, so that rule is visible too.
-    intent: "retail bag spanning three sellers, with one variant line",
+    // Was "three sellers, with one variant line" against the pre-2026-08-24
+    // catalogue. All non-saree products (and 14 of the 19 seeded sarees) were
+    // switched to HIDDEN that day — see prisma/seed/products.ts — leaving
+    // only the five client-photographed sarees APPROVED, none of them
+    // multi-seller and none with variants. Retargeted to what still exists;
+    // the three/four-seller and "choose options" demonstrations this basket
+    // used to carry are gone until the catalogue is reopened.
+    intent: "retail bag of the five visible sarees, no variants left to demonstrate",
     lines: [
-      {
-        slug: "chanderi-saree-with-gold-booti",
-        variantValue: "6.3 m + blouse piece",
-        quantity: 1,
-      },
-      { slug: "kashmir-weave-silk-stole-with-boteh-motif", quantity: 2 },
-      { slug: "block-print-cotton-cushion-cover-set-of-4", quantity: 1 },
+      { slug: "shimmer-tissue-saree-mauve-gold", quantity: 1 },
+      { slug: "shimmer-tissue-saree-sea-green", quantity: 2 },
+      { slug: "shimmer-tissue-saree-olive-gold", quantity: 1 },
     ],
-    // Deliberately the expensive end of the catalogue, and none of them in the
-    // bag: a wishlist that duplicates the cart demonstrates nothing. The mix
-    // also exercises both cards the screen can draw — "Move to bag" for the
-    // dupatta, which has no variants, and "Choose options" for the three that
-    // do — and one of them carries an offer price, so the discount badge shows.
     saved: [
-      "velvet-bridal-lehenga-with-zardozi-work",
-      "kanjivaram-silk-saree-with-korvai-border",
-      "tussar-silk-saree-with-hand-painted-pallu",
-      "phulkari-bagh-dupatta-punjab-darn-stitch",
+      "shimmer-tissue-saree-coral-pink",
+      "shimmer-tissue-saree-mustard-gold",
     ],
   },
   {
     email: "wholesale@saawariya.test",
-    // Running fabric, both lines above their MOQ, priced at the wholesale tier.
-    // ~₹55,600 clears BULK20's ₹50,000 minimum, so the wholesale-only coupon is
-    // demonstrable from the seeded state rather than only its rejection.
-    intent: "wholesale bag above MOQ on both lines",
-    lines: [
-      { slug: "chanderi-cotton-silk-fabric", variantValue: "1 metre", quantity: 60 },
-      { slug: "pure-silk-fabric-by-the-metre", variantValue: "1 metre", quantity: 40 },
-    ],
-    // Fabrics a trade buyer would be costing for a future run.
-    saved: [
-      "sanganeri-block-print-cotton-fabric",
-      "banarasi-brocade-fabric-gold-zari",
-      "handloom-cotton-fabric-natural-dye",
-    ],
+    // Was "wholesale bag above MOQ on both lines" against two fabric-by-the-
+    // metre products, both now HIDDEN (see the note above) — and none of the
+    // five sarees left public carry an MOQ above 1, so there is no longer a
+    // wholesale-eligible product to put in this bag. Per this file's own
+    // rule ("an empty cart would have been the better outcome" than a line
+    // seeded with a fault), left empty rather than forced onto a retail
+    // product it cannot honestly demonstrate wholesale pricing on.
+    intent: "wholesale bag — empty, no wholesale-eligible product is public",
+    lines: [],
+    saved: [],
   },
 ];
 

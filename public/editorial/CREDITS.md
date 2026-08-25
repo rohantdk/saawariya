@@ -63,11 +63,28 @@ photographs of goods for sale.
 
 Two images from that pass were deliberately **not** used:
 `c319d7e6f` has "LUXE SAREE COLLECTION" burned into the pixels, so it cannot be
-relabelled for one of our categories; `20dbbd60b` had no place to go. Both are
-in `assets/frame-reference/` if they are ever wanted.
+relabelled for one of our categories; `20dbbd60b` had no place to go. Neither
+is included in this build; both remain in the client's prototype if they
+are ever wanted.
 
 The last two are kept because they are usable and the client may want them, but
 nothing renders them today. Delete them if they are not going to be used.
+
+### Added 2026-08-24 — client-supplied, not prototype
+
+`client-hero-saree.jpg` is **not** from prototype — everything above about
+unresolved provenance does not apply to it. It was supplied
+directly by the client as `herosareepic.png` in
+`D:\Arjitay Project\saree-images\` (the same folder as the five product
+photographs behind the live catalogue — see `public/catalogue/CREDITS.md`)
+and used for the homepage hero as of that date. Same open question as the
+catalogue photos, though: no commercial usage rights were stated when the
+files were handed over — confirm with the client before this build goes
+anywhere public.
+
+| File | Used for | Source |
+| --- | --- | --- |
+| `client-hero-saree.jpg` | Hero slide 1 — "The Vivaah Bridal Edit" | Client-supplied, `saree-images/herosareepic.png` |
 
 ## Processing
 

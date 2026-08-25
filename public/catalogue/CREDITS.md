@@ -1,9 +1,10 @@
 # Catalogue image credits
 
-Every image in this directory **except the five `frame-*.jpg` files** comes
-from [Wikimedia Commons](https://commons.wikimedia.org) and is in the **public
-domain** or released under **CC0**. Neither requires attribution; the sources
-are listed anyway so the licensing can be verified rather than taken on trust.
+Every image in this directory **except the five `frame-*.jpg` files and the
+`client-sarees/` folder** comes from [Wikimedia Commons](https://commons.wikimedia.org)
+and is in the **public domain** or released under **CC0**. Neither requires
+attribution; the sources are listed anyway so the licensing can be verified
+rather than taken on trust.
 
 Most are photographs of museum textile holdings — the Metropolitan Museum of
 Art, the Cleveland Museum of Art, LACMA, the Honolulu Museum of Art and
@@ -12,6 +13,16 @@ Cooper Hewitt — which is why they are shot flat against neutral grounds.
 > **The five `frame-*.jpg` files are the exception and are not CC0.** They are
 > of undocumented origin, their licence is unresolved, and they are attached to live
 > product listings. See [the section at the end](#prototype-frames--not-cc0-read-before-launch).
+
+> **`client-sarees/` is also not CC0.** These 30 photographs (5 sarees × 6
+> frames) were supplied directly by the client on 2026-08-24 for the sarees
+> that are the only products now shown on the storefront (see
+> `prisma/seed/products.ts`, the products named after `saree1`–`saree5`).
+> Commercial usage rights were not stated when the files were handed over —
+> confirm with the client before this build goes anywhere public. Originals
+> are at `D:\Arjitay Project\saree-images\` outside this repo; the copies here
+> were resized to match the CC0 set's recipe (ffmpeg, `scale=min(900,iw):-2`,
+> `-q:v 4`) — 13.0 MB → 3.4 MB.
 
 Regenerate the CC0 set with `node scripts/fetch-catalogue-images.mjs` — it does
 not know about the `frame-*` files and will not touch them.

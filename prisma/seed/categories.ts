@@ -31,7 +31,10 @@ export const CATEGORY_TREE: CategorySeed[] = [
     description:
       "Handwoven and handcrafted sarees from India's principal weaving centres — Varanasi, Kanchipuram, Chanderi, Murshidabad and Pochampally.",
     iconName: "Sparkles",
-    image: IMG.banarasi[0],
+    // Was IMG.banarasi[0] (a CC0 museum brocade swatch, no model). Swapped
+    // 2026-08-24 for one of the client's own plain-saree photographs — the
+    // only sarees actually for sale right now — see prisma/seed/products.ts.
+    image: "/catalogue/client-sarees/saree3-1.jpg",
     children: [
       {
         slug: "banarasi-sarees",
@@ -270,11 +273,26 @@ export const CATEGORY_TREE: CategorySeed[] = [
   },
 ];
 
+/**
+ * Client asked (2026-08-24) to show sarees only, everywhere: nav, mega-menu,
+ * homepage grid. Rather than delete the other five departments and their
+ * eighteen sub-categories — losing real seed content over what may be a
+ * temporary launch state — every category outside "sarees" (and, within
+ * sarees, everything but "silk-sarees", the one sub-category carrying the
+ * client's real product photography — see prisma/seed/products.ts) is
+ * switched to isActive: false. `getCategoryTree`/`getCategoryBySlug`
+ * (src/lib/catalogue/queries.ts) both filter on isActive, so this alone
+ * removes them from every public listing without touching PUBLIC_PRODUCT_WHERE.
+ */
+const VISIBLE_TOP_SLUG = "sarees";
+const VISIBLE_CHILD_SLUG = "silk-sarees";
+
 export async function seedCategories(prisma: PrismaClient) {
   let parents = 0;
   let children = 0;
 
   for (const [index, parent] of CATEGORY_TREE.entries()) {
+    const parentActive = parent.slug === VISIBLE_TOP_SLUG;
     const parentRow = await prisma.category.upsert({
       where: { slug: parent.slug },
       update: {
@@ -283,7 +301,7 @@ export async function seedCategories(prisma: PrismaClient) {
         iconName: parent.iconName,
         imageUrl: parent.image,
         sortOrder: index,
-        isActive: true,
+        isActive: parentActive,
       },
       create: {
         slug: parent.slug,
@@ -292,11 +310,13 @@ export async function seedCategories(prisma: PrismaClient) {
         iconName: parent.iconName,
         imageUrl: parent.image,
         sortOrder: index,
+        isActive: parentActive,
       },
     });
     parents++;
 
     for (const [childIndex, child] of parent.children.entries()) {
+      const childActive = parentActive && child.slug === VISIBLE_CHILD_SLUG;
       await prisma.category.upsert({
         where: { slug: child.slug },
         update: {
@@ -305,7 +325,7 @@ export async function seedCategories(prisma: PrismaClient) {
           imageUrl: child.image,
           parentId: parentRow.id,
           sortOrder: childIndex,
-          isActive: true,
+          isActive: childActive,
         },
         create: {
           slug: child.slug,
@@ -314,6 +334,7 @@ export async function seedCategories(prisma: PrismaClient) {
           imageUrl: child.image,
           parentId: parentRow.id,
           sortOrder: childIndex,
+          isActive: childActive,
         },
       });
       children++;

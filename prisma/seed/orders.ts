@@ -137,7 +137,16 @@ export async function seedOrders(prisma: PrismaClient) {
       },
     }),
     prisma.product.findMany({
-      where: { status: "APPROVED" },
+      // APPROVED *and* HIDDEN. The 2026-08-24 request to show only the five
+      // client sarees forces every other product HIDDEN (see the status line in
+      // prisma/seed/products.ts), but a product taken off the storefront today
+      // was still sold last month — its order history is not retrospectively
+      // untrue. Filtering to APPROVED alone silently dropped every line whose
+      // SKU had been hidden, and `if (lines.length === 0) continue` below then
+      // dropped the whole order: all 37 sub-orders collapsed onto the one
+      // seller whose stock was still visible, leaving every other seller's
+      // Orders, Settlements and Reports screens empty.
+      where: { status: { in: ["APPROVED", "HIDDEN"] } },
       select: {
         id: true,
         sku: true,

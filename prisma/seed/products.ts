@@ -60,6 +60,12 @@ type ProductSeed = {
    * where they come from and why only a few products carry them.
    */
   extraImages?: Array<{ url: string; alt: string; kind: string }>;
+  /**
+   * Replaces the pool/extraImages gallery entirely with the client's own
+   * product photography — see CLIENT_SAREES below. `imagePool` is still
+   * required by the type but is never read when this is set.
+   */
+  clientImages?: Array<{ url: string; alt: string; kind: string }>;
 };
 
 const SILKS = new Set([
@@ -141,8 +147,8 @@ const APPAREL_SIZES = [
  *
  * These are **of undocumented origin** (every source filename on that CDN is
  * the original file names) and their licence is unsettled — the same caveat
- * that governs `public/editorial/`. See `public/catalogue/CREDITS.md` and
- * `assets/frame-reference/README.md` before launch.
+ * that governs `public/editorial/`. See `public/catalogue/CREDITS.md`
+ * before launch.
  *
  * Two rules were applied when placing them, and both matter if more are added:
  *
@@ -188,6 +194,34 @@ const EXTRA_FRAMES = {
     kind: "DRAPE",
   },
 } as const;
+
+/**
+ * Client-supplied product photography, added 2026-08-24.
+ *
+ * The client asked to hide every product except sarees and provided real
+ * photography for exactly five sarees (6 frames each) at
+ * `D:\Arjitay Project\saree-images\`, copied and recompressed into
+ * `public/catalogue/client-sarees/` with the same recipe
+ * scripts/fetch-catalogue-images.mjs uses for the CC0 set. These are the
+ * *only* five products left APPROVED — see the status override at the bottom
+ * of the seeding loop below. Licensing is unresolved; see
+ * public/catalogue/CREDITS.md before this build goes anywhere public.
+ *
+ * All five sets follow the same shoot template — frame 1 is a front-facing
+ * full-length standing shot, frames 2-3 are further full-length drape shots
+ * (back/pallu, alternate angle), frames 4-6 are close-ups on the blouse and
+ * pallu. `kind` reflects that: FRONT/DRAPE for the full-length frames, DETAIL
+ * for the close-ups — see the no-REVERSE-seeded note further down for why
+ * `kind` is meant to describe what a frame actually shows.
+ */
+function clientSareeFrames(set: number, sareeName: string) {
+  const KIND_BY_INDEX = ["FRONT", "DRAPE", "DRAPE", "DETAIL", "DETAIL", "DETAIL"] as const;
+  return Array.from({ length: 6 }, (_, i) => ({
+    url: `/catalogue/client-sarees/saree${set}-${i + 1}.jpg`,
+    alt: `${sareeName} — client photograph ${i + 1} of 6`,
+    kind: KIND_BY_INDEX[i],
+  }));
+}
 
 export const PRODUCTS: ProductSeed[] = [
   // ---- Banarasi (Anil Textiles, Varanasi) --------------------------------
@@ -999,6 +1033,110 @@ export const PRODUCTS: ProductSeed[] = [
     // Seller's own work-in-progress — visible to them, nobody else.
     status: PRODUCT_STATUS.DRAFT,
   },
+
+  // ---- Client-supplied sarees (real photography, 2026-08-24) -------------
+  // The only five products shown on the storefront right now — see
+  // clientSareeFrames() above and the status override in seedProducts().
+  // Appended at the end, not interleaved above, so every seller's existing
+  // SKU numbering (SAAW-<SELLER>-NNN, assigned by array position — see
+  // skuFor()) stays stable across reseeds of an already-populated database.
+  {
+    name: "Shimmer Tissue Saree — Mauve & Gold",
+    seller: "meenakshi",
+    category: "silk-sarees",
+    imagePool: "silk",
+    clientImages: clientSareeFrames(1, "Shimmer Tissue Saree — Mauve & Gold"),
+    description:
+      "A tissue-weave saree in a soft mauve-gold shimmer, with a matching shimmer blouse piece. Comes with an unstitched blouse piece.",
+    fabric: "Organza",
+    pattern: "Solid",
+    occasion: "Party",
+    workType: "None",
+    color: "Mauve",
+    weightGrams: 400,
+    priceRetail: 285_000,
+    priceWholesale: 195_000,
+    stockQty: 25,
+    isFeatured: true,
+    isNewArrival: true,
+  },
+  {
+    name: "Shimmer Tissue Saree — Sea Green",
+    seller: "meenakshi",
+    category: "silk-sarees",
+    imagePool: "silk",
+    clientImages: clientSareeFrames(2, "Shimmer Tissue Saree — Sea Green"),
+    description:
+      "A tissue-weave saree in a shot sea-green shimmer, with a matching shimmer blouse piece. Comes with an unstitched blouse piece.",
+    fabric: "Organza",
+    pattern: "Solid",
+    occasion: "Party",
+    workType: "None",
+    color: "Sea Green",
+    weightGrams: 400,
+    priceRetail: 285_000,
+    priceWholesale: 195_000,
+    stockQty: 25,
+    isNewArrival: true,
+  },
+  {
+    name: "Shimmer Tissue Saree — Olive Gold",
+    seller: "meenakshi",
+    category: "silk-sarees",
+    imagePool: "silk",
+    clientImages: clientSareeFrames(3, "Shimmer Tissue Saree — Olive Gold"),
+    description:
+      "A tissue-weave saree in an olive-gold shimmer, with a matching shimmer blouse piece. Comes with an unstitched blouse piece.",
+    fabric: "Organza",
+    pattern: "Solid",
+    occasion: "Party",
+    workType: "None",
+    color: "Olive Gold",
+    weightGrams: 400,
+    priceRetail: 285_000,
+    priceWholesale: 195_000,
+    stockQty: 25,
+    isNewArrival: true,
+  },
+  {
+    name: "Shimmer Tissue Saree — Coral Pink",
+    seller: "meenakshi",
+    category: "silk-sarees",
+    imagePool: "silk",
+    clientImages: clientSareeFrames(4, "Shimmer Tissue Saree — Coral Pink"),
+    description:
+      "A tissue-weave saree in a coral-pink shimmer, with a matching shimmer blouse piece. Comes with an unstitched blouse piece.",
+    fabric: "Organza",
+    pattern: "Solid",
+    occasion: "Party",
+    workType: "None",
+    color: "Coral Pink",
+    weightGrams: 400,
+    priceRetail: 285_000,
+    priceWholesale: 195_000,
+    stockQty: 25,
+    isFeatured: true,
+    isNewArrival: true,
+  },
+  {
+    name: "Shimmer Tissue Saree — Mustard Gold",
+    seller: "meenakshi",
+    category: "silk-sarees",
+    imagePool: "silk",
+    clientImages: clientSareeFrames(5, "Shimmer Tissue Saree — Mustard Gold"),
+    description:
+      "A tissue-weave saree in a rich mustard-gold shimmer, with a matching shimmer blouse piece. Comes with an unstitched blouse piece.",
+    fabric: "Organza",
+    pattern: "Solid",
+    occasion: "Party",
+    workType: "None",
+    color: "Mustard Gold",
+    weightGrams: 400,
+    priceRetail: 285_000,
+    priceWholesale: 195_000,
+    stockQty: 25,
+    isNewArrival: true,
+  },
 ];
 
 /** SKUs read SAAW-<SELLER>-<NNN> so they sort and group usefully in admin lists. */
@@ -1036,7 +1174,22 @@ export async function seedProducts(
     // On a marketplace the brand belongs to the seller, not the platform.
     const sellerName = SELLERS.find((s) => s.key === seed.seller)?.businessName ?? null;
 
-    const status = seed.status ?? PRODUCT_STATUS.APPROVED;
+    // Client asked (2026-08-24) to hide every product except the five sarees
+    // with real client photography. Rather than delete 44 seeded products —
+    // losing the admin/seller demo data they exist for — every one of them is
+    // forced HIDDEN here regardless of its own `status`. HIDDEN already means
+    // "not on the storefront" (see PUBLIC_PRODUCT_WHERE in
+    // src/lib/catalogue/queries.ts), so this is one line to revert.
+    // Only an APPROVED product is on the storefront, so only APPROVED needs
+    // hiding. DRAFT, PENDING and REJECTED were never public, and forcing those
+    // to HIDDEN as well emptied the admin product-approval queue and the
+    // seller's rejected-listing view — two screens the SRS asks for, with
+    // nothing left in them, for no gain against the client's request.
+    const declared = seed.status ?? PRODUCT_STATUS.APPROVED;
+    const status =
+      seed.clientImages || declared !== PRODUCT_STATUS.APPROVED
+        ? declared
+        : PRODUCT_STATUS.HIDDEN;
     const isApproved = status === PRODUCT_STATUS.APPROVED;
     const slug = slugify(seed.name);
 
@@ -1082,51 +1235,76 @@ export async function seedProducts(
     });
     productIds.push(product.id);
 
-    // Images: pull a rotating window from the pool matching this textile type,
-    // so two products in the same category do not open with the same photo.
-    // Never take more than the pool holds — repeating an image inside a single
-    // product's gallery is more obvious than simply showing fewer.
-    const pool = CATALOGUE_IMAGES[seed.imagePool];
-    const offset = n % pool.length;
-    const picked = Array.from({ length: Math.min(3, pool.length) }, (_, k) => (
-      pool[(offset + k) % pool.length]
-    ));
-
     await prisma.productImage.deleteMany({ where: { productId: product.id } });
-    await prisma.productImage.createMany({
-      // No REVERSE frame is seeded, and that is deliberate. The catalogue
-      // images are photographs of museum textile holdings shot from the front;
-      // labelling one of them "the reverse" would put a claim on the product
-      // page that the picture does not support. The seeded catalogue therefore
-      // shows the honest state — reverse not yet supplied — which is also the
-      // state the seller form and the approval checklist are built to chase.
-      data: [
-        ...picked.map((url, i) => ({
-          productId: product.id,
-          url,
-          alt: `${seed.name} — view ${i + 1}`,
-          sortOrder: i,
-          isMain: i === 0,
-          kind: i === 0 ? "FRONT" : "DETAIL",
-        })),
-        // Appended after the pool, never isMain: the CC0 museum photograph
-        // stays the frame the product card opens with.
-        ...(seed.extraImages ?? []).map((frame, i) => ({
+
+    if (seed.clientImages?.length) {
+      // Real client photography replaces the pool entirely — see
+      // clientSareeFrames() above.
+      await prisma.productImage.createMany({
+        data: seed.clientImages.map((frame, i) => ({
           productId: product.id,
           url: frame.url,
           alt: frame.alt,
-          sortOrder: picked.length + i,
-          isMain: false,
+          sortOrder: i,
+          isMain: i === 0,
           kind: frame.kind,
         })),
-      ],
-    });
+      });
+    } else {
+      // Images: pull a rotating window from the pool matching this textile
+      // type, so two products in the same category do not open with the same
+      // photo. Never take more than the pool holds — repeating an image
+      // inside a single product's gallery is more obvious than simply
+      // showing fewer.
+      const pool = CATALOGUE_IMAGES[seed.imagePool];
+      const offset = n % pool.length;
+      const picked = Array.from({ length: Math.min(3, pool.length) }, (_, k) => (
+        pool[(offset + k) % pool.length]
+      ));
+
+      await prisma.productImage.createMany({
+        // No REVERSE frame is seeded, and that is deliberate. The catalogue
+        // images are photographs of museum textile holdings shot from the front;
+        // labelling one of them "the reverse" would put a claim on the product
+        // page that the picture does not support. The seeded catalogue therefore
+        // shows the honest state — reverse not yet supplied — which is also the
+        // state the seller form and the approval checklist are built to chase.
+        data: [
+          ...picked.map((url, i) => ({
+            productId: product.id,
+            url,
+            alt: `${seed.name} — view ${i + 1}`,
+            sortOrder: i,
+            isMain: i === 0,
+            kind: i === 0 ? "FRONT" : "DETAIL",
+          })),
+          // Appended after the pool, never isMain: the CC0 museum photograph
+          // stays the frame the product card opens with.
+          ...(seed.extraImages ?? []).map((frame, i) => ({
+            productId: product.id,
+            url: frame.url,
+            alt: frame.alt,
+            sortOrder: picked.length + i,
+            isMain: false,
+            kind: frame.kind,
+          })),
+        ],
+      });
+    }
+
+    // Cleared unconditionally, like the images above, because SKUs are
+    // positional (skuFor) and the seed array has been appended to. A SKU whose
+    // occupant changed from a saree to a stole would otherwise keep the saree's
+    // variants: deleting only inside the `if` below leaves stale rows on every
+    // entry that declares no variants of its own, and the leftovers no longer
+    // sum to Inventory.stockQty — which is exactly what prisma/seed-check.ts
+    // reports as "variant stock N != inventory M".
+    await prisma.productVariant.deleteMany({ where: { productId: product.id } });
 
     // Variants split the product's stock between them; the sum matches Inventory.
     if (seed.variants?.length) {
       const split = Math.floor(seed.stockQty / seed.variants.length);
       const remainder = seed.stockQty - split * seed.variants.length;
-      await prisma.productVariant.deleteMany({ where: { productId: product.id } });
       await prisma.productVariant.createMany({
         data: seed.variants.map((v, i) => ({
           productId: product.id,
@@ -1172,8 +1350,10 @@ export async function seedProducts(
     }
   }
 
+  // Counts the status actually written (the client-images override, not the
+  // seed's own `status` field) — see the override above `isApproved`.
   const byStatus = PRODUCTS.reduce<Record<string, number>>((acc, p) => {
-    const s = p.status ?? PRODUCT_STATUS.APPROVED;
+    const s = p.clientImages ? (p.status ?? PRODUCT_STATUS.APPROVED) : PRODUCT_STATUS.HIDDEN;
     acc[s] = (acc[s] ?? 0) + 1;
     return acc;
   }, {});

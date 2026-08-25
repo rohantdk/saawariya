@@ -183,7 +183,7 @@ rule this build held to throughout: **no dead links and no fake screens.**
 ```
 saawariya/
 ├── prisma/
-│   ├── schema.prisma        # 33 models — the full domain
+│   ├── schema.prisma        # 41 models — the full domain
 │   ├── migrations/          # version-controlled schema history
 │   ├── seed.ts              # seed entry point
 │   └── seed/                # seed modules, one per domain area
@@ -253,7 +253,7 @@ repository**, not fetched at setup — this project is reviewed by unzipping and
 running it locally, and a demo that needs internet access to render its own
 product images is a demo that breaks during the review it exists for.
 
-Every image is **public domain or CC0**, sourced from Wikimedia Commons. Most are
+Most images are **public domain or CC0**, sourced from Wikimedia Commons. Most are
 photographs of museum textile holdings (the Metropolitan Museum of Art, the
 Cleveland Museum of Art, LACMA, the Honolulu Museum of Art and Cooper Hewitt),
 which is why they are shot flat against neutral grounds. Neither licence requires
@@ -264,6 +264,16 @@ licensing can be verified rather than taken on trust.
 These are illustrative demo assets. They are matched to product *type* — a
 Banarasi listing gets a Varanasi brocade — but they are not photographs of the
 specific fictional products in the seed data.
+
+> **Two sets are the exception and are not CC0 — settle them before launch.**
+> The five `frame-*.jpg` frames and the seven `public/editorial/` set pieces come
+> from the client's own the prototype site prototype, are of undocumented origin, and
+> carry no stated licence; several depict identifiable-looking people. The 30
+> photographs in `catalogue/client-sarees/` were supplied by the client on
+> 2026-08-24 with no commercial usage rights stated. Both are documented in full
+> in **[public/catalogue/CREDITS.md](public/catalogue/CREDITS.md)** and
+> **[public/editorial/CREDITS.md](public/editorial/CREDITS.md)**, which say
+> exactly what to confirm and how to revert if the answer is no.
 
 `scripts/catalogue-images.json` is the manifest, and
 `node scripts/fetch-catalogue-images.mjs` regenerates the images, the credits

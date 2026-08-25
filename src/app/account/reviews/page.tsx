@@ -86,12 +86,19 @@ export default async function ReviewsPage() {
                     )}
                   </div>
                   <div className="min-w-0">
-                    <Link
-                      href={`/product/${item.product.slug}`}
-                      className="text-sm text-ink-900 hover:text-brand-600"
-                    >
-                      {item.productName}
-                    </Link>
+                    {/* Delisted since it was bought? The line still deserves a
+                        review, but there is no page to land on — same rule the
+                        posted-reviews list below already applies. */}
+                    {item.product.status === "APPROVED" ? (
+                      <Link
+                        href={`/product/${item.product.slug}`}
+                        className="text-sm text-ink-900 hover:text-brand-600"
+                      >
+                        {item.productName}
+                      </Link>
+                    ) : (
+                      <p className="text-sm text-ink-900">{item.productName}</p>
+                    )}
                     <p className="mt-1 text-xs text-ink-400">
                       Delivered
                       {item.subOrder.deliveredAt &&

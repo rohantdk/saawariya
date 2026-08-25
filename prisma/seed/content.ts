@@ -53,42 +53,44 @@ const EDITORIAL = {
   // under the same unresolved licence — see public/editorial/CREDITS.md.
   zariTexture: "/editorial/zari-brocade-texture.jpg",
   festive: "/editorial/festive-diwali.jpg",
+  // From the prototype site's "Our Story" / login section ("A saree is not worn. It
+  // is inherited."). Landscape (1344×768), staged since 2026-08-21 but
+  // unused until now — see public/editorial/CREDITS.md.
+  bridalStory: "/editorial/bridal-story.jpg",
+  // Client-supplied (not prototype) — see public/editorial/CREDITS.md.
+  clientHeroSaree: "/editorial/client-hero-saree.jpg",
   weaverAtLoom: "/editorial/weaver-pit-loom.jpg",
 } as const;
 
 const BANNERS = [
+  // hero-carousel.tsx cross-fades every live HOME_HERO row in sortOrder, so
+  // this is the slide the homepage opens on rather than the only one it shows.
   {
     title: "The Vivaah Bridal Edit",
     subtitle:
       "Handwoven Banarasi and Kanjivaram for the wedding season, direct from the loom.",
-    imageUrl: EDITORIAL.bridalHero,
-    linkUrl: "/shop/sarees?collection=Vivaah+Bridal",
+    // Swapped again 2026-08-24: the client supplied their own hero
+    // photograph (herosareepic.png, landscape 1881×836 — see
+    // EDITORIAL.clientHeroSaree and public/editorial/CREDITS.md), replacing
+    // the the prototype site bridal-chaise portrait this had before.
+    imageUrl: EDITORIAL.clientHeroSaree,
+    linkUrl: "/shop/sarees",
     position: "HOME_HERO",
     sortOrder: 0,
   },
-  {
-    title: "Chanderi, Woven Light",
-    subtitle: "Sheer silk-cotton from Pranpur village, on pit looms worked by hand.",
-    imageUrl: EDITORIAL.sheerSilk,
-    linkUrl: "/shop/sarees/chanderi-sarees",
-    position: "HOME_HERO",
-    sortOrder: 1,
-  },
-  {
-    title: "Block Print, Natural Dye",
-    subtitle: "Bagru and Sanganeri prints in indigo, madder and pomegranate.",
-    imageUrl: CATALOGUE_IMAGES.blockprint[0],
-    linkUrl: "/shop/fabric-by-the-metre/block-print-fabric",
-    position: "HOME_HERO",
-    sortOrder: 2,
-  },
+  // "Chanderi, Woven Light" and "Block Print, Natural Dye" removed
+  // 2026-08-24: both linked to sub-categories now switched off (see
+  // prisma/seed/categories.ts) — chanderi-sarees and fabric-by-the-metre —
+  // and their copy names a craft with no live listing left to open on.
   {
     title: "Dressed for the Season",
     subtitle: "Silk and zari for Diwali, weddings and the nights in between.",
     imageUrl: EDITORIAL.festive,
-    // `occasion` is a real facet key (see catalogue/filters.ts) and "Festive"
-    // is a seeded value, so this resolves to a populated listing.
-    linkUrl: "/shop?occasion=Festive",
+    // Was "?occasion=Festive" — none of the 5 sarees left public (see
+    // prisma/seed/products.ts) carry that occasion value, all 5 are "Party",
+    // so the facet filter resolved to an empty listing. Points at the sarees
+    // category itself instead.
+    linkUrl: "/shop/sarees",
     position: "HOME_HERO",
     sortOrder: 3,
   },
@@ -101,10 +103,15 @@ const BANNERS = [
     sortOrder: 0,
   },
   {
-    title: "Fabric by the Metre",
-    subtitle: "Silk, cotton, brocade and kalamkari — cut to your requirement.",
-    imageUrl: EDITORIAL.zariTexture,
-    linkUrl: "/shop/fabric-by-the-metre",
+    // Was "Fabric by the Metre", linking to a category switched off
+    // 2026-08-24 (see prisma/seed/categories.ts). shop/page.tsx renders the
+    // first CATEGORY_TOP banner unconditionally at the top of /shop — the
+    // one listing page left standing — so this now describes what's actually
+    // there rather than a department that no longer has a live listing.
+    title: "Sarees, Shot on the Client's Own Pieces",
+    subtitle: "Real product photography, not stock imagery — five sarees, six frames each.",
+    imageUrl: "/catalogue/client-sarees/saree1-1.jpg",
+    linkUrl: "/shop/sarees",
     position: "CATEGORY_TOP",
     sortOrder: 0,
   },
@@ -136,7 +143,12 @@ const BANNERS = [
     title: "Summer Cottons Clearance",
     subtitle: "Last season's cottons and linens, while they last.",
     imageUrl: CATALOGUE_IMAGES.cotton[1],
-    linkUrl: "/shop/fabric-by-the-metre",
+    // Was "/shop/fabric-by-the-metre" — that category is switched off by the
+    // 2026-08-24 sarees-only request (prisma/seed/categories.ts), so the URL
+    // 404s. The banner is expired and inactive, but the admin marketing list
+    // still renders its target as a link, so a dead URL is reachable from the
+    // console even though no shopper can see the banner.
+    linkUrl: "/shop/sarees",
     position: "PROMO",
     sortOrder: 1,
     isActive: false,
