@@ -92,8 +92,16 @@ Watch the logs for:
 ## The password gate
 
 Setting `DEMO_PASSWORD` turns on HTTP Basic Auth in front of **every page and
-every image**, and marks the site `noindex, nofollow`. It is read per request,
-so setting it on a running service takes effect without a rebuild. The browser shows a
+every image**, and marks the site `noindex, nofollow`.
+
+> **Set it before the build, not after.** The gate itself and the noindex header
+> are read per request, but `next.config.ts` also switches `images.unoptimized`
+> on when it sees this variable, and that changes the markup `<Image>` emits — a
+> build-time decision. Deploy with the variable already set (Railway makes
+> service variables available during the build, so the normal flow is fine). Add
+> it to a service that was built without it and every image 404s behind a
+> "not a valid image" error, because Next's image optimizer fetches each source
+> file over HTTP internally and that internal request carries no credentials. The browser shows a
 standard sign-in box; the username is ignored, only the password is checked.
 
 Send the client the URL and the password. Nothing else changes — the eleven demo
