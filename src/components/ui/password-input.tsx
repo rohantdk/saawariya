@@ -33,7 +33,10 @@ export function PasswordInput({ className, invalid, ...props }: InputProps) {
         onClick={() => setVisible((v) => !v)}
         aria-label={visible ? "Hide password" : "Show password"}
         aria-pressed={visible}
-        className="absolute right-3.5 top-1/2 -translate-y-1/2 text-ink-400 transition-colors hover:text-ink-900"
+        // The glyph stays 16px; the button around it becomes 44x44 so it can
+        // actually be hit. `right-1` keeps the icon at the same optical inset
+        // once the larger box is centred on it.
+        className="absolute right-1 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center text-ink-400 transition-colors hover:text-ink-900"
       >
         {visible ? (
           <EyeOff aria-hidden="true" className="h-4 w-4" />

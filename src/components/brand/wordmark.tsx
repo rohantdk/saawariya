@@ -30,12 +30,28 @@ const TYPE = { w: 750, h: 176 };
 /** The wordmark reads correctly at just under three-quarters of the mark's height. */
 const TYPE_TO_MARK = 0.72;
 
+/**
+ * Sizing, and why it goes through a CSS variable.
+ *
+ * The lockup used to take its height from an inline `style`, which no class can
+ * override — inline styles beat every selector. So the header rendered it at its
+ * full desktop size on a phone: 224px of a 375px viewport, which together with
+ * the menu button, the gaps, the padding and the signed-in actions cluster came
+ * to 401px and made /cart and /checkout scroll sideways.
+ *
+ * `--lockup-h` is therefore never *declared* here. It is only *read*, with the
+ * `size` prop as its fallback. A caller that says nothing gets `size`; a caller
+ * that sets `--lockup-h` in a class — at any breakpoint — wins, because there is
+ * no inline declaration left to outrank it.
+ */
+const lockupHeight = (size: number) => `var(--lockup-h, ${size}px)`;
+
 export function ArchMark({
   size = 40,
   surface = "dark",
   className,
 }: {
-  /** Rendered height of the arch, in pixels. */
+  /** Fallback height of the arch in pixels, used when --lockup-h is not set. */
   size?: number;
   /** The surface it sits on — "dark" means a wine or ink background. */
   surface?: "dark" | "light";
@@ -48,7 +64,7 @@ export function ArchMark({
       width={MARK.w}
       height={MARK.h}
       priority
-      style={{ height: size, width: (size * MARK.w) / MARK.h }}
+      style={{ height: lockupHeight(size), width: "auto" }}
       className={cn("w-auto select-none", className)}
     />
   );
@@ -56,20 +72,25 @@ export function ArchMark({
 
 export function Wordmark({
   className,
+  typeClassName,
   href = "/",
   showMark = true,
   surface = "dark",
   size = 40,
 }: {
   className?: string;
+  /**
+   * Classes for the wordmark type only, so a caller can drop it and keep the
+   * arch. The header does this on very narrow phones, where the full lockup
+   * plus a 44px menu button and three 44px actions no longer fit the row.
+   */
+  typeClassName?: string;
   href?: string;
   showMark?: boolean;
   surface?: "dark" | "light";
   /** Height of the arch in pixels; the wordmark is scaled to match. */
   size?: number;
 }) {
-  const typeHeight = Math.round(size * TYPE_TO_MARK);
-
   return (
     <Link
       href={href}
@@ -91,8 +112,11 @@ export function Wordmark({
         width={TYPE.w}
         height={TYPE.h}
         priority
-        style={{ height: typeHeight, width: (typeHeight * TYPE.w) / TYPE.h }}
-        className="w-auto select-none"
+        style={{
+          height: `calc(${lockupHeight(size)} * ${TYPE_TO_MARK})`,
+          width: "auto",
+        }}
+        className={cn("w-auto select-none", typeClassName)}
       />
     </Link>
   );

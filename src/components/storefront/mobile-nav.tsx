@@ -57,7 +57,9 @@ export function MobileNav({
         onClick={() => setIsOpen(true)}
         aria-expanded={isOpen}
         aria-controls="mobile-nav-drawer"
-        className="-ml-2 flex h-10 w-10 items-center justify-center text-cream/85 transition-colors hover:text-gold-300 lg:hidden"
+        // 44x44: this is the only way into navigation on a phone, so it gets
+        // the full touch target rather than the 40px it had.
+        className="-ml-2 flex h-11 w-11 shrink-0 items-center justify-center text-cream/85 transition-colors hover:text-gold-300 lg:hidden"
       >
         <Menu aria-hidden="true" className="h-5 w-5" />
         <span className="sr-only">Open menu</span>

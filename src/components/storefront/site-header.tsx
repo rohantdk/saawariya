@@ -85,7 +85,12 @@ export async function SiteHeader() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[0.6875rem] uppercase tracking-[0.12em] text-cream/70 transition-colors hover:text-gold-300"
+                    // The strip is 36px tall, so a 44px target will not fit —
+                    // but the bare text was a 14px-high hit area, under the
+                    // 24px WCAG 2.5.8 minimum as well. `inline-flex` plus the
+                    // full strip height gives the link the whole bar to be
+                    // tapped in, without changing how it looks.
+                    className="inline-flex h-9 items-center text-[0.6875rem] uppercase tracking-[0.12em] text-cream/70 transition-colors hover:text-gold-300"
                   >
                     {link.label}
                   </Link>
@@ -99,7 +104,13 @@ export async function SiteHeader() {
       {/* ---- Tier 2: lockup, search, actions ---- */}
       <div
         className={cn(
-          "mx-auto flex max-w-7xl items-center gap-4 px-5 lg:px-8",
+          // Phone budget, at 375px: 16+16 padding, 44 menu, 8+8 gaps, the
+          // lockup, and an actions cluster that is 44+44+36 once the bag and
+          // wishlist carry proper touch targets. Full-size gaps and padding do
+          // not leave room for all of that, and the row is built from shrink-0
+          // parts, so anything over budget becomes a sideways scroll rather
+          // than a squeeze. Tighter below `sm`, unchanged above it.
+          "mx-auto flex max-w-7xl items-center gap-2 px-4 sm:gap-4 sm:px-5 lg:px-8",
           "h-[5.75rem] transition-[height] duration-500 ease-[var(--ease-out-soft)]",
           "group-data-[scrolled=true]:h-[4.5rem]",
         )}
@@ -109,8 +120,18 @@ export async function SiteHeader() {
         <Wordmark
           size={56}
           surface="dark"
+          // Below 360px the arch alone carries the brand. Keeping the type as
+          // well put the row over the viewport again once the bag, wishlist and
+          // theme controls became real 44px targets.
+          typeClassName="hidden min-[360px]:block"
           className={cn(
             "shrink-0 origin-left",
+            // The lockup is 224px at its full size. With the menu button, the
+            // gaps, the page padding and the signed-in actions cluster, that
+            // totalled 401px in a 375px viewport — and since both this and the
+            // actions are shrink-0, nothing could give and /cart and /checkout
+            // scrolled sideways. Smaller below `sm`, full size from there.
+            "[--lockup-h:2rem] sm:[--lockup-h:3.5rem]",
             // Scaling rather than re-rendering at a smaller size: a transform
             // animates on the compositor, where swapping the image height would
             // relayout the bar on every frame.
@@ -124,7 +145,7 @@ export async function SiteHeader() {
           className="mx-auto hidden w-full max-w-md md:block"
         />
 
-        <div className="ml-auto flex shrink-0 items-center gap-3 md:ml-0">
+        <div className="ml-auto flex shrink-0 items-center gap-1 sm:gap-3 md:ml-0">
           <ThemeToggle />
 
           {customer && (
@@ -150,7 +171,10 @@ export async function SiteHeader() {
           {user ? (
             <Link
               href={ROLE_HOME[user.role] ?? "/account"}
-              className="group/user flex items-center gap-2.5"
+              // The name alongside is hidden below `lg`, so the link is only as
+              // big as the 36px avatar. A minimum height gives it a full target
+              // without resizing the avatar itself.
+              className="group/user flex h-11 items-center gap-2.5"
             >
               <span
                 aria-hidden="true"
@@ -170,7 +194,10 @@ export async function SiteHeader() {
           ) : (
             <Link
               href="/login"
-              className="flex items-center gap-2 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-cream/85 transition-colors hover:text-gold-300"
+              // Below `sm` the label is hidden and only the 16px icon is left,
+              // which was a 16x16 target. The minimum size gives it a real one;
+              // from `sm` the label returns and the box grows past it anyway.
+              className="flex h-11 min-w-11 items-center justify-center gap-2 text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-cream/85 transition-colors hover:text-gold-300 sm:justify-start"
             >
               <UserRound aria-hidden="true" className="h-4 w-4" />
               <span className="hidden sm:inline">Sign in</span>
@@ -222,7 +249,10 @@ function BagLink({
           : `${label}, ${count} item${count === 1 ? "" : "s"}`
       }
       className={cn(
-        "relative inline-flex items-center justify-center p-1 text-cream/85 transition-colors hover:text-gold-300",
+        // 44x44. The bag and wishlist are the two controls a shopper reaches
+        // for most on a phone, and `p-1` around an 18px icon left them at 26px.
+        // Only the hit area grows — the icon and the count badge are unchanged.
+        "relative inline-flex h-11 w-11 shrink-0 items-center justify-center text-cream/85 transition-colors hover:text-gold-300",
         className,
       )}
     >
