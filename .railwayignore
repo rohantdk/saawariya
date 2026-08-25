@@ -1,0 +1,12 @@
+# Excluded from the upload to the host. These are part of the delivered project
+# but the running site has no use for them, and they are the bulk of its size.
+#
+# `.gitignore` is honoured too, so node_modules/, .next/ and the local database
+# are already excluded and are not repeated here.
+
+# Hand-over material — read from the ZIP, never served.
+docs/screenshots/
+
+# Source artwork and the original logo. public/ holds everything the site
+# actually renders; this directory is the archive behind it.
+assets/

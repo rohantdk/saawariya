@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { decryptSession, SESSION_COOKIE_NAME } from "@/lib/auth/session";
+import { demoGate } from "@/lib/demo-gate";
 import {
   ADMIN_ROLES,
   OPERATIONS_ROLES,
@@ -36,8 +37,40 @@ const PROTECTED_AREAS: { prefix: string; allow: RoleCode[] }[] = [
 /** Signed-in users have no reason to see these; bounce them to their home. */
 const AUTH_ROUTES = ["/login", "/register", "/forgot-password"];
 
+/**
+ * Files served straight out of `public/`. The matcher below deliberately lets
+ * these reach the Proxy so the hosted demo's password gate covers images too —
+ * a gate that leaves every photograph fetchable by URL is not a gate. They need
+ * nothing else from this file, so they return immediately, before any session
+ * work: no cookie read, no signature verification, no crypto per image.
+ */
+const PUBLIC_ASSET = /\.(?:png|jpe?g|svg|webp|avif|ico|gif|txt|xml|webmanifest)$/i;
+
 export async function proxy(request: NextRequest) {
+  // First, and before everything: on a hosted demo this challenges the request.
+  // Inert unless DEMO_PASSWORD is set, so local runs are untouched.
+  const challenge = demoGate(request);
+  if (challenge) return challenge;
+
+  const response = await route(request);
+
+  // Keep a password-gated demo out of search results. This is read per request
+  // rather than declared in next.config.ts, because `headers()` there is
+  // evaluated once at BUILD time — a build that did not happen to have
+  // DEMO_PASSWORD in its environment would silently ship without this, which is
+  // exactly the kind of gap you only notice once the URL has been indexed.
+  if (process.env.DEMO_PASSWORD) {
+    response.headers.set("X-Robots-Tag", "noindex, nofollow");
+  }
+
+  return response;
+}
+
+/** The route gating itself, unchanged by the demo gate wrapped around it. */
+async function route(request: NextRequest): Promise<NextResponse> {
   const { pathname } = request.nextUrl;
+
+  if (PUBLIC_ASSET.test(pathname)) return NextResponse.next();
 
   const token = request.cookies.get(SESSION_COOKIE_NAME)?.value;
   const session = await decryptSession(token);
@@ -74,9 +107,10 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // Skip API routes, static assets and image files — they either do their own
-  // checks or need no session at all.
-  matcher: [
-    "/((?!api|_next/static|_next/image|images|favicon.ico|.*\\.(?:png|jpg|jpeg|svg|webp|avif|ico|gif)$).*)",
-  ],
+  // Skips API routes (they do their own checks) and Next's own build output,
+  // which carries no user content. Everything else — including files under
+  // `public/` — reaches the Proxy, so the hosted demo's password gate applies
+  // to images as well as pages. Assets exit on the first line of the handler,
+  // so the wider net costs a regex test rather than a session decrypt.
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };

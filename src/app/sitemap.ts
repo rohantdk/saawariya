@@ -7,7 +7,18 @@ import { PUBLIC_PRODUCT_WHERE } from "@/lib/catalogue/queries";
  * PUBLIC_PRODUCT_WHERE the storefront queries filter on, so a product that
  * 404s never appears here either. Panels behind proxy.ts's PROTECTED_AREAS
  * are excluded, same list as robots.ts.
+ *
+ * Rendered per request, not at build time. Two reasons, and the second is the
+ * one that bites: the catalogue changes while the site is running, so a sitemap
+ * frozen at build time starts going stale immediately; and prerendering it
+ * would mean querying the database during `next build`, when there is no
+ * database to query — on a hosted deploy the volume holding it is not mounted
+ * until the container actually runs. That failure appears as
+ * "Cannot open database because the directory does not exist" and fails the
+ * whole build, not just this route.
  */
+export const dynamic = "force-dynamic";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
 
