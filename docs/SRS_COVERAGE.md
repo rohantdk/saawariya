@@ -127,7 +127,7 @@ describes what `/cart` does, and `/cart` cites §42 Shopping Cart.
 | 81 | Finance Module | `src/app/admin/(console)/layout.tsx` |
 | 82 | Coupon Management | `prisma/schema.prisma`, `src/app/admin/(console)/layout.tsx` |
 | 83 | Banner Management | `prisma/schema.prisma`, `src/app/admin/(console)/layout.tsx` |
-| 84 | CMS (Content Management System) | `/admin/marketing/content/[slug]`, `/admin/marketing/content`, `/page/[slug]`, `prisma/schema.prisma` +4 more |
+| 84 | CMS (Content Management System) | `/admin/marketing/content`, `/page/[slug]`, `prisma/schema.prisma`, `src/app/admin/(console)/layout.tsx` +3 more |
 | 85 | Notifications Management | `prisma/schema.prisma`, `src/app/admin/(console)/layout.tsx` |
 | 86 | Reports & Analytics | `src/app/admin/(console)/layout.tsx` |
 | 87 | Platform Settings | `/admin/settings`, `prisma/schema.prisma`, `prisma/seed/content.ts`, `src/app/actions/admin-settings.ts` +6 more |
@@ -142,23 +142,23 @@ describes what `/cart` does, and `/cart` cites §42 Shopping Cart.
 | 91 | Operations Overview | Narrative — Chapter opener for §92-114 |
 | 92 | Operational Workflow | `prisma/schema.prisma`, `src/lib/admin/audit.ts`, `src/lib/constants.ts` |
 | 93 | Warehouse Module | `/operations/warehouse`, `prisma/schema.prisma`, `src/app/actions/seller-orders.ts`, `src/app/operations/warehouse/layout.tsx` +5 more |
-| 94 | Warehouse Dashboard | `/operations/warehouse/queue`, `/operations/warehouse`, `prisma/schema.prisma`, `src/app/actions/operations.ts` +8 more |
-| 95 | Warehouse Workflow | `/operations/warehouse/queue/[subOrderNumber]/pick-list`, `/operations/warehouse/queue/[subOrderNumber]`, `/operations/warehouse/queue`, `/operations/warehouse` +8 more |
-| 96 | Warehouse Order Status | `/operations/warehouse/queue/[subOrderNumber]/pick-list`, `/operations/warehouse/queue/[subOrderNumber]`, `/operations/warehouse/queue`, `/operations/warehouse` +6 more |
-| 97 | Inventory Handling | `/operations/warehouse/movements`, `/operations/warehouse/queue/[subOrderNumber]`, `/operations/warehouse/queue`, `/operations/warehouse` +11 more |
+| 94 | Warehouse Dashboard | `/operations/warehouse/queue`, `prisma/schema.prisma`, `src/app/actions/operations.ts`, `src/app/actions/seller-orders.ts` +7 more |
+| 95 | Warehouse Workflow | `/operations/warehouse/queue/[subOrderNumber]/pick-list`, `/operations/warehouse/queue/[subOrderNumber]`, `/operations/warehouse/queue`, `prisma/schema.prisma` +7 more |
+| 96 | Warehouse Order Status | `/operations/warehouse/queue/[subOrderNumber]/pick-list`, `/operations/warehouse/queue/[subOrderNumber]`, `/operations/warehouse/queue`, `prisma/schema.prisma` +5 more |
+| 97 | Inventory Handling | `/operations/warehouse/movements`, `/operations/warehouse/queue/[subOrderNumber]`, `/operations/warehouse/queue`, `/seller/inventory` +10 more |
 | 98 | Stock Alerts | `/operations/warehouse/inventory`, `/operations/warehouse/queue/[subOrderNumber]`, `/operations/warehouse`, `/seller/inventory` +12 more |
 | 99 | Quality Control (QC) Module | `/operations/qc`, `prisma/schema.prisma`, `src/app/operations/qc/layout.tsx`, `src/lib/admin/audit.ts` +3 more |
-| 100 | QC Dashboard | `/operations/qc/queue`, `/operations/qc`, `prisma/schema.prisma`, `src/app/actions/operations.ts` +6 more |
-| 101 | QC Workflow | `/operations/qc/queue/[subOrderNumber]`, `/operations/qc/queue`, `/operations/qc`, `prisma/schema.prisma` +5 more |
-| 102 | QC Inspection Checklist | `/operations/qc/queue/[subOrderNumber]`, `/operations/qc/queue`, `/operations/qc`, `prisma/schema.prisma` +9 more |
+| 100 | QC Dashboard | `/operations/qc/queue`, `prisma/schema.prisma`, `src/app/actions/operations.ts`, `src/app/operations/qc/layout.tsx` +5 more |
+| 101 | QC Workflow | `/operations/qc/queue/[subOrderNumber]`, `/operations/qc/queue`, `prisma/schema.prisma`, `src/app/operations/qc/layout.tsx` +4 more |
+| 102 | QC Inspection Checklist | `/operations/qc/queue/[subOrderNumber]`, `prisma/schema.prisma`, `prisma/seed/orders.ts`, `src/app/actions/operations-qc.ts` +7 more |
 | 103 | QC Decision Flow | `/operations/qc/reports`, `/operations/qc`, `prisma/schema.prisma`, `src/app/operations/qc/layout.tsx` +4 more |
-| 104 | Rejection Reasons | `/operations/qc/queue/[subOrderNumber]`, `/operations/qc/reports`, `/operations/qc`, `prisma/schema.prisma` +9 more |
+| 104 | Rejection Reasons | `/operations/qc/queue/[subOrderNumber]`, `/operations/qc/reports`, `prisma/schema.prisma`, `prisma/seed/orders.ts` +8 more |
 | 105 | Packaging Module | `prisma/schema.prisma`, `src/lib/admin/audit.ts`, `src/lib/constants.ts`, `src/lib/operations/queues.ts` |
 | 106 | Packaging Workflow | `prisma/schema.prisma`, `src/lib/admin/audit.ts`, `src/lib/constants.ts`, `src/lib/operations/queues.ts` |
 | 107 | Logistics Module | `/operations/logistics`, `prisma/schema.prisma`, `src/app/actions/operations-logistics.ts`, `src/app/operations/logistics/layout.tsx` +6 more |
-| 108 | Shipment Workflow | `/operations/logistics/queue/[subOrderNumber]`, `/operations/logistics/queue`, `/operations/logistics`, `prisma/schema.prisma` +9 more |
-| 109 | Shipment Status | `/operations/logistics/queue/[subOrderNumber]`, `/operations/logistics/queue`, `/operations/logistics`, `prisma/schema.prisma` +9 more |
-| 110 | Delivery Confirmation | `/operations/logistics/queue/[subOrderNumber]`, `/operations/logistics/queue`, `/operations/logistics/reports`, `/operations/logistics` +9 more |
+| 108 | Shipment Workflow | `/operations/logistics/queue/[subOrderNumber]`, `/operations/logistics/queue`, `prisma/schema.prisma`, `src/app/actions/operations-logistics.ts` +8 more |
+| 109 | Shipment Status | `/operations/logistics/queue/[subOrderNumber]`, `/operations/logistics/queue`, `prisma/schema.prisma`, `prisma/seed/orders.ts` +8 more |
+| 110 | Delivery Confirmation | `/operations/logistics/queue/[subOrderNumber]`, `/operations/logistics/reports`, `/operations/logistics`, `prisma/schema.prisma` +8 more |
 | 111 | Returns Workflow (If Enabled) | `/admin/support/returns/[subOrderNumber]`, `/admin/support/returns`, `prisma/schema.prisma`, `prisma/seed/orders.ts` +8 more |
 | 112 | Operations Notifications | `src/lib/fulfilment/transition.ts` |
 | 113 | Operations Reports | `prisma/schema.prisma` |
@@ -183,9 +183,9 @@ describes what `/cart` does, and `/cart` cites §42 Shopping Cart.
 | --- | --- | --- |
 | 123 | Marketing Overview | `prisma/schema.prisma`, `src/app/actions/marketing.ts`, `src/app/admin/marketing/layout.tsx`, `src/lib/admin/audit.ts` +2 more |
 | 124 | Marketing Dashboard | `/admin/marketing`, `prisma/schema.prisma`, `src/app/actions/marketing.ts`, `src/app/admin/marketing/layout.tsx` +4 more |
-| 125 | Banner Management | `/admin/marketing/banners/[id]`, `/admin/marketing/banners`, `prisma/schema.prisma`, `prisma/seed/content.ts` +9 more |
+| 125 | Banner Management | `/admin/marketing/banners`, `prisma/schema.prisma`, `prisma/seed/content.ts`, `src/app/actions/marketing.ts` +8 more |
 | 126 | Coupon Management | `/admin/marketing/coupons/[id]`, `/admin/marketing/coupons`, `prisma/schema.prisma`, `prisma/seed/content.ts` +7 more |
-| 127 | Campaign Management | `/admin/marketing/campaigns/[id]`, `/admin/marketing/campaigns`, `prisma/schema.prisma`, `prisma/seed/content.ts` +8 more |
+| 127 | Campaign Management | `/admin/marketing/campaigns`, `prisma/schema.prisma`, `prisma/seed/content.ts`, `src/app/actions/marketing.ts` +7 more |
 | 128 | Promotional Notifications | `/admin/marketing/audience`, `prisma/schema.prisma`, `src/app/actions/marketing.ts`, `src/app/admin/marketing/layout.tsx` +6 more |
 | 129 | Marketing Reports | `/admin/marketing/coupons/[id]`, `/admin/marketing`, `prisma/schema.prisma`, `prisma/seed/content.ts` +7 more |
 
