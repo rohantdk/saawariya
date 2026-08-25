@@ -1,5 +1,6 @@
 import { SiteHeader } from "@/components/storefront/site-header";
 import { SiteFooter } from "@/components/storefront/site-footer";
+import { RevealMain } from "@/components/ui/reveal-main";
 
 /**
  * Chrome for every public page — SRS §144, §156.
@@ -25,9 +26,11 @@ export default function StorefrontLayout({
       </a>
 
       <SiteHeader />
-      <main id="main" className="flex-1">
+      {/* `RevealMain` is a plain <main> that additionally fades this page's
+          content blocks in as they are scrolled to — see that component. */}
+      <RevealMain id="main" className="flex-1">
         {children}
-      </main>
+      </RevealMain>
       <SiteFooter />
     </div>
   );

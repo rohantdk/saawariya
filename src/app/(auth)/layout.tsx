@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Wordmark } from "@/components/brand/wordmark";
+import { RevealMain } from "@/components/ui/reveal-main";
 
 /**
  * Shared shell for login / register / password recovery.
@@ -45,9 +46,11 @@ export default function AuthLayout({
       </aside>
 
       {/* Form panel */}
-      <main className="flex flex-1 items-center justify-center px-6 py-12 lg:px-14">
+      {/* Short forms sit entirely above the fold, where `RevealMain` hides
+          nothing — this only does visible work on the longer register form. */}
+      <RevealMain className="flex flex-1 items-center justify-center px-6 py-12 lg:px-14">
         <div className="w-full max-w-md">{children}</div>
-      </main>
+      </RevealMain>
     </div>
   );
 }

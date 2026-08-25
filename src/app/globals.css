@@ -247,6 +247,116 @@
     animation: ribbon-in 0.5s var(--ease-out-soft) both;
   }
 
+  /* ---- Scroll reveals ---------------------------------------------------
+     Driven by components/ui/reveal-main.tsx, which sets `data-reveal` on a
+     page's content blocks. Only blocks that were below the fold at mount are
+     ever given the attribute, so anything already on screen is untouched by
+     these rules and cannot flash. */
+  [data-reveal] {
+    transition:
+      opacity 0.7s var(--ease-out-soft),
+      transform 0.7s var(--ease-out-soft);
+  }
+
+  [data-reveal="hidden"] {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+
+  /* ---- Homepage hero ----------------------------------------------------
+     The hero is the one full-bleed band on the site, so it carries the most
+     motion — but all of it is slow and none of it loops attention back to
+     itself. See components/storefront/hero-carousel.tsx. */
+
+  /* Ken Burns. A held shot rather than a still: the frame opens up over 18s
+     and drifts back over the next 18s. `alternate` rather than a restart per
+     slide, so an outgoing slide never snaps back to its start transform
+     halfway through its own cross-fade. */
+  @keyframes hero-pan {
+    from {
+      transform: scale(1.04);
+    }
+    to {
+      transform: scale(1.13) translate3d(-1.2%, -0.8%, 0);
+    }
+  }
+
+  .hero-frame {
+    animation: hero-pan 18s var(--ease-out-soft) infinite alternate;
+  }
+
+  /* The copy rises in sequence under the image settling. Restarted on every
+     slide change by `key` — see the note there. */
+  @keyframes hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(1.1rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero-line {
+    animation: hero-rise 0.85s var(--ease-out-soft) both;
+  }
+
+  /* Parallax. `--hero-progress` runs 0→1 as the section clears the viewport
+     and is written by the component from a rAF-throttled scroll listener; it
+     stays at 0 when the hero is off-screen or motion is reduced, which is why
+     both rules degrade to no transform on their own. */
+  .hero-parallax {
+    transform: translate3d(0, calc(var(--hero-progress, 0) * 4.5rem), 0);
+    will-change: transform;
+  }
+
+  .hero-copy {
+    transform: translate3d(0, calc(var(--hero-progress, 0) * -2.5rem), 0);
+    /* Faster than the drift, so the copy is gone before it would collide with
+       the header rather than sliding out under it. */
+    opacity: calc(1 - var(--hero-progress, 0) * 1.35);
+  }
+
+  /* Dwell indicator — the active bar fills across the slide's dwell, so the
+     control shows when the next slide is due and not merely which one is up. */
+  @keyframes hero-dwell {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  .hero-dwell-fill {
+    transform-origin: left;
+    animation: hero-dwell var(--hero-dwell, 7s) linear both;
+  }
+
+  [data-hero-paused="true"] .hero-dwell-fill {
+    animation-play-state: paused;
+  }
+
+  /* Scroll cue — a zari hairline with a brighter segment running down it. */
+  @keyframes hero-cue {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    35% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(220%);
+      opacity: 0;
+    }
+  }
+
+  .hero-cue-run {
+    animation: hero-cue 2.4s var(--ease-out-soft) infinite;
+  }
+
   /* Long-form body copy coming out of the CMS as raw HTML — /page/[slug].
      Written as element selectors rather than utility classes because the
      markup is authored in the admin panel and cannot carry className. */
@@ -314,5 +424,14 @@
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+
+  /* The rule above collapses every duration to ~0, which is right for a
+     one-shot but pathological for an `infinite` animation: it would repaint
+     thousands of times a second forever. The hero's two looping animations
+     have to be switched off outright rather than shortened. */
+  .hero-frame,
+  .hero-cue-run {
+    animation: none !important;
   }
 }

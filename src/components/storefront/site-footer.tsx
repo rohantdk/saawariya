@@ -163,7 +163,7 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <h2 className="mb-4 text-[0.6875rem] font-medium uppercase tracking-[0.16em] text-gold-300">
+      <h2 className="mb-4 text-sm font-bold uppercase tracking-[0.16em] text-gold-300">
         {title}
       </h2>
       <ul className="space-y-2.5">{children}</ul>

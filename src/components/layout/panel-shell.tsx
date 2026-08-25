@@ -2,6 +2,7 @@ import { logout } from "@/app/actions/auth";
 import { Wordmark } from "@/components/brand/wordmark";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { RevealMain } from "@/components/ui/reveal-main";
 import { ROLE_LABEL } from "@/lib/constants";
 import type { CurrentUser } from "@/lib/auth/dal";
 
@@ -79,9 +80,15 @@ export function PanelShell({
           row from lg, where there is width for a real sidebar. */}
       <div className="flex flex-1 flex-col lg:flex-row">
         {sidebar}
-        <main className="min-w-0 flex-1 px-5 py-8 lg:px-8 lg:py-10">
+        {/* One <main> for all four signed-in areas, so the scroll reveals in
+            `RevealMain` reach the customer account, seller, admin and
+            operations panels from this single place. It targets a page's
+            top-level blocks, never table rows — a 200-row queue animates once
+            as a card, which is the only way this is tolerable on a desk tool
+            somebody uses all day. */}
+        <RevealMain className="min-w-0 flex-1 px-5 py-8 lg:px-8 lg:py-10">
           {children}
-        </main>
+        </RevealMain>
       </div>
     </div>
   );

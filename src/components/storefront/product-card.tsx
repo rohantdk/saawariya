@@ -7,6 +7,7 @@ import { resolvePrice } from "@/lib/catalogue/pricing";
 import { Price } from "@/components/storefront/price";
 import { RatingStars } from "@/components/storefront/rating-stars";
 import { WishlistButton } from "@/components/storefront/wishlist-button";
+import { Reveal } from "@/components/ui/reveal";
 import type { ProductCard as ProductCardData } from "@/lib/catalogue/queries";
 
 /**
@@ -187,13 +188,17 @@ export function ProductGrid({
       )}
     >
       {products.map((product, index) => (
-        <ProductCard
-          key={product.id}
-          product={product}
-          tier={tier}
-          priority={index < priorityCount}
-          wishlisted={wishlisted}
-        />
+        // Staggered within a row (index % 4) rather than across the whole
+        // grid — a 40-product page should not queue up a multi-second
+        // cascade for the last row a fast scroller lands on.
+        <Reveal key={product.id} delay={(index % 4) * 70} y={20}>
+          <ProductCard
+            product={product}
+            tier={tier}
+            priority={index < priorityCount}
+            wishlisted={wishlisted}
+          />
+        </Reveal>
       ))}
     </div>
   );

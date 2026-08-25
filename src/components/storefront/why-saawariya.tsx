@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import type { CommerceSettings } from "@/lib/commerce/settings";
 import { formatPaise } from "@/lib/utils";
+import { Reveal } from "@/components/ui/reveal";
 
 /**
  * Why Choose Saawariya — SRS §152.
@@ -71,7 +72,7 @@ export function WhySaawariya({ settings }: { settings: CommerceSettings }) {
   return (
     <section className="border-t border-ivory-400">
       <div className="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-20">
-        <div className="mb-10 flex flex-col items-center text-center">
+        <Reveal className="mb-10 flex flex-col items-center text-center">
           <p className="eyebrow mb-3">Why Saawariya</p>
           <h2 className="font-display text-3xl leading-tight sm:text-[2rem]">
             Bought with confidence
@@ -79,14 +80,22 @@ export function WhySaawariya({ settings }: { settings: CommerceSettings }) {
           <p className="mt-2.5 max-w-xl text-sm leading-relaxed text-ink-400">
             Six things we do on every order, not six things we say.
           </p>
-        </div>
+        </Reveal>
 
         <ul className="grid gap-x-8 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
-          {blocks.map(({ icon: Icon, title, body }) => (
+          {blocks.map(({ icon: Icon, title, body }, index) => (
             // min-w-0: a grid item will not shrink below its content's
             // min-content width, which is how a nowrap child gives the page
             // horizontal scroll at 375px.
-            <li key={title} className="flex min-w-0 gap-4">
+            // Staggered within a row (index % 3) so the cascade reads left
+            // to right per row instead of queuing all six in sequence.
+            <Reveal
+              key={title}
+              as="li"
+              delay={(index % 3) * 90}
+              y={18}
+              className="flex min-w-0 gap-4"
+            >
               <span
                 aria-hidden="true"
                 className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-gold-400 text-brand-700"
@@ -99,7 +108,7 @@ export function WhySaawariya({ settings }: { settings: CommerceSettings }) {
                 </h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-ink-400">{body}</p>
               </div>
-            </li>
+            </Reveal>
           ))}
         </ul>
       </div>
