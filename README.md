@@ -267,8 +267,8 @@ specific fictional products in the seed data.
 
 > **Two sets are the exception and are not CC0 — settle them before launch.**
 > The five `frame-*.jpg` frames and the seven `public/editorial/` set pieces come
-> from the client's own the prototype site prototype, are of undocumented origin, and
-> carry no stated licence; several depict identifiable-looking people. The 30
+> from the client's own earlier prototype site and carry no stated licence or
+> documented source; several depict identifiable-looking people. The 30
 > photographs in `catalogue/client-sarees/` were supplied by the client on
 > 2026-08-24 with no commercial usage rights stated. Both are documented in full
 > in **[public/catalogue/CREDITS.md](public/catalogue/CREDITS.md)** and

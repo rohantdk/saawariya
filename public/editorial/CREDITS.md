@@ -8,17 +8,17 @@ product photography tied to specific listings.
 
 Unlike `public/catalogue/`, **these files do not have a verified licence.**
 
-They were copied from the client's own prototype at the prototype site, from
-the the prototype's image host CDN, on 2026-08-16. They appear to be of undocumented origin
-(the filenames on that CDN are all of the form the original file names), and no
-licence, model, or terms of use are stated anywhere on that site.
+They were copied from the client's own earlier prototype site on 2026-08-16.
+Their original author, source and terms of use are not stated anywhere on that
+site, so their provenance cannot be verified.
 
 That is fine for a prototype and for internal review. It is **not** settled
 enough to launch on, for two reasons:
 
-1. **Rights are undetermined.** Whoever generated them may or may not hold usable
-   rights, and the source's terms have not been checked. Confirm with Team ARJITAY
-   that these are theirs to use commercially before the site goes public.
+1. **Rights are undetermined.** Whoever produced them may or may not hold usable
+   rights, and the terms they were produced under have not been checked. Confirm
+   with Team ARJITAY that these are theirs to use commercially before the site
+   goes public.
 2. **They depict people.** Three of them show identifiable-looking models. If any
    were based on real likenesses, that is a personality-rights
    exposure in India regardless of the copyright position.
@@ -64,15 +64,15 @@ photographs of goods for sale.
 Two images from that pass were deliberately **not** used:
 `c319d7e6f` has "LUXE SAREE COLLECTION" burned into the pixels, so it cannot be
 relabelled for one of our categories; `20dbbd60b` had no place to go. Neither
-is included in this build; both remain in the client's prototype if they
+is included in this build; both remain on the client's prototype site if they
 are ever wanted.
 
 The last two are kept because they are usable and the client may want them, but
 nothing renders them today. Delete them if they are not going to be used.
 
-### Added 2026-08-24 — client-supplied, not prototype
+### Added 2026-08-24 — supplied directly by the client
 
-`client-hero-saree.jpg` is **not** from prototype — everything above about
+`client-hero-saree.jpg` is **not** from the prototype site — everything above about
 unresolved provenance does not apply to it. It was supplied
 directly by the client as `herosareepic.png` in
 `D:\Arjitay Project\saree-images\` (the same folder as the five product

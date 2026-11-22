@@ -143,10 +143,9 @@ const APPAREL_SIZES = [
 ];
 
 /**
- * Extra gallery frames taken from the client's prototype, 2026-08-21.
+ * Extra gallery frames taken from the client's earlier prototype site, 2026-08-21.
  *
- * These are **of undocumented origin** (every source filename on that CDN is
- * the original file names) and their licence is unsettled — the same caveat
+ * Their source is undocumented and their licence is unsettled — the same caveat
  * that governs `public/editorial/`. See `public/catalogue/CREDITS.md`
  * before launch.
  *

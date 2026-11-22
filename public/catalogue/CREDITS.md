@@ -10,9 +10,10 @@ Most are photographs of museum textile holdings — the Metropolitan Museum of
 Art, the Cleveland Museum of Art, LACMA, the Honolulu Museum of Art and
 Cooper Hewitt — which is why they are shot flat against neutral grounds.
 
-> **The five `frame-*.jpg` files are the exception and are not CC0.** They are
-> of undocumented origin, their licence is unresolved, and they are attached to live
-> product listings. See [the section at the end](#prototype-frames--not-cc0-read-before-launch).
+> **The five `frame-*.jpg` files are the exception and are not CC0.** They come
+> from the client's earlier prototype site, their licence is unresolved, and they
+> are attached to live product listings. See
+> [the section at the end](#prototype-frames--not-cc0-read-before-launch).
 
 > **`client-sarees/` is also not CC0.** These 30 photographs (5 sarees × 6
 > frames) were supplied directly by the client on 2026-08-24 for the sarees
@@ -156,11 +157,9 @@ not know about the `frame-*` files and will not touch them.
 
 ## Prototype frames — not CC0, read before launch
 
-Added 2026-08-21 at the client's request, from the prototype at
-the prototype site. Unlike everything above,
-these are **of undocumented origin** — every source filename on that CDN is of the form
-the original file names — and **no licence, model or terms of use is stated
-anywhere on that site**.
+Added 2026-08-21 at the client's request, from the client's earlier prototype
+site. Unlike everything above, their original author, source and terms of use are
+not stated anywhere on that site, so **no licence can be verified**.
 
 They differ from the prototype images in `public/editorial/` in one way that
 matters: those are mood pieces, but **these hang on product pages**, where a

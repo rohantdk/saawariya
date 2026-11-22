@@ -121,8 +121,8 @@ lives in `src/lib/auth/dal.ts` and the per-action checks.
 `public/editorial/CREDITS.md` and `public/catalogue/CREDITS.md` record that two
 sets of images are not cleared:
 
-- **Twelve frames from the client's own prototype** — of undocumented origin, no
-  stated licence, several depicting identifiable-looking people. Five sit on live
+- **Twelve frames from the client's own earlier prototype** — no stated licence
+  or documented source, several depicting identifiable-looking people. Five sit on live
   product pages.
 - **Thirty client-supplied photographs** with no stated commercial usage rights.
 

@@ -49,7 +49,7 @@ const EDITORIAL = {
   atelier: "/editorial/bridal-atelier.jpg",
   loom: "/editorial/handloom-craft.jpg",
   banarasiDetail: "/editorial/banarasi-heritage.jpg",
-  // Added 2026-08-21 from the same prototype as the five above, and
+  // Added 2026-08-21 from the same prototype site as the five above, and
   // under the same unresolved licence — see public/editorial/CREDITS.md.
   zariTexture: "/editorial/zari-brocade-texture.jpg",
   festive: "/editorial/festive-diwali.jpg",
@@ -57,7 +57,7 @@ const EDITORIAL = {
   // is inherited."). Landscape (1344×768), staged since 2026-08-21 but
   // unused until now — see public/editorial/CREDITS.md.
   bridalStory: "/editorial/bridal-story.jpg",
-  // Client-supplied (not prototype) — see public/editorial/CREDITS.md.
+  // Client-supplied (not from the prototype) — see public/editorial/CREDITS.md.
   clientHeroSaree: "/editorial/client-hero-saree.jpg",
   weaverAtLoom: "/editorial/weaver-pit-loom.jpg",
 } as const;
@@ -72,7 +72,7 @@ const BANNERS = [
     // Swapped again 2026-08-24: the client supplied their own hero
     // photograph (herosareepic.png, landscape 1881×836 — see
     // EDITORIAL.clientHeroSaree and public/editorial/CREDITS.md), replacing
-    // the the prototype site bridal-chaise portrait this had before.
+    // the prototype's bridal-chaise portrait this had before.
     imageUrl: EDITORIAL.clientHeroSaree,
     linkUrl: "/shop/sarees",
     position: "HOME_HERO",
