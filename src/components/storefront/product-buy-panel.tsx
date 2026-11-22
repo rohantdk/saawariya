@@ -123,7 +123,7 @@ export function ProductBuyPanel({
   const [quantity, setQuantity] = useState(minQty);
   // React 19 lints setState inside an effect. Re-clamping during render against
   // a copy of the previous variant is the supported way to reset derived state
-  // when a prop-like value changes — see the note in AGENTS.md lineage.
+  // when a prop-like value changes.
   const [lastVariantId, setLastVariantId] = useState(selectedId);
   if (lastVariantId !== selectedId) {
     setLastVariantId(selectedId);
